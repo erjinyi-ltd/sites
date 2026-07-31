@@ -1,0 +1,5 @@
+.yarn
+/watermarkinspector/.cache
+/watermarkinspector/dist
+/watermarkinspector/node_modules
+/watermarkinspector/.npm-cache

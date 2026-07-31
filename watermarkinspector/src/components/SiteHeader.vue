@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { ChevronDown, Eraser, LockKeyhole, Menu, Moon, ScanSearch, Sun, Workflow, X } from '@lucide/vue'
+import { Eraser, LockKeyhole, Menu, Moon, ScanSearch, Sun, Workflow, X } from '@lucide/vue'
 import BrandLockup from './BrandLockup.vue'
 import { languageOptions } from '../content/siteCopy'
 import type { Locale, SiteCopy, Theme } from '../types/site'
@@ -14,11 +14,17 @@ const emit = defineEmits<{
 const languageOpen = ref(false)
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
+const activeNavHref = ref('')
 const navIcons = [ScanSearch, Workflow, Eraser, LockKeyhole]
 
 const selectedLanguage = computed(
   () => languageOptions.find((option) => option.code === props.locale) ?? languageOptions[0],
 )
+const inlineLanguageLabel = computed(() => {
+  if (props.locale === 'zh-CN') return '简体中文'
+  if (props.locale === 'zh-Hant') return '繁體中文'
+  return 'English'
+})
 
 function setLocale(locale: Locale) {
   emit('localeChange', locale)
@@ -40,6 +46,18 @@ function onDocumentKeyDown(event: KeyboardEvent) {
 
 function onScroll() {
   isScrolled.value = window.scrollY > 8
+
+  const activationLine = Math.min(window.innerHeight * 0.32, 280)
+  let currentHref = ''
+
+  for (const item of props.copy.nav) {
+    const section = document.querySelector<HTMLElement>(item.href)
+    if (section && section.getBoundingClientRect().top <= activationLine) {
+      currentHref = item.href
+    }
+  }
+
+  activeNavHref.value = currentHref
 }
 
 watch(mobileMenuOpen, (open) => {
@@ -50,6 +68,7 @@ onMounted(() => {
   document.addEventListener('pointerdown', onDocumentPointerDown)
   document.addEventListener('keydown', onDocumentKeyDown)
   window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll, { passive: true })
   onScroll()
 })
 
@@ -57,6 +76,7 @@ onUnmounted(() => {
   document.removeEventListener('pointerdown', onDocumentPointerDown)
   document.removeEventListener('keydown', onDocumentKeyDown)
   window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', onScroll)
   document.body.style.overflow = ''
 })
 </script>
@@ -69,7 +89,13 @@ onUnmounted(() => {
       </a>
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
-        <a v-for="item in copy.nav" :key="item.href" :href="item.href">{{ item.label }}</a>
+        <a
+          v-for="item in copy.nav"
+          :key="item.href"
+          :href="item.href"
+          :class="{ active: activeNavHref === item.href }"
+          :aria-current="activeNavHref === item.href ? 'location' : undefined"
+        >{{ item.label }}</a>
       </nav>
 
       <div class="desktop-tools">
@@ -92,9 +118,8 @@ onUnmounted(() => {
             :aria-expanded="languageOpen"
             @click="languageOpen = !languageOpen"
           >
-            <span>{{ selectedLanguage.label }}</span>
-            <small>{{ selectedLanguage.short }}</small>
-            <ChevronDown :class="{ open: languageOpen }" :size="14" aria-hidden="true" />
+            <span class="language-trigger-label">{{ inlineLanguageLabel }}</span>
+            <span class="language-trigger-chevron" :class="{ open: languageOpen }" aria-hidden="true"></span>
           </button>
           <div v-if="languageOpen" class="language-menu" role="listbox" :aria-label="copy.languageLabel">
             <button
@@ -192,7 +217,14 @@ onUnmounted(() => {
         </button>
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
-        <a v-for="(item, index) in copy.nav" :key="item.href" :href="item.href" @click="closeMenus">
+        <a
+          v-for="(item, index) in copy.nav"
+          :key="item.href"
+          :href="item.href"
+          :class="{ active: activeNavHref === item.href }"
+          :aria-current="activeNavHref === item.href ? 'location' : undefined"
+          @click="closeMenus"
+        >
           <span class="mobile-nav-icon">
             <component :is="navIcons[index]" :size="20" aria-hidden="true" />
           </span>
@@ -249,13 +281,18 @@ onUnmounted(() => {
   border-radius: 8px;
   color: var(--muted-foreground);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   transition: color 160ms ease, background 160ms ease;
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:hover,
+.desktop-nav a.active {
   color: var(--foreground);
   background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+.desktop-nav a.active {
+  color: var(--primary);
 }
 
 .desktop-tools,
@@ -296,41 +333,56 @@ onUnmounted(() => {
   background: color-mix(in srgb, var(--primary) 8%, var(--card));
 }
 
+.tool-button,
+.tool-button:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
 .language-select {
   position: relative;
 }
 
 .language-trigger {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 11px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--foreground);
-  background: color-mix(in srgb, var(--card) 72%, transparent);
-  cursor: pointer;
-}
-
-.language-trigger span {
+  gap: 0.35rem;
+  padding: 0.35rem 0.45rem;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted-foreground);
+  background: transparent;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-.language-trigger small {
-  color: var(--muted-foreground);
-  font-family: var(--font-data);
-  font-size: 9px;
-  font-weight: 800;
+.language-trigger:hover {
+  color: var(--foreground);
 }
 
-.language-trigger svg {
-  color: var(--muted-foreground);
-  transition: transform 160ms ease;
+.language-trigger-label {
+  max-width: 6.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.language-trigger svg.open {
+.language-trigger-chevron {
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.28rem solid;
+  border-right: 0.22rem solid transparent;
+  border-left: 0.22rem solid transparent;
+  opacity: 0.55;
+  transition: transform 250ms cubic-bezier(0.32, 0.72, 0, 1), opacity 250ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.language-trigger-chevron.open {
+  opacity: 0.85;
   transform: rotate(180deg);
 }
 
@@ -391,11 +443,6 @@ onUnmounted(() => {
   font-weight: 700;
 }
 
-.mobile-menu-scrim,
-.mobile-drawer {
-  display: none;
-}
-
 @media (max-width: 1020px) {
   .topbar-inner {
     gap: 14px;
@@ -442,6 +489,14 @@ onUnmounted(() => {
     background: transparent;
   }
 
+  .menu-toggle,
+  .menu-toggle:hover,
+  .drawer-close,
+  .drawer-close:hover {
+    border-color: transparent;
+    background: transparent;
+  }
+
   .mobile-language {
     display: inline-flex;
     align-items: center;
@@ -458,6 +513,11 @@ onUnmounted(() => {
 </style>
 
 <style>
+.mobile-menu-scrim,
+.mobile-drawer {
+  display: none;
+}
+
 @media (max-width: 860px) {
   .mobile-menu-scrim {
     position: fixed;
@@ -534,11 +594,21 @@ onUnmounted(() => {
     color: var(--foreground);
     font-family: var(--font-data);
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 400;
   }
 
-  .mobile-nav a:hover {
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
     background: color-mix(in srgb, var(--primary) 8%, transparent);
+  }
+
+  .mobile-nav a.active {
+    color: var(--primary);
+  }
+
+  .mobile-nav a.active .mobile-nav-icon {
+    border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
+    background: color-mix(in srgb, var(--primary) 10%, var(--muted));
   }
 
   .mobile-nav-icon {

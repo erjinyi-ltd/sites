@@ -23,6 +23,15 @@ export interface FaqItem {
   answer: string
 }
 
+export interface EcosystemProduct {
+  type: string
+  name: string
+  description: string
+  features: string[]
+  href: string
+  theme: 'wallet' | 'vpn' | 'homeGuard'
+}
+
 export interface SiteCopy {
   skipMain: string
   homeLabel: string
@@ -93,15 +102,31 @@ export interface SiteCopy {
     description: string
     action: string
   }
+  ecosystem: {
+    eyebrow: string
+    title: string
+    description: string
+    officialWebsite: string
+    moreTitle: string
+    moreDescription: string
+    viewAll: string
+    products: EcosystemProduct[]
+  }
   footer: {
-    tagline: string
-    product: string
-    resources: string
-    capabilities: string
+    menuLabel: string
+    contactUs: string
+    email: string
+    twitter: string
+    telegram: string
+    home: string
+    products: string
+    media: string
+    updates: string
+    join: string
+    about: string
     privacy: string
-    faq: string
-    gcsa: string
-    contact: string
+    terms: string
+    support: string
     copyright: string
   }
 }

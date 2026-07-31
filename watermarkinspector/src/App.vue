@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ClosingCta from './components/ClosingCta.vue'
 import DetectionFlow from './components/DetectionFlow.vue'
+import EcosystemProducts from './components/EcosystemProducts.vue'
 import FactsStrip from './components/FactsStrip.vue'
 import FaqSection from './components/FaqSection.vue'
 import FeatureGrid from './components/FeatureGrid.vue'
@@ -34,8 +35,9 @@ const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
       <PrivacySection :copy="copy.privacy" />
       <FaqSection :copy="copy.faq" />
       <ClosingCta :copy="copy.closing" />
+      <EcosystemProducts :copy="copy.ecosystem" />
     </main>
-    <SiteFooter :copy="copy.footer" />
+    <SiteFooter :copy="copy.footer" :locale="locale" />
   </div>
 </template>
 

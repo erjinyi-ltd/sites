@@ -8,6 +8,7 @@
   --foreground: #0c1220;
   --muted-foreground: #5c6b7a;
   --primary: #008995;
+  --logo-icon-color: var(--primary);
   --primary-strong: #00727c;
   --primary-foreground: #ffffff;
   --accent: #007a6a;
@@ -41,6 +42,7 @@ html.dark {
   --foreground: #eeeeee;
   --muted-foreground: #a1a1a1;
   --primary: #00a5ad;
+  --logo-icon-color: var(--foreground);
   --primary-strong: #00b8c1;
   --primary-foreground: #001315;
   --accent: #008674;
