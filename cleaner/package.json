@@ -1,0 +1,23 @@
+{
+  "name": "gcsa-cleaner-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc -b",
+    "build": "yarn typecheck && vite build && node scripts/prepare-sites.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.28.0",
+    "vue": "^3.5.40"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "typescript": "~6.0.3",
+    "vite": "^8.2.0",
+    "vue-tsc": "^3.3.8"
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="GCSA CLEANER 是本地优先、默认可恢复的 macOS 清理与系统管理工具；Windows 版本正在开发中。" />
+    <meta name="theme-color" content="#000205" />
+    <meta property="og:title" content="CLEANER — 清理设备，先看清，再动手" />
+    <meta property="og:description" content="扫描、逐项复核、影响确认、默认可恢复。macOS 产品能力与 Windows 开发进度。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="__SITE_ORIGIN__/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CLEANER — GCSA" />
+    <meta name="twitter:description" content="本地优先、默认可恢复的设备清理与系统管理工具。" />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/og.png" />
+    <script>
+      (() => {
+        let theme = 'dark'
+        let locale = ''
+        try {
+          const savedTheme = localStorage.getItem('gcsa-site-theme')
+          const savedLocale = localStorage.getItem('gcsa-site-locale')
+          if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme
+          if (savedLocale === 'zh-CN' || savedLocale === 'zh-Hant' || savedLocale === 'en') locale = savedLocale
+        } catch {}
+        document.documentElement.classList.toggle('dark', theme === 'dark')
+        document.documentElement.style.colorScheme = theme
+        if (locale) document.documentElement.lang = locale === 'zh-Hant' ? 'zh-Hant' : locale
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#000205' : '#f7f9fb')
+      })()
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="icon" href="https://gcsa.org/favicon.ico" />
+    <title>CLEANER — GCSA</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
