@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { siteCopy } from '../content/siteCopy'
+import { localeMessages } from '../locales'
 import type { Locale, Theme } from '../types/site'
 
 const themeStorageKey = 'gcsa-site-theme'
@@ -29,7 +29,8 @@ function getInitialLocale(): Locale {
 export function usePreferences() {
   const locale = ref<Locale>(getInitialLocale())
   const theme = ref<Theme>(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
-  const copy = computed(() => siteCopy[locale.value])
+  const messages = computed(() => localeMessages[locale.value])
+  const copy = computed(() => messages.value.shared)
 
   const setLocale = (nextLocale: Locale) => {
     locale.value = nextLocale
@@ -60,5 +61,5 @@ export function usePreferences() {
     }
   }, { immediate: true })
 
-  return { locale, theme, copy, setLocale, toggleTheme }
+  return { locale, theme, messages, copy, setLocale, toggleTheme }
 }

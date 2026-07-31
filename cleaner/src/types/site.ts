@@ -1,5 +1,6 @@
 export type Locale = 'zh-CN' | 'zh-Hant' | 'en'
 export type Theme = 'light' | 'dark'
+export type ProductPlatform = 'mac' | 'windows'
 
 export interface NavItem {
   href: string
@@ -10,7 +11,7 @@ export interface FeatureItem {
   tag: string
   title: string
   description: string
-  icon: 'trash' | 'code' | 'apps' | 'files' | 'restore' | 'system'
+  icon: 'trash' | 'code' | 'apps' | 'files' | 'restore' | 'system' | 'database' | 'rocket' | 'network' | 'shield' | 'software' | 'driver'
 }
 
 export interface PlatformItem {
@@ -32,28 +33,17 @@ export interface EcosystemProduct {
   type: string
   name: string
   description: string
+  features: string[]
   href: string
   theme: 'wallet' | 'vpn' | 'homeGuard'
 }
 
-export interface SiteCopy {
-  skipMain: string
-  homeLabel: string
-  navLabel: string
-  openMenu: string
-  closeMenu: string
-  languageLabel: string
-  switchToLight: string
-  switchToDark: string
-  headerCta: string
-  nav: NavItem[]
+export interface ProductPageCopy {
   hero: {
     ecosystem: string
     eyebrow: string
     title: string
     lead: string
-    primaryAction: string
-    secondaryAction: string
     proof: string
     macStatus: string
     windowsStatus: string
@@ -65,7 +55,15 @@ export interface SiteCopy {
     reclaimable: string
     selected: string
     guarded: string
+    visualSystem: string
+    visualBadge: string
+    scanValue: string
+    scanUnit: string
+    selectedValue: string
+    candidates: Array<{ kind: string; tone: 'cyan' | 'green' | 'amber'; title: string; value: string; guarded?: boolean }>
+    visualFooter: string[]
   }
+  factsLabel: string
   facts: Array<{ value: string; label: string; description: string }>
   platforms: {
     eyebrow: string
@@ -92,27 +90,26 @@ export interface SiteCopy {
     points: Array<{ title: string; description: string }>
     note: string
   }
-  windows: {
-    eyebrow: string
-    title: string
-    description: string
-    status: string
-    features: string[]
-    boundary: string
-  }
   faq: {
     eyebrow: string
     title: string
     description: string
     items: FaqItem[]
   }
-  closing: {
-    eyebrow: string
-    title: string
-    description: string
-    primary: string
-    secondary: string
-  }
+}
+
+export interface SiteCopy {
+  skipMain: string
+  homeLabel: string
+  navLabel: string
+  openMenu: string
+  closeMenu: string
+  languageLabel: string
+  platformSwitchLabel: string
+  switchToLight: string
+  switchToDark: string
+  headerCta: string
+  nav: NavItem[]
   ecosystem: {
     eyebrow: string
     title: string
@@ -140,4 +137,9 @@ export interface SiteCopy {
     support: string
     copyright: string
   }
+}
+
+export interface LocaleMessages {
+  shared: SiteCopy
+  pages: Record<ProductPlatform, ProductPageCopy>
 }

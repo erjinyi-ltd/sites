@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Activity, Boxes, Code2, Files, RotateCcw, Trash2 } from '@lucide/vue'
+import { Activity, Boxes, Code2, Cpu, Database, Files, Network, Package, Rocket, RotateCcw, ShieldCheck, Trash2 } from '@lucide/vue'
 import type { Component } from 'vue'
-import type { FeatureItem, SiteCopy } from '../types/site'
+import type { FeatureItem, ProductPageCopy } from '../types/site'
 
-defineProps<{ copy: SiteCopy['capabilities'] }>()
+defineProps<{ copy: ProductPageCopy['capabilities'] }>()
 
 const icons: Record<FeatureItem['icon'], Component> = {
   trash: Trash2,
@@ -12,6 +12,12 @@ const icons: Record<FeatureItem['icon'], Component> = {
   files: Files,
   restore: RotateCcw,
   system: Activity,
+  database: Database,
+  rocket: Rocket,
+  network: Network,
+  shield: ShieldCheck,
+  software: Package,
+  driver: Cpu,
 }
 </script>
 

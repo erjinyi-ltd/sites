@@ -1,0 +1,565 @@
+{
+  "shared": {
+    "skipMain": "跳過導覽，前往主要內容",
+    "homeLabel": "返回 CLEANER 首頁",
+    "navLabel": "頁面導覽",
+    "openMenu": "開啟導覽選單",
+    "closeMenu": "關閉導覽選單",
+    "languageLabel": "切換語言",
+    "platformSwitchLabel": "選擇 CLEANER 版本",
+    "switchToLight": "切換至淺色主題",
+    "switchToDark": "切換至深色主題",
+    "headerCta": "了解產品",
+    "nav": [
+      {
+        "href": "#platforms",
+        "label": "產品版本"
+      },
+      {
+        "href": "#capabilities",
+        "label": "核心能力"
+      },
+      {
+        "href": "#workflow",
+        "label": "安全流程"
+      },
+      {
+        "href": "#privacy",
+        "label": "私隱邊界"
+      }
+    ],
+    "ecosystem": {
+      "eyebrow": "GCSA 安全生態",
+      "title": "更多安全產品",
+      "description": "從鏈上資產、網路私隱到家庭與金融環境，將安全防護延伸到每一次數碼操作。",
+      "officialWebsite": "前往官網",
+      "moreTitle": "更多安全產品",
+      "moreDescription": "探索完整的 GCSA 安全生態，查看更多面向個人、企業與基礎設施的安全產品。",
+      "viewAll": "查看全部產品",
+      "products": [
+        {
+          "type": "安全加密錢包",
+          "name": "GCSA Wallet",
+          "description": "GCSA Wallet 為個人與團隊提供安全的數碼資產管理與鏈上風險識別體驗，協助用戶更安心地查看、接收與轉移資產。",
+          "features": [
+            "即時地址風險掃描",
+            "智能資金來源追蹤",
+            "AI 異常風險告警"
+          ],
+          "href": "https://wallet.gcsa.org/",
+          "theme": "wallet"
+        },
+        {
+          "type": "加密網路與私隱保護",
+          "name": "GCSA VPN",
+          "description": "GCSA VPN 透過加密連線保護日常上網與公共網路使用，降低資料外洩風險，為不同裝置提供簡單、穩定的安全連線。",
+          "features": [
+            "加密網路連線",
+            "上網私隱保護",
+            "多裝置安全存取"
+          ],
+          "href": "https://gsafevpn.com/",
+          "theme": "vpn"
+        },
+        {
+          "type": "家庭與金融移動安全",
+          "name": "GCSA Home Guard",
+          "description": "GCSA Home Guard 是面向家庭與金融場景的移動安全體檢平台，結合安全評分、修復建議與雲端威脅情報，及早識別裝置漏洞、環境風險與 AI 詐騙威脅。",
+          "features": [
+            "一鍵安全體檢",
+            "家庭設備與攝像頭安全",
+            "AI 詐騙與釣魚防護"
+          ],
+          "href": "https://homeguard.gcsa.org/",
+          "theme": "homeGuard"
+        }
+      ]
+    },
+    "footer": {
+      "menuLabel": "頁尾導覽",
+      "contactUs": "聯繫我們",
+      "email": "聯繫郵箱",
+      "twitter": "推特",
+      "telegram": "Telegram",
+      "home": "首頁",
+      "products": "GCSA 生態產品",
+      "media": "GCSA 媒體",
+      "updates": "GCSA 動態",
+      "join": "加入聯盟",
+      "about": "關於聯盟",
+      "privacy": "隱私政策",
+      "terms": "使用條款",
+      "support": "技術支持",
+      "copyright": "© Global Cybersecurity Alliance. 保留所有權利。"
+    }
+  },
+  "pages": {
+    "mac": {
+      "hero": {
+        "ecosystem": "GCSA 生態產品",
+        "eyebrow": "LOCAL-FIRST SYSTEM CARE",
+        "title": "清理裝置，先看清，再動手。",
+        "lead": "本地優先的 macOS 清理與系統管理工具。掃描、逐項覆核、影響確認、預設可恢復——把空間還給你，把決定權留給你。",
+        "proof": "不含遙測、帳戶或檔案上傳 · 清理操作不會在背景自動執行",
+        "macStatus": "14+",
+        "windowsStatus": "11",
+        "visualLabel": "CLEANER 安全清理流程預覽",
+        "scan": "掃描",
+        "review": "逐項覆核",
+        "confirm": "確認影響",
+        "recover": "恢復中心",
+        "reclaimable": "可釋放空間",
+        "selected": "已選擇",
+        "guarded": "高影響項已保護",
+        "visualSystem": "CLEANER / MACOS",
+        "visualBadge": "ON-DEVICE",
+        "scanValue": "18.6",
+        "scanUnit": "GB",
+        "selectedValue": "4.2 GB",
+        "candidates": [
+          {
+            "kind": "CACHE",
+            "tone": "cyan",
+            "title": "Xcode DerivedData",
+            "value": "6.4 GB"
+          },
+          {
+            "kind": "APP",
+            "tone": "green",
+            "title": "應用殘留",
+            "value": "1.8 GB"
+          },
+          {
+            "kind": "GUARD",
+            "tone": "amber",
+            "title": "瀏覽器網站資料",
+            "value": "需覆核",
+            "guarded": true
+          }
+        ],
+        "visualFooter": [
+          "唯讀掃描",
+          "需要覆核",
+          "預設可恢復"
+        ]
+      },
+      "factsLabel": "Mac 產品資訊",
+      "facts": [
+        {
+          "value": "macOS 14+",
+          "label": "目前平台",
+          "description": "完整版與 App Store Lite 獨立邊界"
+        },
+        {
+          "value": "本地優先",
+          "label": "資料邊界",
+          "description": "掃描、歷史與裝置資訊留在目前裝置"
+        },
+        {
+          "value": "預設可恢復",
+          "label": "執行策略",
+          "description": "一般清理優先移到垃圾桶"
+        }
+      ],
+      "platforms": {
+        "eyebrow": "PRODUCT EDITIONS",
+        "title": "兩種 Mac 版本，各有清晰邊界",
+        "description": "完整版與 App Store Lite 是獨立構建，面向不同的授權範圍與清理深度。",
+        "items": [
+          {
+            "platform": "macOS",
+            "name": "GCSA Mac Cleaner",
+            "status": "完整版",
+            "statusTone": "ready",
+            "description": "面向完整清理、應用管理和系統診斷的獨立桌面版本。",
+            "features": [
+              "垃圾與開發者快取清理",
+              "應用解除安裝、重設與殘留覆核",
+              "重複檔案與恢復中心",
+              "系統維護、權限與裝置診斷"
+            ],
+            "note": "支援 macOS 14 及更高版本。取得渠道以後續正式發布資訊為準。"
+          },
+          {
+            "platform": "macOS",
+            "name": "GCSA Cleaner",
+            "status": "Lite",
+            "statusTone": "limited",
+            "description": "在 App Store 沙盒邊界內，只檢查你明確授權的資料夾。",
+            "features": [
+              "授權目錄掃描",
+              "≥ 100 MiB 大檔案覆核",
+              "重複檔案內容校驗",
+              "始終移到垃圾桶"
+            ],
+            "note": "Lite 與完整版是獨立構建和獨立安全邊界，不是同一個 App 的功能開關。"
+          }
+        ]
+      },
+      "capabilities": {
+        "eyebrow": "MACOS CAPABILITIES",
+        "title": "從空間清理，到系統狀態覆核",
+        "description": "每項能力都先展示物件、原因和影響，再由你決定是否執行。",
+        "items": [
+          {
+            "tag": "CLEANUP",
+            "title": "垃圾與瀏覽器清理",
+            "description": "掃描用戶快取、日誌、臨時項目、下載、大檔案和支援的瀏覽器資料；密碼、書籤、歷史與擴展明確排除。",
+            "icon": "trash"
+          },
+          {
+            "tag": "DEVELOPER",
+            "title": "開發者清理",
+            "description": "覆蓋 Xcode、node_modules、SwiftPM、CocoaPods、Homebrew 及常見開發與 AI 工具快取，並說明重建成本。",
+            "icon": "code"
+          },
+          {
+            "tag": "APPLICATIONS",
+            "title": "應用管理與本機審計",
+            "description": "支援解除安裝、重設和殘留覆核，並展示簽名、Gatekeeper、公證、沙盒與安裝來源證據。",
+            "icon": "apps"
+          },
+          {
+            "tag": "DUPLICATES",
+            "title": "大檔案與重複檔案",
+            "description": "按大小分組並計算內容摘要，支援保留策略與 Finder 覆核，每組至少保留一份。",
+            "icon": "files"
+          },
+          {
+            "tag": "RECOVERY",
+            "title": "恢復中心",
+            "description": "查看可恢復事務和項目，支援整次或單項恢復；原位置被佔用時不會覆蓋現有檔案。",
+            "icon": "restore"
+          },
+          {
+            "tag": "DIAGNOSTICS",
+            "title": "系統維護與唯讀診斷",
+            "description": "覆蓋 System Data、登入項目、維護任務、私隱權限、裝置資訊和活動監控。",
+            "icon": "system"
+          }
+        ]
+      },
+      "workflow": {
+        "eyebrow": "REVIEW BEFORE ACTION",
+        "title": "每一次修改，都經過同一條安全路徑",
+        "description": "CLEANER 不把「掃描到」直接等同於「應該刪除」。",
+        "steps": [
+          {
+            "number": "01",
+            "title": "唯讀掃描",
+            "description": "識別允許範圍內的候選項，記錄路徑、類型、大小、修改時間、歸屬與掃描原因。"
+          },
+          {
+            "number": "02",
+            "title": "逐項覆核",
+            "description": "全新掃描預設不選中；個人檔案、下載、大檔案、iCloud 與網站資料不會進入自動推薦。"
+          },
+          {
+            "number": "03",
+            "title": "影響確認",
+            "description": "執行前重新生成計畫，展示垃圾桶、永久刪除和被阻止數量；關鍵變化會要求重新確認。"
+          },
+          {
+            "number": "04",
+            "title": "執行與恢復",
+            "description": "逐項報告結果並儲存本地歷史；符合條件的垃圾桶與備份項目可以恢復。"
+          }
+        ]
+      },
+      "safety": {
+        "eyebrow": "SAFETY BY DEFAULT",
+        "title": "證據不足，就停止執行",
+        "description": "安全邊界不是提示語，而是執行路徑中的硬約束。",
+        "points": [
+          {
+            "title": "最小權限",
+            "description": "授權不是進入主應用的前提；缺少權限時，只限制受影響的能力。特權 Helper 僅接受白名單操作。"
+          },
+          {
+            "title": "身份重新校驗",
+            "description": "路徑越權、符號連結逃逸、掃描後檔案身份變化或關聯應用仍在運行時，操作會被阻止。"
+          },
+          {
+            "title": "預設可恢復",
+            "description": "一般檔案與應用預設移到垃圾桶；重複檔案和解除安裝不會跟隨永久刪除設定。"
+          },
+          {
+            "title": "誠實的診斷",
+            "description": "未知來源表示本地證據不足，不等於惡意；活動監控唯讀，不提供結束程序。"
+          }
+        ],
+        "note": "CLEANER 不是防毒軟件、EDR、記憶體清理器或自動系統優化器，也不會繞過 SIP、直接寫入 TCC 資料庫或自動清空垃圾桶。"
+      },
+      "faq": {
+        "eyebrow": "CLEAR BOUNDARIES",
+        "title": "清理之前，先把邊界說清楚",
+        "description": "產品不會用模糊的「一鍵優化」承諾取代可驗證的流程。",
+        "items": [
+          {
+            "question": "會自動刪除掃描到的檔案嗎？",
+            "answer": "不會。全新掃描完成後選中集合為空，所有真實修改都需要明確選擇和二次確認，破壞性操作不會自動重試。"
+          },
+          {
+            "question": "Mac Cleaner 會上傳檔案或掃描報告嗎？",
+            "answer": "不會。目前產品不含遙測、帳戶、遠程掃描報告或檔案上傳；掃描、歷史和裝置資訊只在目前 Mac 處理與保存。"
+          },
+          {
+            "question": "永久刪除開啟後，所有內容都會直接刪除嗎？",
+            "answer": "不會。解除安裝 App、重複檔案和多種高影響場景會強制使用垃圾桶或直接阻止，設定不會覆蓋這些安全策略。"
+          },
+          {
+            "question": "完整版與 Lite 有甚麼分別？",
+            "answer": "完整版涵蓋系統清理、應用管理、恢復和診斷；Lite 只處理你明確授權的資料夾，並始終把刪除項目移到垃圾桶。兩者是獨立構建。"
+          }
+        ]
+      }
+    },
+    "windows": {
+      "hero": {
+        "ecosystem": "GCSA 生態產品",
+        "eyebrow": "WINDOWS 11 PC CARE CENTER",
+        "title": "讓 Windows 更乾淨、更流暢、更安全。",
+        "lead": "快速完成系統體檢、垃圾清理、軟件管理、驅動程式檢查、啟動優化、網絡修復與深度安全防護，日常維護一處完成。",
+        "proof": "本地優先 · 按需提權 · 每項操作可核驗、可恢復",
+        "macStatus": "14+",
+        "windowsStatus": "11",
+        "visualLabel": "CLEANER Windows 電腦管理中心預覽",
+        "scan": "健康體檢",
+        "review": "軟件管理",
+        "confirm": "驅動程式安全",
+        "recover": "恢復中心",
+        "reclaimable": "系統健康評分",
+        "selected": "9 項系統體檢",
+        "guarded": "軟件、驅動程式與安全狀態已匯總",
+        "visualSystem": "CLEANER / WINDOWS 管理中心",
+        "visualBadge": "LOCAL CONTROL",
+        "scanValue": "94",
+        "scanUnit": "分",
+        "selectedValue": "已完成",
+        "candidates": [
+          {
+            "kind": "SOFTWARE",
+            "tone": "cyan",
+            "title": "軟件與預裝應用管理",
+            "value": "13 個可管理"
+          },
+          {
+            "kind": "DRIVER",
+            "tone": "green",
+            "title": "驅動程式簽名與完整性",
+            "value": "664 項已核驗"
+          },
+          {
+            "kind": "CLEANUP",
+            "tone": "amber",
+            "title": "垃圾與私隱清理",
+            "value": "3.1 GB 可處理"
+          }
+        ],
+        "visualFooter": [
+          "本地掃描",
+          "按需提權",
+          "逐項恢復"
+        ]
+      },
+      "factsLabel": "Windows 產品資訊",
+      "facts": [
+        {
+          "value": "10 大模組",
+          "label": "管家能力",
+          "description": "涵蓋清理、軟件、驅動程式、網絡與安全"
+        },
+        {
+          "value": "x64 / ARM64",
+          "label": "原生支援",
+          "description": "涵蓋 Windows 11 主流裝置架構"
+        },
+        {
+          "value": "本地可恢復",
+          "label": "安全執行",
+          "description": "操作前確認，修改後支援逐項還原"
+        }
+      ],
+      "platforms": {
+        "eyebrow": "WINDOWS EDITIONS",
+        "title": "完整管家能力，原生支援 x64 與 ARM64",
+        "description": "兩種架構共享清理、軟件、驅動程式與安全管理能力，並針對裝置架構使用對應的原生組件。",
+        "items": [
+          {
+            "platform": "Windows 11",
+            "name": "CLEANER for x64",
+            "status": "正式版",
+            "statusTone": "ready",
+            "description": "面向主流 Windows 11 x64 裝置的完整電腦管理、診斷與深度安全檢查版本。",
+            "features": [
+              "系統體檢、垃圾與私隱清理",
+              "軟件、預裝應用與系統精簡",
+              "驅動程式簽名、啟動與網絡診斷",
+              "Defender 協同與本地恢復"
+            ],
+            "note": "介面預設以一般權限運行，僅在系統級操作需要時調用受限提權組件。"
+          },
+          {
+            "platform": "Windows 11 ARM64",
+            "name": "CLEANER for ARM64",
+            "status": "正式版",
+            "statusTone": "ready",
+            "description": "為 Windows on Arm 提供原生介面、軟件管理、清理、驅動程式檢查、網絡與安全基線能力。",
+            "features": [
+              "ARM64 原生應用與掃描器",
+              "軟件與預裝應用管理",
+              "驅動程式、服務與安全基線檢查",
+              "Defender Offline 與恢復中心"
+            ],
+            "note": "按目標架構隔離掃描程序，避免用模擬運行替代原生系統能力。"
+          }
+        ]
+      },
+      "capabilities": {
+        "eyebrow": "WINDOWS CAPABILITIES",
+        "title": "從清理到軟件、驅動程式與安全，一套管家全部涵蓋",
+        "description": "十個管理中心涵蓋 Windows 日常維護，每項結果都提供物件、證據、風險與可執行建議。",
+        "items": [
+          {
+            "tag": "HEALTH",
+            "title": "系統健康檢查",
+            "description": "匯總儲存、登錄檔、啟動、網路與安全狀態，展示需覆核數量，並支援匯出本地健康報告。",
+            "icon": "system"
+          },
+          {
+            "tag": "CLEANUP",
+            "title": "垃圾與私隱清理",
+            "description": "掃描臨時檔案、錯誤報告、縮圖、瀏覽器快取與明確規則項；下載、文件、桌面和雲端硬碟預設排除。",
+            "icon": "trash"
+          },
+          {
+            "tag": "SOFTWARE",
+            "title": "軟件與預裝應用管理",
+            "description": "列舉目前用戶已安裝的可卸載預裝應用，預設不勾選；透過標準 Windows API 卸載，並識別明確的軟件卸載殘留。",
+            "icon": "software"
+          },
+          {
+            "tag": "DRIVERS",
+            "title": "驅動程式管理與安全檢查",
+            "description": "核驗驅動程式和服務的路徑、發佈者、SHA-256 與簽名，可結合 YARA-X 檢查驅動映像；在線狀態只報告，不自動刪除驅動程式。",
+            "icon": "driver"
+          },
+          {
+            "tag": "REGISTRY",
+            "title": "登錄檔清理與修復",
+            "description": "識別失效啟動項目、解除安裝殘留和明確無效設定，修改前保存鍵和值的完整備份，支援逐項恢復。",
+            "icon": "database"
+          },
+          {
+            "tag": "STARTUP",
+            "title": "啟動與效能管理",
+            "description": "覆核啟動項目、排程工作和第三方服務，以可量化的啟動影響和風險依據給出處理建議。",
+            "icon": "rocket"
+          },
+          {
+            "tag": "SYSTEM",
+            "title": "系統精簡與個人化設定",
+            "description": "提供經過篩選的廣告、建議、私隱、工作列、開始選單與 AI 功能設定；不關閉 Windows Update、BitLocker 或關鍵系統服務。",
+            "icon": "apps"
+          },
+          {
+            "tag": "NETWORK",
+            "title": "網路健康與安全",
+            "description": "檢查網卡、DNS、代理、Hosts、防火牆和連線中繼資料，按從輕到重的順序執行可驗證修復。",
+            "icon": "network"
+          },
+          {
+            "tag": "SECURITY",
+            "title": "深度安全與 Anti-rootkit",
+            "description": "檢查持久化、簽名、驅動程式、服務與 Cross-view 差異，結合 PE-sieve、YARA-X 和 Defender Offline 形成分層證據。",
+            "icon": "shield"
+          },
+          {
+            "tag": "RECOVERY",
+            "title": "歷史、隔離與逐項恢復",
+            "description": "記錄掃描、計畫、執行和前後狀態；隔離檔案、登錄檔備份與設定修改均可逐項核驗並恢復。",
+            "icon": "restore"
+          }
+        ]
+      },
+      "workflow": {
+        "eyebrow": "EVIDENCE BEFORE ACTION",
+        "title": "每項系統修改，都走同一條可恢復路徑",
+        "description": "掃描結果不會直接變成刪除命令，高風險物件只進入覆核或離線檢查。",
+        "steps": [
+          {
+            "number": "01",
+            "title": "唯讀掃描",
+            "description": "採集物件、來源、簽名、風險與預期收益，不在掃描階段修改檔案、登錄檔或網路設定。"
+          },
+          {
+            "number": "02",
+            "title": "證據覆核",
+            "description": "按資訊、建議、安全預設項和高風險分級，逐項展示依據，預設不以陌生或陳舊作為刪除理由。"
+          },
+          {
+            "number": "03",
+            "title": "備份與確認",
+            "description": "生成不可變操作計畫，保存檔案、登錄檔和網路狀態，明確展示權限需求與恢復方式。"
+          },
+          {
+            "number": "04",
+            "title": "執行、驗證與恢復",
+            "description": "受限提權組件只執行白名單命令；完成後驗證結果、記錄前後狀態，並支援逐項恢復。"
+          }
+        ]
+      },
+      "safety": {
+        "eyebrow": "WINDOWS SAFETY MODEL",
+        "title": "權限、規則與恢復邊界都可驗證",
+        "description": "安全不是一個開關，而是貫穿掃描、計畫、執行和恢復的硬約束。",
+        "points": [
+          {
+            "title": "按需提權",
+            "description": "介面不長期以系統管理員身份運行。用戶範圍清理無需提權，系統級操作才調用獨立受限組件。"
+          },
+          {
+            "title": "簽名規則與白名單命令",
+            "description": "規則包必須驗簽，解析器拒絕未知欄位和越權路徑；提權端不接受任意命令列。"
+          },
+          {
+            "title": "執行前重新校驗",
+            "description": "服務端會覆核物件 ID、路徑、重解析點、擁有者和規則簽名，防止掃描後物件被替換。"
+          },
+          {
+            "title": "本地隔離與逐項恢復",
+            "description": "檔案隔離、登錄檔備份、操作日誌和恢復中繼資料保留在本機；雜湊不匹配時拒絕恢復損壞內容。"
+          }
+        ],
+        "note": "線上檢查不會自動刪除驅動程式、系統服務或啟動鏈；用戶態差異只能表述為需要覆核，不能被描述為已經排除或確認核心級 Rootkit。"
+      },
+      "faq": {
+        "eyebrow": "CLEAR BOUNDARIES",
+        "title": "Windows 維護，也要把邊界說清楚",
+        "description": "CLEANER 不用恐嚇式評分或「一鍵加速」取代證據和可恢復結果。",
+        "items": [
+          {
+            "question": "會自動刪除掃描結果嗎？",
+            "answer": "不會。掃描階段唯讀，修改型操作必須經過物件覆核、備份和明確確認；高風險安全物件不會在線自動刪除。"
+          },
+          {
+            "question": "會上傳檔案、登錄檔或網路資料嗎？",
+            "answer": "不會。預設不會上傳檔案內容、登錄檔內容、網路設定或掃描報告，也不抓取網路封包內容。"
+          },
+          {
+            "question": "軟件和驅動程式功能包含甚麼？",
+            "answer": "軟件中心可列舉並卸載用戶選擇的預裝應用，也會識別明確的軟件卸載殘留；驅動程式中心核驗路徑、發佈者、雜湊和簽名，並可使用 YARA-X 檢查驅動映像，在線狀態不會自動刪除驅動程式。"
+          },
+          {
+            "question": "支援哪些 Windows 裝置？",
+            "answer": "正式支援 Windows 11 x64 與 ARM64。兩種架構都提供清理、軟件管理、驅動程式檢查、網絡、安全基線和恢復能力。"
+          },
+          {
+            "question": "深度檢查可以證明系統沒有 Rootkit 嗎？",
+            "answer": "不能。用戶態檢查只能報告異常或差異；發現高風險跡象時會生成證據，並引導使用 Defender Offline 等離線檢查。"
+          }
+        ]
+      }
+    }
+  }
+}

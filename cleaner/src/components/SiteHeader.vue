@@ -2,7 +2,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { GitCompareArrows, HardDrive, LayoutGrid, Menu, Moon, ShieldCheck, Sun, X } from '@lucide/vue'
 import BrandLockup from './BrandLockup.vue'
-import { languageOptions } from '../content/siteCopy'
+import { languageOptions } from '../locales'
 import type { Locale, SiteCopy, Theme } from '../types/site'
 
 const props = defineProps<{ copy: SiteCopy; locale: Locale; theme: Theme }>()
@@ -20,11 +20,7 @@ const navIcons = [LayoutGrid, HardDrive, GitCompareArrows, ShieldCheck]
 const selectedLanguage = computed(
   () => languageOptions.find((option) => option.code === props.locale) ?? languageOptions[0],
 )
-const inlineLanguageLabel = computed(() => {
-  if (props.locale === 'zh-CN') return '简体中文'
-  if (props.locale === 'zh-Hant') return '繁體中文'
-  return 'English'
-})
+const inlineLanguageLabel = computed(() => selectedLanguage.value.label)
 
 function setLocale(locale: Locale) {
   emit('localeChange', locale)
@@ -196,8 +192,7 @@ onUnmounted(() => {
   .mobile-nav { display: grid; gap: 8px; margin-top: 26px; }
   .mobile-nav a { display: flex; align-items: center; gap: 13px; min-height: 54px; padding: 7px 10px; border-radius: 10px; color: var(--foreground); font-family: var(--font-data); font-size: 16px; font-weight: 400; }
   .mobile-nav a:hover, .mobile-nav a.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
-  .mobile-nav-icon { display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto; border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border)); border-radius: 9px; color: var(--primary); background: var(--muted); }
-  .mobile-nav a.active .mobile-nav-icon { border-color: color-mix(in srgb, var(--primary) 48%, var(--border)); background: color-mix(in srgb, var(--primary) 10%, var(--muted)); }
+  .mobile-nav-icon { display: inline-grid; place-items: center; width: 28px; height: 40px; flex: 0 0 auto; color: var(--primary); background: transparent; }
   .drawer-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; margin-top: auto; border: 1px solid var(--primary); border-radius: 999px; color: var(--primary-foreground); background: var(--primary); font-size: 14px; font-weight: 700; }
 }
 </style>

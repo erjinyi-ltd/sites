@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ChevronDown } from '@lucide/vue'
-import type { SiteCopy } from '../types/site'
+import type { ProductPageCopy } from '../types/site'
 
-defineProps<{ copy: SiteCopy['faq'] }>()
+defineProps<{ copy: ProductPageCopy['faq'] }>()
 </script>
 
 <template>

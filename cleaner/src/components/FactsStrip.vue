@@ -1,9 +1,9 @@
 <script setup lang="ts">
-defineProps<{ items: Array<{ value: string; label: string; description: string }> }>()
+defineProps<{ label: string; items: Array<{ value: string; label: string; description: string }> }>()
 </script>
 
 <template>
-  <section class="facts content-width" aria-label="Product facts">
+  <section class="facts content-width" :aria-label="label">
     <article v-for="item in items" :key="item.label">
       <strong>{{ item.value }}</strong><span>{{ item.label }}</span><p>{{ item.description }}</p>
     </article>

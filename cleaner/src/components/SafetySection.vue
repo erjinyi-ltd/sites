@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { LockKeyhole, ShieldCheck } from '@lucide/vue'
-import type { SiteCopy } from '../types/site'
+import type { ProductPageCopy } from '../types/site'
 
-defineProps<{ copy: SiteCopy['safety'] }>()
+defineProps<{ copy: ProductPageCopy['safety'] }>()
 </script>
 
 <template>

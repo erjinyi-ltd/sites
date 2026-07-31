@@ -22,8 +22,8 @@
   height: 36px;
   flex: 0 0 auto;
   background: var(--logo-icon-color);
-  -webkit-mask: url('../../../watermarkinspector/public/gcsa-icon.svg') center / contain no-repeat;
-  mask: url('../../../watermarkinspector/public/gcsa-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/gcsa-icon.svg') center / contain no-repeat;
+  mask: url('/gcsa-icon.svg') center / contain no-repeat;
 }
 
 .brand-copy {

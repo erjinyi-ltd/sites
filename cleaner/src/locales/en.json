@@ -1,0 +1,565 @@
+{
+  "shared": {
+    "skipMain": "Skip navigation and go to main content",
+    "homeLabel": "Back to the CLEANER home page",
+    "navLabel": "Page navigation",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "languageLabel": "Switch language",
+    "platformSwitchLabel": "Choose your CLEANER edition",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "headerCta": "Explore",
+    "nav": [
+      {
+        "href": "#platforms",
+        "label": "Editions"
+      },
+      {
+        "href": "#capabilities",
+        "label": "Capabilities"
+      },
+      {
+        "href": "#workflow",
+        "label": "Safety flow"
+      },
+      {
+        "href": "#privacy",
+        "label": "Privacy"
+      }
+    ],
+    "ecosystem": {
+      "eyebrow": "GCSA Security Ecosystem",
+      "title": "More security products",
+      "description": "Extend protection from on-chain assets and online privacy to every digital interaction at home and across financial environments.",
+      "officialWebsite": "Official website",
+      "moreTitle": "More security products",
+      "moreDescription": "Explore the complete GCSA security ecosystem and discover more products for individuals, businesses, and infrastructure.",
+      "viewAll": "View all products",
+      "products": [
+        {
+          "type": "Secure crypto wallet",
+          "name": "GCSA Wallet",
+          "description": "GCSA Wallet gives individuals and teams a secure digital-asset management and on-chain risk experience for viewing, receiving, and transferring assets with greater confidence.",
+          "features": [
+            "Real-time address risk screening",
+            "Intelligent source-of-funds tracing",
+            "AI-powered anomaly alerts"
+          ],
+          "href": "https://wallet.gcsa.org/",
+          "theme": "wallet"
+        },
+        {
+          "type": "Encrypted network & privacy",
+          "name": "GCSA VPN",
+          "description": "GCSA VPN protects everyday browsing and public-network use with encrypted connections, helping reduce data exposure across devices through simple, reliable secure access.",
+          "features": [
+            "Encrypted connections",
+            "Online privacy protection",
+            "Secure multi-device access"
+          ],
+          "href": "https://gsafevpn.com/",
+          "theme": "vpn"
+        },
+        {
+          "type": "Home & financial mobile security",
+          "name": "GCSA Home Guard",
+          "description": "GCSA Home Guard is a mobile security checkup platform for home and financial scenarios, combining security scores, remediation guidance, and cloud threat intelligence to surface device vulnerabilities, environmental risks, and AI-driven scams early.",
+          "features": [
+            "One-tap security checkup",
+            "Home device & camera security",
+            "AI scam & phishing protection"
+          ],
+          "href": "https://homeguard.gcsa.org/",
+          "theme": "homeGuard"
+        }
+      ]
+    },
+    "footer": {
+      "menuLabel": "Footer navigation",
+      "contactUs": "Contact Us",
+      "email": "Email",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "home": "Home",
+      "products": "GCSA Ecosystem Products",
+      "media": "GCSA Media",
+      "updates": "GCSA Updates",
+      "join": "Join the Alliance",
+      "about": "About Alliance",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "support": "Technical Support",
+      "copyright": "© Global Cybersecurity Alliance. All rights reserved."
+    }
+  },
+  "pages": {
+    "mac": {
+      "hero": {
+        "ecosystem": "A GCSA ecosystem product",
+        "eyebrow": "LOCAL-FIRST SYSTEM CARE",
+        "title": "See clearly before you clean.",
+        "lead": "A local-first macOS cleanup and system-management tool. Scan, review each item, confirm the impact, and recover by default—reclaim space without giving up control.",
+        "proof": "No telemetry, account, or file uploads · Cleanup never runs silently in the background",
+        "macStatus": "14+",
+        "windowsStatus": "11",
+        "visualLabel": "CLEANER safety workflow preview",
+        "scan": "Scan",
+        "review": "Review",
+        "confirm": "Confirm",
+        "recover": "Recovery",
+        "reclaimable": "Reclaimable",
+        "selected": "Selected",
+        "guarded": "High-impact items guarded",
+        "visualSystem": "CLEANER / MACOS",
+        "visualBadge": "ON-DEVICE",
+        "scanValue": "18.6",
+        "scanUnit": "GB",
+        "selectedValue": "4.2 GB",
+        "candidates": [
+          {
+            "kind": "CACHE",
+            "tone": "cyan",
+            "title": "Xcode DerivedData",
+            "value": "6.4 GB"
+          },
+          {
+            "kind": "APP",
+            "tone": "green",
+            "title": "Application residue",
+            "value": "1.8 GB"
+          },
+          {
+            "kind": "GUARD",
+            "tone": "amber",
+            "title": "Browser site data",
+            "value": "Review",
+            "guarded": true
+          }
+        ],
+        "visualFooter": [
+          "Read-only scan",
+          "Review required",
+          "Recoverable"
+        ]
+      },
+      "factsLabel": "Mac product facts",
+      "facts": [
+        {
+          "value": "macOS 14+",
+          "label": "Current platform",
+          "description": "Full and App Store Lite have separate boundaries"
+        },
+        {
+          "value": "Local first",
+          "label": "Data boundary",
+          "description": "Scans, history, and device data stay on device"
+        },
+        {
+          "value": "Recoverable by default",
+          "label": "Execution policy",
+          "description": "Ordinary cleanup prefers the Trash"
+        }
+      ],
+      "platforms": {
+        "eyebrow": "PRODUCT EDITIONS",
+        "title": "Two Mac editions with clear boundaries",
+        "description": "Full and App Store Lite are separate builds for different authorization scopes and cleanup depth.",
+        "items": [
+          {
+            "platform": "macOS",
+            "name": "GCSA Mac Cleaner",
+            "status": "Full edition",
+            "statusTone": "ready",
+            "description": "A standalone desktop edition for complete cleanup, application management, and system diagnostics.",
+            "features": [
+              "Junk and developer-cache cleanup",
+              "App uninstall, reset, and residue review",
+              "Duplicate files and recovery center",
+              "Maintenance, permissions, and device diagnostics"
+            ],
+            "note": "Supports macOS 14 and later. Distribution details will be provided with the formal release."
+          },
+          {
+            "platform": "macOS",
+            "name": "GCSA Cleaner",
+            "status": "Lite",
+            "statusTone": "limited",
+            "description": "Works strictly within the App Store sandbox and folders you explicitly authorize.",
+            "features": [
+              "Authorized-folder scans",
+              "Review files ≥ 100 MiB",
+              "Content-verified duplicate groups",
+              "Always moves items to the Trash"
+            ],
+            "note": "Lite and Full are separate builds with separate security boundaries—not one app with disabled switches."
+          }
+        ]
+      },
+      "capabilities": {
+        "eyebrow": "MACOS CAPABILITIES",
+        "title": "From reclaiming space to reviewing system state",
+        "description": "Every capability presents the object, evidence, and impact before you choose an action.",
+        "items": [
+          {
+            "tag": "CLEANUP",
+            "title": "Junk and browser cleanup",
+            "description": "Review user caches, logs, temporary items, downloads, large files, and supported browser data. Passwords, bookmarks, history, and extensions are excluded.",
+            "icon": "trash"
+          },
+          {
+            "tag": "DEVELOPER",
+            "title": "Developer cleanup",
+            "description": "Covers Xcode, node_modules, SwiftPM, CocoaPods, Homebrew, and common development or AI-tool caches with rebuild-cost context.",
+            "icon": "code"
+          },
+          {
+            "tag": "APPLICATIONS",
+            "title": "App management and local audit",
+            "description": "Uninstall, reset, or review residue while inspecting local signing, Gatekeeper, notarization, sandbox, and installation evidence.",
+            "icon": "apps"
+          },
+          {
+            "tag": "DUPLICATES",
+            "title": "Large and duplicate files",
+            "description": "Group by size, verify content hashes, choose a keep policy, and review in Finder. Every group retains at least one file.",
+            "icon": "files"
+          },
+          {
+            "tag": "RECOVERY",
+            "title": "Recovery center",
+            "description": "Review recoverable transactions and restore a batch or one item. Existing files are never overwritten during recovery.",
+            "icon": "restore"
+          },
+          {
+            "tag": "DIAGNOSTICS",
+            "title": "Maintenance and read-only diagnostics",
+            "description": "Review System Data, background items, maintenance tasks, privacy permissions, device details, and activity without pretending every finding is actionable.",
+            "icon": "system"
+          }
+        ]
+      },
+      "workflow": {
+        "eyebrow": "REVIEW BEFORE ACTION",
+        "title": "Every modification follows one safety path",
+        "description": "CLEANER never treats “found” as meaning “should be deleted.”",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Read-only scan",
+            "description": "Identify candidates inside allowed scopes and record path, type, size, time, ownership, and scan reason."
+          },
+          {
+            "number": "02",
+            "title": "Item-by-item review",
+            "description": "A new scan selects nothing. Personal files, Downloads, large files, iCloud data, and site data never enter automatic recommendations."
+          },
+          {
+            "number": "03",
+            "title": "Impact confirmation",
+            "description": "Regenerate the plan before execution and show Trash, permanent-delete, and blocked counts. Material changes require another review."
+          },
+          {
+            "number": "04",
+            "title": "Execute and recover",
+            "description": "Report per-item outcomes and keep local history. Eligible Trash and backed-up items can be restored."
+          }
+        ]
+      },
+      "safety": {
+        "eyebrow": "SAFETY BY DEFAULT",
+        "title": "When evidence is insufficient, execution stops",
+        "description": "Safety boundaries are enforced in the execution path—not left as warning copy.",
+        "points": [
+          {
+            "title": "Least privilege",
+            "description": "Permissions are not required to enter the app. Missing access limits only affected capabilities, and the privileged helper accepts only allowlisted operations."
+          },
+          {
+            "title": "Identity revalidation",
+            "description": "Path escape, symlink escape, post-scan identity changes, or a related running app block execution."
+          },
+          {
+            "title": "Recoverable by default",
+            "description": "Ordinary files and apps prefer the Trash. Duplicate cleanup and app uninstall do not inherit a permanent-delete preference."
+          },
+          {
+            "title": "Honest diagnostics",
+            "description": "Unknown provenance means local evidence is insufficient—not malicious. Activity Monitor is read-only and cannot terminate processes."
+          }
+        ],
+        "note": "CLEANER is not antivirus, EDR, a memory cleaner, or an automatic optimizer. It does not bypass SIP, write directly to TCC, or empty the Trash automatically."
+      },
+      "faq": {
+        "eyebrow": "CLEAR BOUNDARIES",
+        "title": "Set the boundaries before cleanup begins",
+        "description": "The product does not replace evidence with a vague “one-click optimization” promise.",
+        "items": [
+          {
+            "question": "Does CLEANER automatically delete scan results?",
+            "answer": "No. A fresh scan selects nothing. Every real modification requires an explicit selection and confirmation, and destructive actions never retry automatically."
+          },
+          {
+            "question": "Does Mac Cleaner upload files or reports?",
+            "answer": "No. The current product has no telemetry, account, remote scan report, or file upload. Scans, history, and device information remain on the Mac."
+          },
+          {
+            "question": "Does enabling permanent deletion apply everywhere?",
+            "answer": "No. App uninstall, duplicate files, and multiple high-impact contexts force the Trash or block the operation. Preferences cannot override those safeguards."
+          },
+          {
+            "question": "How do Full and Lite differ?",
+            "answer": "Full includes system cleanup, app management, recovery, and diagnostics. Lite works only in folders you authorize and always moves removed items to the Trash. They are separate builds."
+          }
+        ]
+      }
+    },
+    "windows": {
+      "hero": {
+        "ecosystem": "A GCSA ecosystem product",
+        "eyebrow": "WINDOWS 11 PC CARE CENTER",
+        "title": "Keep Windows clean, fast, and secure.",
+        "lead": "Run system health checks, junk cleanup, software management, driver inspection, startup optimization, network repair, and deep security from one place.",
+        "proof": "Local first · Elevation on demand · Every action verifiable and recoverable",
+        "macStatus": "14+",
+        "windowsStatus": "11",
+        "visualLabel": "CLEANER Windows PC care center preview",
+        "scan": "Health check",
+        "review": "Software",
+        "confirm": "Driver security",
+        "recover": "Recovery",
+        "reclaimable": "System health score",
+        "selected": "9 system checks",
+        "guarded": "Software, driver, and security status combined",
+        "visualSystem": "CLEANER / WINDOWS CARE CENTER",
+        "visualBadge": "LOCAL CONTROL",
+        "scanValue": "94",
+        "scanUnit": "Score",
+        "selectedValue": "Complete",
+        "candidates": [
+          {
+            "kind": "SOFTWARE",
+            "tone": "cyan",
+            "title": "Software and preinstalled apps",
+            "value": "13 manageable"
+          },
+          {
+            "kind": "DRIVER",
+            "tone": "green",
+            "title": "Driver signatures and integrity",
+            "value": "664 verified"
+          },
+          {
+            "kind": "CLEANUP",
+            "tone": "amber",
+            "title": "Junk and privacy cleanup",
+            "value": "3.1 GB ready"
+          }
+        ],
+        "visualFooter": [
+          "Local scanning",
+          "Elevation on demand",
+          "Item recovery"
+        ]
+      },
+      "factsLabel": "Windows product facts",
+      "facts": [
+        {
+          "value": "10 modules",
+          "label": "Care coverage",
+          "description": "Cleanup, software, drivers, network, and security"
+        },
+        {
+          "value": "x64 / ARM64",
+          "label": "Native support",
+          "description": "Covers mainstream Windows 11 architectures"
+        },
+        {
+          "value": "Local recovery",
+          "label": "Safe execution",
+          "description": "Confirm before action and restore changes item by item"
+        }
+      ],
+      "platforms": {
+        "eyebrow": "WINDOWS EDITIONS",
+        "title": "Complete PC care, native on x64 and ARM64",
+        "description": "Both architectures share cleanup, software, driver, and security management with native components matched to the device.",
+        "items": [
+          {
+            "platform": "Windows 11",
+            "name": "CLEANER for x64",
+            "status": "Released",
+            "statusTone": "ready",
+            "description": "Complete PC management, diagnostics, and deep-security inspection for mainstream Windows 11 x64 devices.",
+            "features": [
+              "System health, junk, and privacy cleanup",
+              "Software, preinstalled apps, and refinement",
+              "Driver signatures, startup, and network checks",
+              "Defender coordination and local recovery"
+            ],
+            "note": "The UI runs at standard privilege and invokes a restricted elevation component only for system-level actions."
+          },
+          {
+            "platform": "Windows 11 ARM64",
+            "name": "CLEANER for ARM64",
+            "status": "Released",
+            "statusTone": "ready",
+            "description": "Native UI, software management, cleanup, driver checks, network, and security-baseline capabilities for Windows on Arm.",
+            "features": [
+              "Native ARM64 app and scanners",
+              "Software and preinstalled app management",
+              "Driver, service, and security baseline checks",
+              "Defender Offline and recovery center"
+            ],
+            "note": "Scanning is isolated by target architecture instead of substituting emulation for native system capability."
+          }
+        ]
+      },
+      "capabilities": {
+        "eyebrow": "WINDOWS CAPABILITIES",
+        "title": "Cleanup, software, drivers, and security in one care suite",
+        "description": "Ten management centers cover everyday Windows care, with the object, evidence, risk, and actionable guidance behind every result.",
+        "items": [
+          {
+            "tag": "HEALTH",
+            "title": "System health check",
+            "description": "Summarizes storage, registry, startup, network, and security state, highlights review counts, and exports a local health report.",
+            "icon": "system"
+          },
+          {
+            "tag": "CLEANUP",
+            "title": "Junk and privacy cleanup",
+            "description": "Scans temporary files, error reports, thumbnails, browser caches, and explicit rule targets. Downloads, documents, Desktop, and cloud drives are excluded by default.",
+            "icon": "trash"
+          },
+          {
+            "tag": "SOFTWARE",
+            "title": "Software and preinstalled app management",
+            "description": "Lists removable preinstalled apps for the current user without preselection, uninstalls through standard Windows APIs, and identifies explicit software removal residue.",
+            "icon": "software"
+          },
+          {
+            "tag": "DRIVERS",
+            "title": "Driver management and security checks",
+            "description": "Verifies driver and service paths, publishers, SHA-256, and signatures, with optional YARA-X image checks. Online mode reports findings without automatically removing drivers.",
+            "icon": "driver"
+          },
+          {
+            "tag": "REGISTRY",
+            "title": "Registry cleanup and repair",
+            "description": "Finds broken startup references, uninstall residue, and explicitly invalid configuration, with complete key and value backups before changes.",
+            "icon": "database"
+          },
+          {
+            "tag": "STARTUP",
+            "title": "Startup and performance",
+            "description": "Reviews startup entries, scheduled tasks, and third-party services with measurable startup impact and risk evidence behind every recommendation.",
+            "icon": "rocket"
+          },
+          {
+            "tag": "SYSTEM",
+            "title": "System refinement and personalization",
+            "description": "Offers curated advertising, suggestion, privacy, taskbar, Start menu, and AI-feature settings without disabling Windows Update, BitLocker, or critical services.",
+            "icon": "apps"
+          },
+          {
+            "tag": "NETWORK",
+            "title": "Network health and security",
+            "description": "Checks adapters, DNS, proxy, Hosts, firewall, and connection metadata, then applies measurable repairs from least to most disruptive.",
+            "icon": "network"
+          },
+          {
+            "tag": "SECURITY",
+            "title": "Deep security and anti-rootkit",
+            "description": "Reviews persistence, signatures, drivers, services, and cross-view differences, combining PE-sieve, YARA-X, and Defender Offline into layered evidence.",
+            "icon": "shield"
+          },
+          {
+            "tag": "RECOVERY",
+            "title": "History, quarantine, and item recovery",
+            "description": "Records scans, plans, execution, and before-and-after state so quarantined files, registry backups, and configuration changes can be verified and restored individually.",
+            "icon": "restore"
+          }
+        ]
+      },
+      "workflow": {
+        "eyebrow": "EVIDENCE BEFORE ACTION",
+        "title": "Every system change follows one recoverable path",
+        "description": "Scan results never become delete commands automatically, and high-risk objects remain review-only or move to offline inspection.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Read-only scan",
+            "description": "Collect object, origin, signature, risk, and expected benefit without changing files, registry state, or network configuration."
+          },
+          {
+            "number": "02",
+            "title": "Evidence review",
+            "description": "Classify information, suggestions, safe defaults, and high-risk findings. Age or unfamiliar names are never sufficient deletion evidence."
+          },
+          {
+            "number": "03",
+            "title": "Backup and confirmation",
+            "description": "Create an immutable action plan, preserve file, registry, and network state, and show elevation and recovery requirements."
+          },
+          {
+            "number": "04",
+            "title": "Execute, verify, and recover",
+            "description": "A restricted elevation component runs allowlisted commands, verifies outcomes, records before and after state, and supports item recovery."
+          }
+        ]
+      },
+      "safety": {
+        "eyebrow": "WINDOWS SAFETY MODEL",
+        "title": "Privilege, rules, and recovery boundaries are verifiable",
+        "description": "Safety is not a switch. It is enforced throughout scanning, planning, execution, and recovery.",
+        "points": [
+          {
+            "title": "Elevation on demand",
+            "description": "The UI does not run permanently as administrator. User-scope cleanup needs no elevation; only system operations invoke the restricted component."
+          },
+          {
+            "title": "Signed rules and allowlisted commands",
+            "description": "Rule packages must verify successfully, unknown fields and out-of-scope paths are rejected, and the elevated side accepts no arbitrary command line."
+          },
+          {
+            "title": "Revalidation before execution",
+            "description": "The service rechecks object IDs, paths, reparse points, ownership, and rule signatures to prevent post-scan substitution."
+          },
+          {
+            "title": "Local quarantine and item recovery",
+            "description": "Quarantined files, registry backups, operation logs, and recovery metadata remain local. Hash mismatches block restoration of altered content."
+          }
+        ],
+        "note": "Online checks never automatically delete drivers, system services, or boot-chain objects. User-mode differences require review and cannot prove or rule out a kernel-level rootkit."
+      },
+      "faq": {
+        "eyebrow": "CLEAR BOUNDARIES",
+        "title": "Windows maintenance needs explicit boundaries too",
+        "description": "CLEANER replaces scare scores and “one-click acceleration” with evidence and recoverable outcomes.",
+        "items": [
+          {
+            "question": "Does CLEANER automatically delete scan results?",
+            "answer": "No. Scanning is read-only. Every modification requires object review, backup, and explicit confirmation, and high-risk security objects are never deleted automatically online."
+          },
+          {
+            "question": "Does it upload files, registry data, or network data?",
+            "answer": "No. It does not upload file content, registry content, network configuration, or scan reports by default, and it does not capture packet contents."
+          },
+          {
+            "question": "What do software and driver management include?",
+            "answer": "The software center lists and removes user-selected preinstalled apps and identifies explicit uninstall residue. Driver management verifies paths, publishers, hashes, and signatures and can inspect driver images with YARA-X without automatically removing drivers online."
+          },
+          {
+            "question": "Which Windows devices are supported?",
+            "answer": "Windows 11 x64 and ARM64 are officially supported. Both architectures include cleanup, software management, driver checks, network, security-baseline, and recovery capabilities."
+          },
+          {
+            "question": "Can deep checks prove the system has no rootkit?",
+            "answer": "No. User-mode checks can only report anomalies or differences. High-risk evidence can lead to a report and an offline scan with Defender Offline."
+          }
+        ]
+      }
+    }
+  }
+}

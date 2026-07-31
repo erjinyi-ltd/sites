@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { SiteCopy } from '../types/site'
+import type { ProductPageCopy } from '../types/site'
 
-defineProps<{ copy: SiteCopy['workflow'] }>()
+defineProps<{ copy: ProductPageCopy['workflow'] }>()
 </script>
 
 <template>
