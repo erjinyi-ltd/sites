@@ -2,12 +2,11 @@
 <#
   Internal single-site deployment engine.
 
-  Use deploy-watermark.ps1 or deploy-cleaner.ps1 instead of invoking this file
-  directly.
+  Use a site-specific deploy script instead of invoking this file directly.
 #>
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('watermark', 'cleaner')]
+    [ValidateSet('watermark', 'cleaner', 'homeguard')]
     [string]$Site,
 
     [ValidateNotNullOrEmpty()]
@@ -49,6 +48,15 @@ $SiteDefinitions = @(
         PrimaryDomain = 'cleaner.erjinyi.com'
         OriginDomain = 'cleaner.gcsa.org'
         Routes = @('/')
+    },
+    [PSCustomObject]@{
+        Key = 'homeguard'
+        Name = 'HOME GUARD'
+        ProjectDir = Join-Path $RepoDir 'homeguard'
+        RemotePath = '/var/www/homeguard'
+        PrimaryDomain = 'homeguard.erjinyi.com'
+        OriginDomain = 'homeguard.gcsa.org'
+        Routes = @('/', '/privacy', '/terms', '/support')
     }
 )
 

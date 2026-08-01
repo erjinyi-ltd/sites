@@ -1,0 +1,3 @@
+<template>
+  <span class="arrow" aria-hidden="true">↗</span>
+</template>

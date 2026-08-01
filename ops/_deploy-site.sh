@@ -32,6 +32,7 @@ Publish one selected static site.
 Usage:
   ./deploy-watermark.sh [options]
   ./deploy-cleaner.sh [options]
+  ./deploy-homeguard.sh [options]
 
 Options:
   --skip-build         use the existing dist directories
@@ -44,6 +45,7 @@ Options:
 Examples:
   ./deploy-watermark.sh --dry-run
   ./deploy-cleaner.sh --skip-build
+  ./deploy-homeguard.sh --dry-run
 EOF
 }
 
@@ -96,7 +98,7 @@ while (( $# > 0 )); do
 done
 
 case "$SELECTED_SITE" in
-  watermark|cleaner)
+  watermark|cleaner|homeguard)
     SITES=("$SELECTED_SITE")
     ;;
   *)
@@ -151,6 +153,14 @@ configure_site() {
       PRIMARY_DOMAIN="cleaner.erjinyi.com"
       ORIGIN_DOMAIN="cleaner.gcsa.org"
       ROUTES=(/)
+      ;;
+    homeguard)
+      SITE_NAME="HOME GUARD"
+      PROJECT_DIR="$REPO_DIR/homeguard"
+      REMOTE_DIR="/var/www/homeguard"
+      PRIMARY_DOMAIN="homeguard.erjinyi.com"
+      ORIGIN_DOMAIN="homeguard.gcsa.org"
+      ROUTES=(/ /privacy /terms /support)
       ;;
   esac
 

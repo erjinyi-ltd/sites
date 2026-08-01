@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000205" />
+    <meta
+      name="description"
+      content="Home Guard 是 GCSA 面向 iOS 的移动安全 App，聚焦家庭网络体检、移动隐私检测与金融环境风险提醒。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GCSA Home Guard" />
+    <meta property="og:title" content="GCSA Home Guard｜让家的每一次连接，都更安心" />
+    <meta
+      property="og:description"
+      content="家庭网络体检、移动隐私检测与金融环境风险提醒，汇集在一个清晰的 iOS 安全入口。"
+    />
+    <meta property="og:url" content="__SITE_ORIGIN__/" />
+    <meta property="og:image" content="__SITE_ORIGIN__/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GCSA Home Guard｜让家的每一次连接，都更安心" />
+    <meta
+      name="twitter:description"
+      content="家庭网络体检、移动隐私检测与金融环境风险提醒，汇集在一个清晰的 iOS 安全入口。"
+    />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/og.png" />
+    <link rel="canonical" href="__SITE_ORIGIN__/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script>
+      ;(() => {
+        try {
+          const theme = localStorage.getItem('gcsa-site-theme') === 'light' ? 'light' : 'dark'
+          const savedLocale = localStorage.getItem('gcsa-site-locale')
+          const locale = ['zh-CN', 'zh-Hant', 'en'].includes(savedLocale) ? savedLocale : 'zh-CN'
+          document.documentElement.classList.toggle('dark', theme === 'dark')
+          document.documentElement.lang = locale
+          document.documentElement.style.colorScheme = theme
+          document.documentElement.style.backgroundColor = theme === 'dark' ? '#000205' : '#f7f9fb'
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#000205' : '#f7f9fb')
+        } catch {}
+      })()
+    </script>
+    <title>GCSA Home Guard｜家庭网络与移动安全</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
