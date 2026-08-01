@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { getGcsaFooterNavigation } from '../content/gcsaFooterNavigation'
 import type { Locale, SiteCopy } from '../types/site'
+
+interface FooterLink {
+  label: string
+  href?: string
+  to?: string
+}
 
 const props = defineProps<{
   copy: SiteCopy['footer']
@@ -9,18 +16,18 @@ const props = defineProps<{
 }>()
 
 const navigation = computed(() => getGcsaFooterNavigation(props.locale))
-const primaryLinks = computed(() => [
-  { label: props.copy.home, href: navigation.value.home },
+const primaryLinks = computed<FooterLink[]>(() => [
+  { label: props.copy.home, to: '/' },
   { label: props.copy.products, href: navigation.value.products },
   { label: props.copy.media, href: navigation.value.media },
   { label: props.copy.updates, href: navigation.value.updates },
   { label: props.copy.join, href: navigation.value.join },
   { label: props.copy.about, href: navigation.value.about },
 ])
-const legalLinks = computed(() => [
-  { label: props.copy.privacy, href: navigation.value.privacy },
-  { label: props.copy.terms, href: navigation.value.terms },
-  { label: props.copy.support, href: navigation.value.support },
+const legalLinks = computed<FooterLink[]>(() => [
+  { label: props.copy.privacy, to: '/privacy' },
+  { label: props.copy.terms, to: '/terms' },
+  { label: props.copy.support, to: '/support' },
 ])
 </script>
 
@@ -63,14 +70,17 @@ const legalLinks = computed(() => [
         </section>
 
         <nav class="footer-nav" :aria-label="copy.menuLabel">
-          <a v-for="link in primaryLinks" :key="link.label" :href="link.href">{{ link.label }}</a>
+          <template v-for="link in primaryLinks" :key="link.label">
+            <RouterLink v-if="link.to" :to="link.to">{{ link.label }}</RouterLink>
+            <a v-else :href="link.href">{{ link.label }}</a>
+          </template>
         </nav>
       </div>
 
       <div class="footer-bottom">
         <p class="footer-copyright">{{ copy.copyright }}</p>
         <nav class="footer-legal" :aria-label="copy.menuLabel">
-          <a v-for="link in legalLinks" :key="link.label" :href="link.href">{{ link.label }}</a>
+          <RouterLink v-for="link in legalLinks" :key="link.label" :to="link.to ?? '/'">{{ link.label }}</RouterLink>
           <a href="mailto:contact@gcsa.org">contact@gcsa.org</a>
         </nav>
       </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlertTriangle, CheckCircle2, FileAudio, Image, ScanSearch, ShieldCheck, Video } from '@lucide/vue'
+import { Apple, BatteryMedium, FileAudio, Image, ScanSearch, Signal, Smartphone, Video, Wifi } from '@lucide/vue'
 import type { SiteCopy } from '../types/site'
 
 defineProps<{ copy: SiteCopy['hero'] }>()
@@ -8,58 +8,44 @@ defineProps<{ copy: SiteCopy['hero'] }>()
 <template>
   <div class="scan-visual" role="img" :aria-label="copy.visualLabel">
     <div class="visual-glow" aria-hidden="true"></div>
-    <div class="scan-board">
-      <div class="board-header">
-        <div class="board-brand">
-          <span class="brand-dot"></span>
-          <span>WATERMARK / LOCAL</span>
-        </div>
-        <span class="status-pill"><span></span>{{ copy.visualScanning }}</span>
+    <div class="mobile-showcase">
+      <div class="platform-label">
+        <Apple :size="15" aria-hidden="true" /><span>iOS 17+</span>
+        <i></i>
+        <Smartphone :size="15" aria-hidden="true" /><span>Android</span>
       </div>
 
-      <div class="inspection-chain">
-        <div class="source-column">
-          <span class="column-label">{{ copy.visualInput }}</span>
-          <div class="source-item active"><Image :size="16" aria-hidden="true" /><span>IMAGE</span></div>
-          <div class="source-item"><Video :size="16" aria-hidden="true" /><span>VIDEO</span></div>
-          <div class="source-item"><FileAudio :size="16" aria-hidden="true" /><span>AUDIO</span></div>
-        </div>
-
-        <div class="flow-line" aria-hidden="true"><i></i></div>
-
-        <div class="scan-core">
-          <div class="scan-progress">
-            <div class="scan-core-inner">
-              <ScanSearch :size="30" aria-hidden="true" />
-              <strong>64%</strong>
+      <div class="phone app-phone">
+        <div class="phone-surface">
+          <div class="camera-cutout"></div>
+          <div class="phone-status">
+            <span>09:41</span>
+            <div><Signal :size="11" /><Wifi :size="11" /><BatteryMedium :size="13" /></div>
+          </div>
+          <div class="app-bar">
+            <span class="app-mark"><ScanSearch :size="15" /></span>
+            <div><strong>WATERMARK</strong><small>LOCAL INSPECTION</small></div>
+            <span class="local-badge">LOCAL</span>
+          </div>
+          <div class="inspection-screen">
+            <span class="screen-label">{{ copy.visualInput }}</span>
+            <div class="media-preview">
+              <div class="media-thumb"><span></span><i></i></div>
+              <div><strong>IMG_2048.HEIC</strong><small>4.8 MB · HEIC</small></div>
+            </div>
+            <div class="media-types">
+              <span class="active"><Image :size="15" /></span>
+              <span><Video :size="15" /></span>
+              <span><FileAudio :size="15" /></span>
+            </div>
+            <div class="scan-block">
+              <div class="scan-progress"><div><ScanSearch :size="23" /><strong>64%</strong></div></div>
+              <strong>{{ copy.visualScanning }}</strong>
+              <div class="detector-tags"><span>C2PA</span><span>XMP</span><span>SHA-256</span></div>
             </div>
           </div>
-          <div class="detector-tags">
-            <span>C2PA</span><span>XMP</span><span>SHA-256</span>
-          </div>
+          <div class="gesture-indicator"></div>
         </div>
-
-        <div class="flow-line reverse" aria-hidden="true"><i></i></div>
-
-        <div class="report-column">
-          <span class="column-label">{{ copy.visualResult }}</span>
-          <div class="report-summary">
-            <ShieldCheck :size="24" aria-hidden="true" />
-            <div><strong>{{ copy.visualReady }}</strong><small>3 / 4 CHECKS</small></div>
-          </div>
-          <div class="report-row positive">
-            <CheckCircle2 :size="14" aria-hidden="true" />
-            <span>{{ copy.visualFound }}</span>
-          </div>
-          <div class="report-row warning">
-            <AlertTriangle :size="14" aria-hidden="true" />
-            <span>{{ copy.visualReview }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="board-footer">
-        <span>ON-DEVICE</span><i></i><span>NO CLOUD UPLOAD</span><i></i><span>EXPLAINABLE REPORT</span>
       </div>
     </div>
   </div>
@@ -69,434 +55,209 @@ defineProps<{ copy: SiteCopy['hero'] }>()
 .scan-visual {
   position: relative;
   display: grid;
+  min-height: 620px;
   place-items: center;
-  min-height: 490px;
   isolation: isolate;
-  animation: board-reveal 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .visual-glow {
   position: absolute;
   z-index: -1;
-  width: min(92%, 510px);
+  width: min(94%, 500px);
   aspect-ratio: 1;
-  border: 1px dashed color-mix(in srgb, var(--primary) 24%, transparent);
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 12%, transparent), transparent 68%);
-  box-shadow: 0 0 0 54px color-mix(in srgb, var(--primary) 3%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 17%, transparent), transparent 68%);
+  filter: blur(8px);
   animation: halo-breathe 6s ease-in-out infinite;
 }
 
-.scan-board {
+.mobile-showcase {
   position: relative;
-  width: min(100%, 610px);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
-    color-mix(in srgb, var(--card) 94%, transparent);
-  background-size: 18px 18px;
-  box-shadow: var(--shadow-card), 0 0 52px color-mix(in srgb, var(--primary) 10%, transparent);
-  backdrop-filter: blur(18px);
+  width: min(100%, 430px);
+  height: 610px;
+  animation: phone-reveal 720ms cubic-bezier(.22, 1, .36, 1) both;
 }
 
-.board-header,
-.board-footer {
+.platform-label {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 50%;
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, var(--border));
+  border-radius: 999px;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  backdrop-filter: blur(14px);
+  transform: translateX(-50%);
+}
+
+.platform-label svg { color: var(--primary); }
+.platform-label i { width: 1px; height: 14px; margin-inline: 2px; background: var(--border); }
+
+.phone {
+  position: absolute;
+  overflow: hidden;
+  border: 7px solid #11171d;
+  border-radius: 40px;
+  background: #11171d;
+  box-shadow: 0 32px 84px rgba(0, 0, 0, .28), 0 0 46px color-mix(in srgb, var(--primary) 11%, transparent);
+}
+
+.phone-surface {
+  position: relative;
   display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 31px;
+  background: color-mix(in srgb, var(--card) 97%, var(--muted));
+}
+
+.app-phone {
+  top: 43px;
+  left: 50%;
+  width: 272px;
+  aspect-ratio: .49;
+  transform: translateX(-50%);
+}
+
+.camera-cutout {
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  left: 50%;
+  width: 48px;
+  height: 15px;
+  border-radius: 999px;
+  background: #050709;
+  transform: translateX(-50%);
+}
+
+.phone-status {
+  display: flex;
+  min-height: 38px;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  min-height: 48px;
-  padding: 0 18px;
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--muted) 64%, transparent);
-}
-
-.board-brand,
-.status-pill,
-.board-footer {
-  font-family: var(--font-data);
-  font-size: 9px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-}
-
-.board-brand,
-.status-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-dot,
-.status-pill span {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--primary);
-  box-shadow: 0 0 11px color-mix(in srgb, var(--primary) 72%, transparent);
-}
-
-.status-pill {
-  min-height: 25px;
-  padding: 0 9px;
-  border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
-  border-radius: 999px;
-  color: var(--primary);
-  background: color-mix(in srgb, var(--primary) 8%, transparent);
-}
-
-.status-pill span {
-  width: 5px;
-  height: 5px;
-  animation: status-pulse 1.5s ease-in-out infinite;
-}
-
-.inspection-chain {
-  display: grid;
-  grid-template-columns: minmax(98px, 1fr) 42px minmax(116px, 0.95fr) 42px minmax(150px, 1.25fr);
-  align-items: center;
-  min-height: 322px;
-  padding: 28px 20px;
-}
-
-.source-column,
-.report-column {
-  display: grid;
-  gap: 8px;
-}
-
-.column-label {
-  margin-bottom: 4px;
-  color: var(--muted-foreground);
-  font-family: var(--font-data);
-  font-size: 8px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.source-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 38px;
-  padding: 0 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--muted-foreground);
-  background: color-mix(in srgb, var(--card) 76%, transparent);
-  font-family: var(--font-data);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.source-item svg {
-  color: var(--primary);
-}
-
-.source-item.active {
-  border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
+  padding: 0 17px;
   color: var(--foreground);
-  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+  font-family: var(--font-data);
+  font-size: 8px;
+  font-weight: 750;
 }
 
-.flow-line {
-  position: relative;
-  height: 1px;
-  margin-inline: 7px;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--primary) 24%, transparent);
-}
+.phone-status > div { display: flex; align-items: center; gap: 4px; }
 
-.flow-line::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  right: 0;
-  border-top: 2.5px solid transparent;
-  border-bottom: 2.5px solid transparent;
-  border-left: 4px solid var(--primary);
-}
-
-.flow-line i {
-  position: absolute;
-  top: -2px;
-  left: -8px;
-  width: 8px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--cdn-glow);
-  box-shadow: 0 0 8px var(--cdn-glow);
-  animation: data-flow 2.4s linear infinite;
-}
-
-.flow-line.reverse i {
-  animation-delay: 0.8s;
-}
-
-.scan-core {
+.app-bar {
   display: grid;
-  justify-items: center;
-  gap: 18px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 91%, transparent);
 }
 
-.scan-progress {
-  position: relative;
+.app-mark {
   display: grid;
+  width: 30px;
+  height: 30px;
   place-items: center;
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  background: conic-gradient(transparent 0deg 238deg, color-mix(in srgb, var(--primary) 18%, transparent) 270deg, var(--primary) 340deg, var(--cdn-glow) 360deg);
-  box-shadow: 0 0 32px color-mix(in srgb, var(--primary) 17%, transparent);
-  animation: progress-spin 1.8s linear infinite;
+  border-radius: 9px;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, var(--muted));
 }
 
-.scan-progress::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border-radius: 50%;
+.app-bar > div { display: grid; gap: 2px; min-width: 0; }
+.app-bar strong { font-family: var(--font-display); font-size: 9px; letter-spacing: .08em; }
+.app-bar small { color: var(--muted-foreground); font-family: var(--font-data); font-size: 5px; font-weight: 750; letter-spacing: .09em; }
+.local-badge { padding: 4px 6px; border-radius: 999px; color: var(--primary); background: color-mix(in srgb, var(--primary) 10%, transparent); font-family: var(--font-data); font-size: 6px; font-weight: 800; }
+
+.inspection-screen {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  flex: 1;
+  padding: 15px 14px;
+}
+
+.screen-label { color: var(--muted-foreground); font-family: var(--font-data); font-size: 7px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+
+.media-preview {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 70px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   background: var(--card);
 }
 
-.scan-core-inner {
+.media-thumb { position: relative; height: 52px; overflow: hidden; border-radius: 8px; background: linear-gradient(150deg, color-mix(in srgb, var(--primary) 34%, var(--muted)), var(--card-soft)); }
+.media-thumb span { position: absolute; right: 8px; bottom: 8px; width: 27px; height: 27px; border-radius: 50%; background: color-mix(in srgb, var(--primary) 72%, transparent); }
+.media-thumb i { position: absolute; bottom: -10px; left: -5px; width: 52px; height: 36px; border-radius: 50% 50% 0 0; background: color-mix(in srgb, var(--foreground) 18%, transparent); transform: rotate(-12deg); }
+.media-preview > div:last-child { display: grid; gap: 4px; min-width: 0; }
+.media-preview strong { overflow: hidden; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.media-preview small { color: var(--muted-foreground); font-family: var(--font-data); font-size: 6px; }
+
+.media-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.media-types span { display: grid; height: 34px; place-items: center; border: 1px solid var(--border); border-radius: 9px; color: var(--muted-foreground); background: var(--card); }
+.media-types span.active { border-color: color-mix(in srgb, var(--primary) 48%, var(--border)); color: var(--primary); background: color-mix(in srgb, var(--primary) 9%, var(--card)); }
+
+.scan-block { display: grid; justify-items: center; gap: 8px; padding-top: 5px; }
+.scan-block > strong { font-size: 9px; font-weight: 650; }
+
+.scan-progress {
+  --mobile-scan-progress: 64%;
   position: relative;
-  z-index: 1;
   display: grid;
+  width: 112px;
+  height: 112px;
   place-items: center;
-  gap: 3px;
-  animation: progress-counter-spin 1.8s linear infinite;
+  border-radius: 50%;
+  background: conic-gradient(var(--primary) 0 var(--mobile-scan-progress), color-mix(in srgb, var(--primary) 11%, var(--muted)) var(--mobile-scan-progress) 100%);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--primary) 18%, transparent);
+  animation: mobile-scan 5.8s cubic-bezier(.22, 1, .36, 1) infinite;
 }
 
-.scan-core-inner svg {
-  color: var(--primary);
-}
+.scan-progress::before { position: absolute; inset: 7px; border-radius: 50%; background: var(--card); content: ''; }
+.scan-progress > div { position: relative; z-index: 1; display: grid; justify-items: center; gap: 3px; }
+.scan-progress svg { color: var(--primary); }
+.scan-progress strong { font-family: var(--font-data); font-size: 13px; }
+.detector-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.detector-tags span { padding: 4px 5px; border: 1px solid var(--border); border-radius: 5px; color: var(--muted-foreground); background: var(--muted); font-family: var(--font-data); font-size: 6px; font-weight: 750; }
+.gesture-indicator { width: 88px; height: 4px; flex: 0 0 auto; margin: 5px auto 8px; border-radius: 999px; background: color-mix(in srgb, var(--foreground) 76%, transparent); }
 
-.scan-core-inner strong {
-  color: var(--foreground);
-  font-family: var(--font-data);
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-}
-
-.detector-tags {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.detector-tags span {
-  padding: 4px 5px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--muted-foreground);
-  background: var(--muted);
-  font-family: var(--font-data);
-  font-size: 6px;
-  font-weight: 750;
-  letter-spacing: 0.06em;
-}
-
-.report-column {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--card) 82%, transparent);
-}
-
-.report-summary {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.report-summary svg {
-  color: var(--primary);
-}
-
-.report-summary div {
-  display: grid;
-  gap: 3px;
-}
-
-.report-summary strong {
-  font-size: 10px;
-}
-
-.report-summary small {
-  color: var(--muted-foreground);
-  font-family: var(--font-data);
-  font-size: 6px;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-}
-
-.report-row {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 28px;
-  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-  color: var(--muted-foreground);
-  font-size: 8px;
-}
-
-.report-row.positive svg {
-  color: var(--success);
-}
-
-.report-row.warning svg {
-  color: var(--warning);
-}
-
-.board-footer {
-  justify-content: center;
-  min-height: 42px;
-  border-top: 1px solid var(--border);
-  border-bottom: 0;
-  color: var(--muted-foreground);
-  font-size: 7px;
-}
-
-.board-footer i {
-  width: 3px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--primary);
-}
-
-@keyframes board-reveal {
-  from { opacity: 0; transform: translateY(16px) scale(0.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes halo-breathe {
-  0%, 100% { opacity: 0.62; transform: scale(0.97); }
-  50% { opacity: 1; transform: scale(1.02); }
-}
-
-@keyframes status-pulse {
-  0%, 100% { opacity: 0.35; transform: scale(0.78); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-
-@keyframes data-flow {
-  from { transform: translateX(0); }
-  to { transform: translateX(54px); }
-}
-
-@keyframes progress-spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes progress-counter-spin {
-  to { transform: rotate(-360deg); }
-}
-
-@media (max-width: 1100px) {
-  .inspection-chain {
-    grid-template-columns: minmax(88px, 1fr) 26px minmax(108px, 0.95fr) 26px minmax(135px, 1.2fr);
-    padding-inline: 15px;
-  }
-
-  .flow-line {
-    margin-inline: 3px;
-  }
-}
+@property --mobile-scan-progress { syntax: '<percentage>'; inherits: false; initial-value: 64%; }
+@keyframes mobile-scan { 0%, 8% { --mobile-scan-progress: 0%; } 48%, 100% { --mobile-scan-progress: 64%; } }
+@keyframes phone-reveal { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes halo-breathe { 0%, 100% { opacity: .58; transform: scale(.96); } 50% { opacity: 1; transform: scale(1.03); } }
 
 @media (max-width: 640px) {
-  .scan-visual {
-    min-height: 500px;
-  }
-
-  .scan-board {
-    width: min(100%, 430px);
-  }
-
-  .board-header {
-    padding-inline: 13px;
-  }
-
-  .board-brand {
-    font-size: 8px;
-  }
-
-  .inspection-chain {
-    grid-template-columns: 1fr;
-    gap: 13px;
-    padding: 18px;
-  }
-
-  .source-column {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .source-column .column-label {
-    grid-column: 1 / -1;
-  }
-
-  .source-item {
-    justify-content: center;
-    min-width: 0;
-    padding-inline: 5px;
-  }
-
-  .source-item span {
-    display: none;
-  }
-
-  .flow-line {
-    width: 1px;
-    height: 22px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .flow-line::after {
-    top: auto;
-    right: -2px;
-    bottom: 0;
-    border-top: 4px solid var(--primary);
-    border-right: 2.5px solid transparent;
-    border-bottom: 0;
-    border-left: 2.5px solid transparent;
-  }
-
-  .flow-line i {
-    top: -8px;
-    left: -2px;
-    width: 5px;
-    height: 8px;
-    animation-name: data-flow-vertical;
-  }
-
-  .scan-progress {
-    width: 100px;
-    height: 100px;
-  }
-
-  .report-column {
-    width: min(100%, 270px);
-    margin-inline: auto;
-  }
-
-  .board-footer {
-    gap: 8px;
-    padding-inline: 10px;
-    letter-spacing: 0.07em;
-  }
-}
-
-@keyframes data-flow-vertical {
-  from { transform: translateY(0); }
-  to { transform: translateY(34px); }
+  .scan-visual { min-height: 535px; }
+  .mobile-showcase { width: min(100%, 340px); height: 520px; }
+  .platform-label { min-height: 32px; padding-inline: 10px; font-size: 8px; }
+  .app-phone { top: 38px; width: 232px; border-width: 6px; border-radius: 35px; }
+  .phone-surface { border-radius: 28px; }
+  .app-bar { min-height: 47px; padding-inline: 11px; }
+  .app-mark { width: 27px; height: 27px; }
+  .inspection-screen { gap: 9px; padding: 12px 11px; }
+  .media-preview { grid-template-columns: 46px minmax(0, 1fr); min-height: 60px; }
+  .media-thumb { height: 44px; }
+  .scan-progress { width: 90px; height: 90px; }
+  .scan-progress svg { width: 19px; height: 19px; }
 }
 </style>

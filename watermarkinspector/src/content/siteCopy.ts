@@ -9,7 +9,7 @@ export const languageOptions: Array<{ code: Locale; label: string; short: string
 export const siteCopy: Record<Locale, SiteCopy> = {
   'zh-CN': {
     skipMain: '跳过导航，前往主要内容',
-    homeLabel: '返回 WATERMARK 首页',
+    homeLabel: '返回水印分析首页',
     navLabel: '页面导航',
     openMenu: '打开导航菜单',
     closeMenu: '关闭导航菜单',
@@ -25,13 +25,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     ],
     hero: {
       ecosystem: 'GCSA 生态产品',
-      eyebrow: 'LOCAL MEDIA INSPECTION',
-      title: '在设备本地，看懂媒体中的水印信号',
-      lead: '检查图片、视频和音频中当前版本支持的内容凭证、水印信号与可疑特征，并把结论、证据和能力限制整理成可复核的报告。',
+      eyebrow: 'IOS & ANDROID MEDIA INSPECTION',
+      title: '在手机本地，看懂媒体中的水印信号',
+      lead: '在 iPhone 与 Android 设备上检查图片、视频和音频中当前版本支持的内容凭证、水印信号与可疑特征，并把结论、证据和能力限制整理成可复核的报告。',
       primaryAction: '查看检测能力',
       secondaryAction: '了解隐私边界',
       proof: '隐私优先设计 · 媒体原文件和检测数据默认不会上传',
-      visualLabel: '本地检测流程预览',
+      visualLabel: '水印分析 iOS 与 Android 移动应用预览',
       visualInput: '媒体输入',
       visualScanning: '本地扫描中',
       visualResult: '检测报告',
@@ -40,9 +40,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       visualReady: '报告已生成',
     },
     facts: [
+      { value: 'iOS / Android', label: '移动端应用', description: '为 iPhone 与 Android 设备设计' },
       { value: '图片 / 视频 / 音频', label: '多媒体检查', description: '从照片、文件或剪贴板导入' },
-      { value: '本地优先', label: '处理边界', description: '检测与打码默认在设备上完成' },
-      { value: '简 / 繁 / EN', label: '界面语言', description: '三种语言可随时切换' },
+      { value: '本地优先', label: '处理边界', description: '检测与打码默认在手机上完成' },
     ],
     capability: {
       eyebrow: 'SUPPORTED INSPECTION',
@@ -50,7 +50,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       description: '每一项结果都区分已检测、疑似、未执行与能力限制，不用单一信号替代完整判断。',
       items: [
         { tag: 'CREDENTIALS', title: '内容凭证检查', description: '检查当前支持的 C2PA / Content Credentials，展示凭证、签名链与验证限制。' },
-        { tag: 'WATERMARK', title: '已知水印信号', description: '针对当前版本登记的图片、音频与视频水印规则，给出发现、候选或不支持原因。' },
+        { tag: '水印分析', title: '已知水印信号', description: '针对当前版本登记的图片、音频与视频水印规则，给出发现、候选或不支持原因。' },
         { tag: 'METADATA', title: '元数据与文件摘要', description: '读取适用的 EXIF、XMP 与容器信息，并展示 MIME、文件大小和 SHA-256 摘要。' },
         { tag: 'EVIDENCE', title: '可解释检测报告', description: '从总体结论进入检测器版本、证据、警告、未执行原因和可见候选位置。' },
         { tag: 'BOUNDARY', title: '审慎的结果语义', description: '“未发现”只代表当前已执行范围内未识别到支持信号，不被包装成绝对结论。' },
@@ -93,7 +93,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { title: '本地保存与删除', description: '检测报告和编辑历史保存在 App 本地目录，并可由用户删除。' },
         { title: '导出由用户决定', description: '打码结果通过系统分享面板选择去向，App 不会自动上传导出的副本。' },
       ],
-      note: 'WATERMARK 不提供移除水印、破坏内容凭证或规避平台检测的功能。',
+      note: '水印分析不提供移除水印、破坏内容凭证或规避平台检测的功能。',
     },
     faq: {
       eyebrow: 'CLEAR LIMITS',
@@ -102,14 +102,14 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       items: [
         { question: '“未发现”是否代表媒体没有水印？', answer: '不是。它只表示当前版本在已经执行的检测范围内没有识别到支持的信号。未知算法、闭源水印、截图、裁剪、转码和压缩都可能影响结果。' },
         { question: '可以证明一张图片真实吗？', answer: '不能。有效的内容凭证可以提供来源和编辑链证据，但任何单一检测结果都不能被描述为对媒体真实性的绝对证明。' },
-        { question: '可以识别所有 AI 生成内容吗？', answer: '不能。WATERMARK 检查内容凭证、已知水印和异常信号，不承诺识别所有 AI 生成媒体。' },
+        { question: '可以识别所有 AI 生成内容吗？', answer: '不能。水印分析检查内容凭证、已知水印和异常信号，不承诺识别所有 AI 生成媒体。' },
         { question: '智能打码会删除水印吗？', answer: '不会。智能打码用于遮挡人脸和敏感内容，不提供水印移除、内容凭证破坏或检测规避能力。' },
       ],
     },
     closing: {
       eyebrow: 'INSPECT WITH CONTEXT',
       title: '让每一次检测，都能回到证据本身',
-      description: 'WATERMARK 以本地处理和可解释结论为基础，帮助你更审慎地理解媒体中的凭证、水印信号与风险提示。',
+      description: '水印分析以本地处理和可解释结论为基础，帮助你更审慎地理解媒体中的凭证、水印信号与风险提示。',
       action: '返回顶部',
     },
     ecosystem: {
@@ -167,7 +167,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
   },
   'zh-Hant': {
     skipMain: '跳過導覽，前往主要內容',
-    homeLabel: '返回 WATERMARK 首頁',
+    homeLabel: '返回水印分析首頁',
     navLabel: '頁面導覽',
     openMenu: '開啟導覽選單',
     closeMenu: '關閉導覽選單',
@@ -183,13 +183,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     ],
     hero: {
       ecosystem: 'GCSA 生態產品',
-      eyebrow: 'LOCAL MEDIA INSPECTION',
-      title: '在裝置本地，看懂媒體中的浮水印訊號',
-      lead: '檢查圖片、影片和音訊中目前版本支援的內容憑證、浮水印訊號與可疑特徵，並把結論、證據和能力限制整理成可覆核的報告。',
+      eyebrow: 'IOS & ANDROID MEDIA INSPECTION',
+      title: '在手機本地，看懂媒體中的浮水印訊號',
+      lead: '在 iPhone 與 Android 裝置上檢查圖片、影片和音訊中目前版本支援的內容憑證、浮水印訊號與可疑特徵，並把結論、證據和能力限制整理成可覆核的報告。',
       primaryAction: '查看檢測能力',
       secondaryAction: '了解私隱邊界',
       proof: '私隱優先設計 · 媒體原檔和檢測資料預設不會上傳',
-      visualLabel: '本地檢測流程預覽',
+      visualLabel: '水印分析 iOS 與 Android 移動應用預覽',
       visualInput: '媒體輸入',
       visualScanning: '本地掃描中',
       visualResult: '檢測報告',
@@ -198,9 +198,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       visualReady: '報告已產生',
     },
     facts: [
+      { value: 'iOS / Android', label: '移動端應用', description: '為 iPhone 與 Android 裝置設計' },
       { value: '圖片 / 影片 / 音訊', label: '多媒體檢查', description: '從相片、檔案或剪貼簿匯入' },
-      { value: '本地優先', label: '處理邊界', description: '檢測與打碼預設在裝置完成' },
-      { value: '簡 / 繁 / EN', label: '介面語言', description: '三種語言可隨時切換' },
+      { value: '本地優先', label: '處理邊界', description: '檢測與打碼預設在手機完成' },
     ],
     capability: {
       eyebrow: 'SUPPORTED INSPECTION',
@@ -208,7 +208,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       description: '每一項結果都區分已檢測、疑似、未執行與能力限制，不以單一訊號取代完整判斷。',
       items: [
         { tag: 'CREDENTIALS', title: '內容憑證檢查', description: '檢查目前支援的 C2PA / Content Credentials，展示憑證、簽章鏈與驗證限制。' },
-        { tag: 'WATERMARK', title: '已知浮水印訊號', description: '針對目前版本登記的圖片、音訊與影片浮水印規則，給出發現、候選或不支援原因。' },
+        { tag: '水印分析', title: '已知浮水印訊號', description: '針對目前版本登記的圖片、音訊與影片浮水印規則，給出發現、候選或不支援原因。' },
         { tag: 'METADATA', title: '中繼資料與檔案摘要', description: '讀取適用的 EXIF、XMP 與容器資訊，並展示 MIME、檔案大小和 SHA-256 摘要。' },
         { tag: 'EVIDENCE', title: '可解釋檢測報告', description: '從整體結論進入檢測器版本、證據、警告、未執行原因和可見候選位置。' },
         { tag: 'BOUNDARY', title: '審慎的結果語義', description: '「未發現」只代表目前已執行範圍內未識別支援訊號，不包裝成絕對結論。' },
@@ -251,7 +251,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { title: '本地保存與刪除', description: '檢測報告和編輯歷史保存在 App 本地目錄，並可由使用者刪除。' },
         { title: '匯出去向由你決定', description: '打碼結果透過系統分享面板選擇去向，App 不會自動上傳匯出的副本。' },
       ],
-      note: 'WATERMARK 不提供移除浮水印、破壞內容憑證或規避平台檢測的功能。',
+      note: '水印分析不提供移除浮水印、破壞內容憑證或規避平台檢測的功能。',
     },
     faq: {
       eyebrow: 'CLEAR LIMITS',
@@ -260,14 +260,14 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       items: [
         { question: '「未發現」是否代表媒體沒有浮水印？', answer: '不是。它只表示目前版本在已執行的檢測範圍內沒有識別支援訊號。未知演算法、封閉水印、截圖、裁剪、轉碼和壓縮都可能影響結果。' },
         { question: '可以證明一張圖片真實嗎？', answer: '不能。有效的內容憑證可以提供來源和編輯鏈證據，但任何單一檢測結果都不能視為對媒體真實性的絕對證明。' },
-        { question: '可以識別所有 AI 生成內容嗎？', answer: '不能。WATERMARK 檢查內容憑證、已知浮水印和異常訊號，不承諾識別所有 AI 生成媒體。' },
+        { question: '可以識別所有 AI 生成內容嗎？', answer: '不能。水印分析檢查內容憑證、已知浮水印和異常訊號，不承諾識別所有 AI 生成媒體。' },
         { question: '智能打碼會刪除浮水印嗎？', answer: '不會。智能打碼用於遮擋人臉和敏感內容，不提供浮水印移除、內容憑證破壞或檢測規避能力。' },
       ],
     },
     closing: {
       eyebrow: 'INSPECT WITH CONTEXT',
       title: '讓每一次檢測，都能回到證據本身',
-      description: 'WATERMARK 以本地處理和可解釋結論為基礎，幫助你更審慎地理解媒體中的憑證、浮水印訊號與風險提示。',
+      description: '水印分析以本地處理和可解釋結論為基礎，幫助你更審慎地理解媒體中的憑證、浮水印訊號與風險提示。',
       action: '返回頂部',
     },
     ecosystem: {
@@ -341,13 +341,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     ],
     hero: {
       ecosystem: 'A GCSA ecosystem product',
-      eyebrow: 'LOCAL MEDIA INSPECTION',
-      title: 'Understand watermark signals without sending media away',
-      lead: 'Inspect supported content credentials, watermark signals, and suspicious characteristics in images, video, and audio—then review the conclusion, evidence, and capability limits in one report.',
+      eyebrow: 'IOS & ANDROID MEDIA INSPECTION',
+      title: 'Understand watermark signals right on your phone',
+      lead: 'Inspect supported content credentials, watermark signals, and suspicious characteristics in images, video, and audio on iPhone and Android—then review the conclusion, evidence, and capability limits in one report.',
       primaryAction: 'Explore inspection',
       secondaryAction: 'View privacy boundary',
       proof: 'Privacy-first by design · Original media and inspection data stay local by default',
-      visualLabel: 'Local inspection workflow preview',
+      visualLabel: 'WATERMARK mobile app preview for iOS and Android',
       visualInput: 'Media input',
       visualScanning: 'Scanning locally',
       visualResult: 'Inspection report',
@@ -356,9 +356,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       visualReady: 'Report ready',
     },
     facts: [
+      { value: 'iOS / Android', label: 'Mobile apps', description: 'Designed for iPhone and Android devices' },
       { value: 'Image / Video / Audio', label: 'Media coverage', description: 'Import from Photos, Files, or clipboard' },
-      { value: 'Local first', label: 'Processing boundary', description: 'Inspection and redaction run on device by default' },
-      { value: 'CN / HK / EN', label: 'Interface languages', description: 'Switch among three languages at any time' },
+      { value: 'Local first', label: 'Processing boundary', description: 'Inspection and redaction run on your phone by default' },
     ],
     capability: {
       eyebrow: 'SUPPORTED INSPECTION',

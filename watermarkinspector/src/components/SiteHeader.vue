@@ -1,11 +1,37 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { Eraser, LockKeyhole, Menu, Moon, ScanSearch, Sun, Workflow, X } from '@lucide/vue'
+import type { Component } from 'vue'
+import {
+  Eraser,
+  FileText,
+  Home,
+  LifeBuoy,
+  LockKeyhole,
+  Menu,
+  Moon,
+  ScanSearch,
+  ShieldCheck,
+  Sun,
+  Workflow,
+  X,
+} from '@lucide/vue'
+import { RouterLink, useRoute } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 import BrandLockup from './BrandLockup.vue'
 import { languageOptions } from '../content/siteCopy'
 import type { Locale, SiteCopy, Theme } from '../types/site'
 
 const props = defineProps<{ copy: SiteCopy; locale: Locale; theme: Theme }>()
+const route = useRoute()
+
+interface HeaderNavItem {
+  key: string
+  label: string
+  to: RouteLocationRaw
+  icon: Component
+  sectionHref?: string
+  pagePath?: string
+}
 const emit = defineEmits<{
   localeChange: [locale: Locale]
   themeToggle: []
@@ -15,7 +41,44 @@ const languageOpen = ref(false)
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 const activeNavHref = ref('')
-const navIcons = [ScanSearch, Workflow, Eraser, LockKeyhole]
+const sectionIcons = [ScanSearch, Workflow, Eraser, LockKeyhole]
+
+const headerNavItems = computed<HeaderNavItem[]>(() => [
+  {
+    key: 'home',
+    label: props.copy.footer.home,
+    to: '/',
+    icon: Home,
+  },
+  ...props.copy.nav.map((item, index) => ({
+    key: item.href,
+    label: item.label,
+    to: { path: '/', hash: item.href },
+    sectionHref: item.href,
+    icon: sectionIcons[index],
+  })),
+  {
+    key: 'privacy',
+    label: props.copy.footer.privacy,
+    to: '/privacy',
+    pagePath: '/privacy',
+    icon: ShieldCheck,
+  },
+  {
+    key: 'terms',
+    label: props.copy.footer.terms,
+    to: '/terms',
+    pagePath: '/terms',
+    icon: FileText,
+  },
+  {
+    key: 'support',
+    label: props.copy.footer.support,
+    to: '/support',
+    pagePath: '/support',
+    icon: LifeBuoy,
+  },
+])
 
 const selectedLanguage = computed(
   () => languageOptions.find((option) => option.code === props.locale) ?? languageOptions[0],
@@ -36,6 +99,12 @@ function closeMenus() {
   mobileMenuOpen.value = false
 }
 
+function isNavActive(item: (typeof headerNavItems.value)[number]) {
+  if (item.pagePath) return route.path === item.pagePath
+  if (item.sectionHref) return route.path === '/' && activeNavHref.value === item.sectionHref
+  return route.path === '/' && activeNavHref.value === ''
+}
+
 function onDocumentPointerDown() {
   languageOpen.value = false
 }
@@ -46,6 +115,11 @@ function onDocumentKeyDown(event: KeyboardEvent) {
 
 function onScroll() {
   isScrolled.value = window.scrollY > 8
+
+  if (route.path !== '/') {
+    activeNavHref.value = ''
+    return
+  }
 
   const activationLine = Math.min(window.innerHeight * 0.32, 280)
   let currentHref = ''
@@ -62,6 +136,11 @@ function onScroll() {
 
 watch(mobileMenuOpen, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
+})
+
+watch(() => route.fullPath, () => {
+  closeMenus()
+  requestAnimationFrame(onScroll)
 })
 
 onMounted(() => {
@@ -84,18 +163,18 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="#top" :aria-label="copy.homeLabel">
+      <RouterLink class="product-brand" to="/" :aria-label="copy.homeLabel">
         <BrandLockup />
-      </a>
+      </RouterLink>
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
-        <a
-          v-for="item in copy.nav"
-          :key="item.href"
-          :href="item.href"
-          :class="{ active: activeNavHref === item.href }"
-          :aria-current="activeNavHref === item.href ? 'location' : undefined"
-        >{{ item.label }}</a>
+        <RouterLink
+          v-for="item in headerNavItems"
+          :key="item.key"
+          :to="item.to"
+          :class="{ active: isNavActive(item) }"
+          :aria-current="isNavActive(item) ? (item.pagePath ? 'page' : 'location') : undefined"
+        >{{ item.label }}</RouterLink>
       </nav>
 
       <div class="desktop-tools">
@@ -137,7 +216,7 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <a class="header-cta" href="#capabilities">{{ copy.headerCta }}</a>
+        <RouterLink class="header-cta" :to="{ path: '/', hash: '#capabilities' }">{{ copy.headerCta }}</RouterLink>
       </div>
 
       <div class="mobile-tools">
@@ -209,29 +288,29 @@ onUnmounted(() => {
       :inert="!mobileMenuOpen"
     >
       <div class="mobile-drawer-head">
-        <a href="#top" :aria-label="copy.homeLabel" @click="closeMenus">
+        <RouterLink to="/" :aria-label="copy.homeLabel" @click="closeMenus">
           <BrandLockup />
-        </a>
+        </RouterLink>
         <button class="drawer-close" type="button" :aria-label="copy.closeMenu" @click="closeMenus">
           <X :size="19" aria-hidden="true" />
         </button>
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
-        <a
-          v-for="(item, index) in copy.nav"
-          :key="item.href"
-          :href="item.href"
-          :class="{ active: activeNavHref === item.href }"
-          :aria-current="activeNavHref === item.href ? 'location' : undefined"
+        <RouterLink
+          v-for="item in headerNavItems"
+          :key="item.key"
+          :to="item.to"
+          :class="{ active: isNavActive(item) }"
+          :aria-current="isNavActive(item) ? (item.pagePath ? 'page' : 'location') : undefined"
           @click="closeMenus"
         >
           <span class="mobile-nav-icon">
-            <component :is="navIcons[index]" :size="20" aria-hidden="true" />
+            <component :is="item.icon" :size="20" aria-hidden="true" />
           </span>
           <span>{{ item.label }}</span>
-        </a>
+        </RouterLink>
       </nav>
-      <a class="drawer-cta" href="#capabilities" @click="closeMenus">{{ copy.headerCta }}</a>
+      <RouterLink class="drawer-cta" :to="{ path: '/', hash: '#capabilities' }" @click="closeMenus">{{ copy.headerCta }}</RouterLink>
     </aside>
   </Teleport>
 </template>
@@ -285,14 +364,14 @@ onUnmounted(() => {
   transition: color 160ms ease, background 160ms ease;
 }
 
-.desktop-nav a:hover,
-.desktop-nav a.active {
+.desktop-nav a:hover {
   color: var(--foreground);
   background: color-mix(in srgb, var(--primary) 8%, transparent);
 }
 
 .desktop-nav a.active {
   color: var(--primary);
+  background: transparent;
 }
 
 .desktop-tools,
@@ -443,13 +522,14 @@ onUnmounted(() => {
   font-weight: 700;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1180px) {
   .topbar-inner {
     gap: 14px;
   }
 
   .desktop-nav a {
-    padding-inline: 8px;
+    padding-inline: 6px;
+    font-size: 12px;
   }
 
   .header-cta {
@@ -485,16 +565,19 @@ onUnmounted(() => {
   .mobile-language {
     width: 36px;
     height: 36px;
-    border-color: transparent;
+    border: 0;
     background: transparent;
+    box-shadow: none;
   }
 
   .menu-toggle,
   .menu-toggle:hover,
   .drawer-close,
   .drawer-close:hover {
-    border-color: transparent;
+    border: 0;
+    border-radius: 0;
     background: transparent;
+    box-shadow: none;
   }
 
   .mobile-language {
@@ -571,17 +654,23 @@ onUnmounted(() => {
     place-items: center;
     width: 34px;
     height: 34px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
+    border: 0;
+    border-radius: 0;
     color: var(--muted-foreground);
-    background: var(--muted);
+    background: transparent;
+    box-shadow: none;
     cursor: pointer;
   }
 
   .mobile-nav {
     display: grid;
+    flex: 1 1 auto;
+    align-content: start;
     gap: 8px;
+    min-height: 0;
     margin-top: 26px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .mobile-nav a {
@@ -628,7 +717,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: center;
     min-height: 46px;
-    margin-top: auto;
+    margin-top: 18px;
     border: 1px solid var(--primary);
     border-radius: 9999px;
     color: var(--primary-foreground);

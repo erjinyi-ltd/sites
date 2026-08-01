@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { FileStack, Languages, LockKeyhole } from '@lucide/vue'
+import { FileStack, LockKeyhole, Smartphone } from '@lucide/vue'
 import type { SiteCopy } from '../types/site'
 
 defineProps<{ items: SiteCopy['facts'] }>()
-const icons = [FileStack, LockKeyhole, Languages]
+const icons = [Smartphone, FileStack, LockKeyhole]
 </script>
 
 <template>

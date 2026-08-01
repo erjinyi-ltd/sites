@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import ClosingCta from './components/ClosingCta.vue'
-import DetectionFlow from './components/DetectionFlow.vue'
-import EcosystemProducts from './components/EcosystemProducts.vue'
-import FactsStrip from './components/FactsStrip.vue'
-import FaqSection from './components/FaqSection.vue'
-import FeatureGrid from './components/FeatureGrid.vue'
-import HeroSection from './components/HeroSection.vue'
-import PrivacySection from './components/PrivacySection.vue'
-import RedactionSection from './components/RedactionSection.vue'
+import { watchEffect } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 import SiteFooter from './components/SiteFooter.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import { usePreferences } from './composables/usePreferences'
+import { legalCopy } from './content/legalCopy'
+import type { LegalPageKind } from './types/legal'
 
 const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
+const route = useRoute()
+
+function isLegalPageKind(value: unknown): value is LegalPageKind {
+  return value === 'privacy' || value === 'terms' || value === 'support'
+}
+
+watchEffect(() => {
+  const legalKind = route.meta.legalKind
+  const page = isLegalPageKind(legalKind) ? legalCopy[locale.value].pages[legalKind] : undefined
+  const productName = locale.value === 'en' ? 'WATERMARK' : '水印分析'
+  const title = page ? `${page.title} — GCSA` : `${productName} — GCSA`
+  const description = page?.summary ?? copy.value.hero.lead
+
+  document.title = title
+  document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+})
 </script>
 
 <template>
@@ -27,15 +38,9 @@ const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
       @theme-toggle="toggleTheme"
     />
     <main id="main-content">
-      <HeroSection :copy="copy.hero" />
-      <FactsStrip :items="copy.facts" />
-      <FeatureGrid :copy="copy.capability" />
-      <DetectionFlow :copy="copy.flow" />
-      <RedactionSection :copy="copy.redaction" />
-      <PrivacySection :copy="copy.privacy" />
-      <FaqSection :copy="copy.faq" />
-      <ClosingCta :copy="copy.closing" />
-      <EcosystemProducts :copy="copy.ecosystem" />
+      <RouterView v-slot="{ Component }">
+        <component :is="Component" :copy="copy" :locale="locale" />
+      </RouterView>
     </main>
     <SiteFooter :copy="copy.footer" :locale="locale" />
   </div>

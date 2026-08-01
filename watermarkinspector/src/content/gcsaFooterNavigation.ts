@@ -1,15 +1,11 @@
 import type { Locale } from '../types/site'
 
 export interface GcsaFooterNavigation {
-  home: string
   products: string
   media: string
   updates: string
   join: string
   about: string
-  privacy: string
-  terms: string
-  support: string
 }
 
 export function getGcsaFooterNavigation(locale: Locale): GcsaFooterNavigation {
@@ -25,14 +21,10 @@ export function getGcsaFooterNavigation(locale: Locale): GcsaFooterNavigation {
       : 'https://media.gcsa.org/en-US'
 
   return {
-    home: '#top',
     products: `${siteBase}/products`,
     media: mediaBase,
     updates: `${siteBase}/forums`,
     join: `${siteBase}/contact`,
     about: `${siteBase}/about`,
-    privacy: `${siteBase}/privacy`,
-    terms: `${siteBase}/terms`,
-    support: 'mailto:contact@gcsa.org',
   }
 }
