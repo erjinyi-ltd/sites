@@ -14,7 +14,16 @@ yarn dev
 ```powershell
 yarn typecheck
 yarn build
+yarn validate:site
 ```
+
+生产构建会生成首页、隐私政策、使用条款与技术支持的静态路由元数据，并校验 canonical、Open Graph、robots、sitemap、法律主体、Firebase 披露和支持邮箱。
+
+## 发布
+
+- `.openai/hosting.json` 记录 Sites 项目绑定，Sites 发布使用生产 `dist` 产物。
+- 自定义域名 `watermarkinspector.gcsa.org` 仍通过 `ops/deploy-watermark.sh` 发布静态文件。
+- `ops/watermark.conf` 的路由与安全响应头需要由服务器运维单独安装并重载 Nginx；静态文件发布不会自动替换 Nginx 配置。
 
 ## 代码结构
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { CloudOff, Database, MousePointerClick } from '@lucide/vue'
+import { Activity, CloudOff, Database, MousePointerClick } from '@lucide/vue'
 import SectionHeader from './SectionHeader.vue'
 import type { SiteCopy } from '../types/site'
 
 defineProps<{ copy: SiteCopy['privacy'] }>()
-const icons = [MousePointerClick, Database, CloudOff]
+const icons = [MousePointerClick, Database, CloudOff, Activity]
 </script>
 
 <template>
@@ -46,7 +46,7 @@ const icons = [MousePointerClick, Database, CloudOff]
 
 .privacy-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-top: 44px;
 }
@@ -106,9 +106,9 @@ article p {
   color: var(--primary);
 }
 
-@media (max-width: 820px) {
+@media (max-width: 1100px) {
   .privacy-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   article {
@@ -117,6 +117,10 @@ article p {
 }
 
 @media (max-width: 640px) {
+  .privacy-grid {
+    grid-template-columns: 1fr;
+  }
+
   .privacy-section {
     padding-block: 82px;
   }

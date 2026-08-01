@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "vue-tsc -b",
-    "build": "yarn typecheck && vite build && node scripts/prepare-sites.mjs",
+    "build": "yarn typecheck && vite build && node scripts/prepare-sites.mjs && node scripts/validate-site.mjs",
+    "validate:site": "node scripts/validate-site.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

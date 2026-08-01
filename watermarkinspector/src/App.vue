@@ -9,6 +9,11 @@ import type { LegalPageKind } from './types/legal'
 
 const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
 const route = useRoute()
+const siteOrigin = 'https://watermarkinspector.gcsa.org'
+
+function setMetaContent(selector: string, content: string) {
+  document.querySelector(selector)?.setAttribute('content', content)
+}
 
 function isLegalPageKind(value: unknown): value is LegalPageKind {
   return value === 'privacy' || value === 'terms' || value === 'support'
@@ -20,9 +25,16 @@ watchEffect(() => {
   const productName = locale.value === 'en' ? 'WATERMARK' : '水印分析'
   const title = page ? `${page.title} — GCSA` : `${productName} — GCSA`
   const description = page?.summary ?? copy.value.hero.lead
+  const canonicalUrl = new URL(route.path, siteOrigin).toString()
 
   document.title = title
-  document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+  setMetaContent('meta[name="description"]', description)
+  setMetaContent('meta[property="og:title"]', title)
+  setMetaContent('meta[property="og:description"]', description)
+  setMetaContent('meta[property="og:url"]', canonicalUrl)
+  setMetaContent('meta[name="twitter:title"]', title)
+  setMetaContent('meta[name="twitter:description"]', description)
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl)
 })
 </script>
 
