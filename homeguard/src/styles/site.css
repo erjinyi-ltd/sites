@@ -2075,8 +2075,8 @@ a:hover .arrow {
 }
 
 .legal-hero {
-  padding-top: clamp(132px, 12vw, 172px);
-  padding-bottom: clamp(44px, 6vw, 76px);
+  padding-top: clamp(116px, 10vw, 148px);
+  padding-bottom: clamp(36px, 5vw, 60px);
 }
 
 .legal-hero h1 {
@@ -2149,7 +2149,7 @@ a:hover .arrow {
 .legal-summary > p {
   margin: 0;
   color: var(--muted-foreground);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.75;
 }
 
@@ -2166,8 +2166,8 @@ a:hover .arrow {
   display: flex;
   gap: 9px;
   color: var(--foreground);
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .legal-summary li span {
@@ -2196,8 +2196,8 @@ a:hover .arrow {
 .legal-section p,
 .legal-section li {
   color: var(--muted-foreground);
-  font-size: 14px;
-  line-height: 1.9;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .legal-section p {
@@ -2799,7 +2799,7 @@ a:hover .arrow {
   }
 
   .legal-hero {
-    padding-top: 112px;
+    padding-top: 88px;
   }
 
   .legal-hero h1 {
