@@ -1,7 +1,7 @@
 const updatedDate = {
-  "zh-CN": "2026 年 7 月 30 日",
-  "zh-Hant": "2026 年 7 月 30 日",
-  en: "July 30, 2026",
+  "zh-CN": "2026 年 8 月 2 日",
+  "zh-Hant": "2026 年 8 月 2 日",
+  en: "August 2, 2026",
 };
 
 export const privacyCopy = {
@@ -49,7 +49,7 @@ export const privacyCopy = {
       {
         title: "4. 公网 IP 与 DNS Analysis",
         paragraphs: [
-          "公网出口 IP 与网络出口位置估算默认可用，当前版本没有单独启停开关。App 每次冷启动自动查询一次；用户也可手动刷新、运行网络信息检测或一键检查。仅回到前台或重开 Dashboard 不会再触发一次冷启动查询。",
+          "公网出口 IP 与网络出口位置估算查询在新安装时默认开启。用户可以在 App 设置中关闭或重新开启，选择会跨启动保留；关闭后不会发起在线公网 IP 补全查询。仅在开关开启时，App 每次冷启动自动查询一次；用户也可手动刷新、运行网络信息检测或一键检查。仅回到前台或重开 Dashboard 不会再触发一次冷启动查询。",
           "ip.gcsa.org 可能处理当前公网 IP、DNS 解析器公网 IP、来源标记、ASN、网络服务商、国家/地区、城市级粗略位置，以及连接自然产生的时间、路径、方法、状态、User-Agent 和安全标记。请求不会附加 SSID、BSSID、局域网设备或 BLE 数据。网络出口位置是估算值，不是设备精确位置。",
           "当前出口结果在内存中缓存最多约 3 分钟；已查询 IP 的返回元数据可使用散列键在本机脱敏缓存最多约 24 小时，不持久化明文 IP。",
           "仅当用户主动运行 DNS Analysis 时，App 才会通过 IP-API 和 Surfshark DNS 探针使用随机一次性查询标签。相关服务可能观察公网 IP、查询标签、解析器/EDNS 出口、时间和请求元数据。App 随后最多向 ip.gcsa.org 发送 8 个“解析器公网 IP + 来源标记”用于内存分析；请求体不附加账号、SSID、BSSID、局域网或 BLE 数据，也不写入 GCSA 应用数据库。",
@@ -108,7 +108,7 @@ export const privacyCopy = {
       {
         title: "11. 删除、撤回与用户权利",
         paragraphs: [
-          "用户可在 App 内清理本地数据，在 iOS 设置撤回权限，不主动运行钱包或 DNS Analysis 以阻止未来提交，或停止使用/卸载 App 以阻止未来自动公网 IP 与 Firebase 请求。当前版本的公网 IP 冷启动查询没有独立 App 内开关。",
+          "用户可在 App 设置中关闭公网出口 IP 在线查询，在 App 内清理本地数据，在 iOS 设置撤回权限，不主动运行钱包或 DNS Analysis 以阻止未来提交，或停止使用/卸载 App 以阻止未来 Firebase 请求。公网出口 IP 开关新安装默认开启，用户选择会跨启动保留；关闭后不会发起未来的在线公网 IP 补全查询。",
           "已完成的网络请求不能撤回，但仍在留存的数据可以申请访问、更正、删除、限制或反对处理。请发送邮件至 contact@gcsa.org，主题注明“Privacy Request”，并提供大致 UTC 时间、使用功能和 App 版本。请勿通过普通邮件发送私钥、助记词、钱包密码或 Access Token；如定位记录需要完整地址，GCSA 会先提供更安全的核验方式。",
           "GCSA 可能进行合理身份或记录核验，并在适用法律要求的期限内处理请求。",
         ],
@@ -169,7 +169,7 @@ export const privacyCopy = {
       {
         title: "4. 公網 IP 與 DNS Analysis",
         paragraphs: [
-          "公網出口 IP 與網絡出口位置估算預設可用，目前版本沒有獨立開關。App 每次冷啟動自動查詢一次；用戶亦可手動重新整理、執行網絡資料檢測或一鍵檢查。只回到前景或重開 Dashboard 不會再觸發一次冷啟動查詢。",
+          "公網出口 IP 與網絡出口位置估算查詢在新安裝時預設開啟。用戶可在 App 設定中關閉或重新開啟，選擇會跨啟動保留；關閉後不會發起線上公網 IP 補全查詢。只在開關開啟時，App 每次冷啟動自動查詢一次；用戶亦可手動重新整理、執行網絡資料檢測或一鍵檢查。只回到前景或重開 Dashboard 不會再觸發一次冷啟動查詢。",
           "ip.gcsa.org 可能處理目前公網 IP、DNS 解析器公網 IP、來源標記、ASN、網絡服務商、國家/地區、城市級概略位置，以及連線自然產生的時間、路徑、方法、狀態、User-Agent 和安全標記。請求不附加 SSID、BSSID、區域網絡裝置或 BLE 資料。網絡出口位置是估算值，不是裝置精確位置。",
           "目前出口結果在記憶體快取最多約 3 分鐘；已查詢 IP 的返回中繼資料可使用雜湊鍵在本機遮蔽快取最多約 24 小時，不持久保存明文 IP。",
           "只有用戶主動執行 DNS Analysis 時，App 才會透過 IP-API 和 Surfshark DNS 探針使用隨機一次性查詢標籤。相關服務可能觀察公網 IP、查詢標籤、解析器/EDNS 出口、時間和請求中繼資料。App 隨後最多向 ip.gcsa.org 傳送 8 個「解析器公網 IP + 來源標記」作記憶體分析；請求內容不附加帳戶、SSID、BSSID、區域網絡或 BLE 資料，也不寫入 GCSA 應用資料庫。",
@@ -228,7 +228,7 @@ export const privacyCopy = {
       {
         title: "11. 刪除、撤回與用戶權利",
         paragraphs: [
-          "用戶可在 App 內清除本機資料，在 iOS 設定撤回權限，不主動執行錢包或 DNS Analysis 以阻止未來提交，或停止使用/解除安裝 App 以阻止未來自動公網 IP 與 Firebase 請求。目前版本的公網 IP 冷啟動查詢沒有獨立 App 內開關。",
+          "用戶可在 App 設定中關閉公網出口 IP 線上查詢，在 App 內清除本機資料，在 iOS 設定撤回權限，不主動執行錢包或 DNS Analysis 以阻止未來提交，或停止使用/解除安裝 App 以阻止未來 Firebase 請求。公網出口 IP 開關在新安裝時預設開啟，用戶選擇會跨啟動保留；關閉後不會發起未來的線上公網 IP 補全查詢。",
           "已完成的網絡請求不能撤回，但仍在保存的資料可以申請存取、更正、刪除、限制或反對處理。請電郵 contact@gcsa.org，主旨註明「Privacy Request」，並提供大約 UTC 時間、所用功能和 App 版本。請勿透過普通電郵傳送私鑰、助記詞、錢包密碼或 Access Token；如定位記錄需要完整地址，GCSA 會先提供更安全的核驗方式。",
           "GCSA 可能進行合理身分或記錄核驗，並在適用法律要求的期限內處理請求。",
         ],
@@ -289,7 +289,7 @@ export const privacyCopy = {
       {
         title: "4. Public IP and DNS Analysis",
         paragraphs: [
-          "Public-egress IP and estimated network-egress location lookup is available by default and has no separate switch in the current version. The app automatically performs one lookup per cold start; a user can also refresh manually or start Network Information or a one-tap check. Merely returning to the foreground or reopening Dashboard does not trigger another cold-start lookup.",
+          "Public-egress IP and estimated network-egress location lookup is enabled by default on a fresh install. A user can disable or re-enable it in App Settings, and the choice persists across launches; disabling it stops online public-IP enrichment requests. Only while the switch is enabled, the app automatically performs one lookup per cold start; a user can also refresh manually or start Network Information or a one-tap check. Merely returning to the foreground or reopening Dashboard does not trigger another cold-start lookup.",
           "ip.gcsa.org may process the current public IP, public DNS-resolver IP, source marker, ASN, network provider, country/region, city-level approximate location, and connection metadata such as time, path, method, status, User-Agent, and security markers. Requests do not attach SSID, BSSID, LAN-device, or BLE data. Network-egress location is an estimate, not precise device location.",
           "Current-egress results stay in memory for up to approximately three minutes. Returned metadata for a queried IP may use a hashed, redacted on-device cache for up to approximately 24 hours; plaintext IP is not persisted.",
           "Only when a user actively runs DNS Analysis does the app use random one-time query labels through IP-API and Surfshark DNS probes. These services may observe public IP, query label, resolver/EDNS egress, time, and request metadata. The app then sends at most eight “resolver public IP + source marker” rows to ip.gcsa.org for in-memory analysis. The body does not attach an account, SSID, BSSID, LAN, or BLE data and is not written to a GCSA application database.",
@@ -348,7 +348,7 @@ export const privacyCopy = {
       {
         title: "11. Deletion, Withdrawal, and User Rights",
         paragraphs: [
-          "A user may clear local data in the app, revoke permissions in iOS Settings, avoid wallet or DNS Analysis to prevent future submissions, or stop using/uninstall the app to prevent future automatic public-IP and Firebase requests. The current cold-start public-IP lookup has no separate in-app switch.",
+          "A user may disable online public-egress IP lookup in App Settings, clear local data in the app, revoke permissions in iOS Settings, avoid wallet or DNS Analysis to prevent future submissions, or stop using/uninstall the app to prevent future Firebase requests. The public-egress IP switch is enabled by default on a fresh install and the choice persists across launches; disabling it stops future online public-IP enrichment requests.",
           "A completed network request cannot be withdrawn, but retained data may be subject to access, correction, deletion, restriction, or objection. Email contact@gcsa.org with subject “Privacy Request” and include approximate UTC time, feature used, and app version. Do not send private keys, seed phrases, wallet passwords, or access tokens in ordinary email; if a complete address is required to locate a record, GCSA will first provide a safer verification method.",
           "GCSA may perform reasonable identity or record verification and will handle requests within the period required by applicable law.",
         ],
