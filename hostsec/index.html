@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05080d" />
+    <meta
+      name="description"
+      content="GCSA HostSec 是面向 Linux 与 Windows 的多租户主机安全与运维控制平台，覆盖主机、WAF、防火墙、日志、告警与响应。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GCSA HostSec" />
+    <meta property="og:title" content="GCSA HostSec｜让每一台主机，都在可见与可控之中" />
+    <meta
+      property="og:description"
+      content="统一连接 Linux 与 Windows 主机，集中管理安全策略、WAF、防火墙、日志、告警与响应。"
+    />
+    <meta property="og:url" content="__SITE_ORIGIN__/" />
+    <meta property="og:image" content="__SITE_ORIGIN__/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GCSA HostSec｜Host security, under control" />
+    <meta
+      name="twitter:description"
+      content="多租户主机安全与运维控制平台，覆盖 Linux 与 Windows。"
+    />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/og.png" />
+    <link rel="canonical" href="__SITE_ORIGIN__/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      ;(() => {
+        try {
+          const savedTheme = localStorage.getItem('gcsa-site-theme') ?? localStorage.getItem('gcsa-hostsec-theme')
+          const savedLocale = localStorage.getItem('gcsa-site-locale') ?? localStorage.getItem('gcsa-hostsec-locale')
+          const theme = savedTheme === 'light' ? 'light' : 'dark'
+          const browserLocale = navigator.language.toLowerCase()
+          const locale = savedLocale === 'zh-CN' || savedLocale === 'zh-Hant' || savedLocale === 'en'
+            ? savedLocale
+            : browserLocale.startsWith('zh-hant') || browserLocale.startsWith('zh-tw') || browserLocale.startsWith('zh-hk')
+              ? 'zh-Hant'
+              : browserLocale.startsWith('en')
+                ? 'en'
+                : 'zh-CN'
+          document.documentElement.classList.toggle('dark', theme === 'dark')
+          document.documentElement.lang = locale
+          document.documentElement.style.colorScheme = theme
+          document.documentElement.style.backgroundColor = theme === 'dark' ? '#05080d' : '#f6f8fa'
+        } catch {}
+      })()
+    </script>
+    <title>GCSA HostSec｜多租户主机安全与运维控制平台</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
