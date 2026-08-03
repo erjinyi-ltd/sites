@@ -4,3 +4,4 @@ dist
 node_modules
 .npm-cache
 ops/*.pem
+/ops/hostsec/35.221.234.42.ppk
