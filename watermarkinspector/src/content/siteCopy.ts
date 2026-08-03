@@ -2,7 +2,7 @@ import type { Locale, SiteCopy } from '../types/site'
 
 export const languageOptions: Array<{ code: Locale; label: string; short: string }> = [
   { code: 'zh-CN', label: '简体中文', short: 'CN' },
-  { code: 'zh-Hant', label: '繁體中文', short: 'HK' },
+  { code: 'zh-Hant', label: '繁體中文', short: '繁' },
   { code: 'en', label: 'English', short: 'EN' },
 ]
 
@@ -86,12 +86,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     privacy: {
       eyebrow: 'PRIVACY BY DEFAULT',
-      title: '媒体内容默认留在设备上',
-      description: '原文件、缩略图、元数据、检测中间结果、OCR 原文与编辑区域默认不会被上传到云端处理。',
+      title: '媒体内容留在设备上',
+      description: '原文件、缩略图、元数据、检测中间结果、OCR 原文与编辑区域不会被上传到云端处理。',
       points: [
         { title: '用户主动选择', description: '只处理用户从系统入口主动选取或粘贴的媒体，不在后台扫描照片库或监控剪贴板。' },
         { title: '本地保存与删除', description: '检测报告和编辑历史保存在 App 本地目录，并可由用户删除。' },
         { title: '导出由用户决定', description: '打码结果通过系统分享面板选择去向，App 不会自动上传导出的副本。' },
+        { title: '有限诊断与分析', description: '崩溃、性能诊断和有限使用分析会发送给 Firebase，但均不附带用户选择的媒体或检测内容。' },
       ],
       note: '水印分析不提供移除水印、破坏内容凭证或规避平台检测的功能。',
     },
@@ -162,7 +163,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       privacy: '隐私政策',
       terms: '使用条款',
       support: '技术支持',
-      copyright: '© Global Cybersecurity Alliance. 保留所有权利。',
+      copyright: '© Global Cybersecurity Alliance Limited. 保留所有权利。',
     },
   },
   'zh-Hant': {
@@ -244,12 +245,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     privacy: {
       eyebrow: 'PRIVACY BY DEFAULT',
-      title: '媒體內容預設留在裝置上',
-      description: '原檔、縮圖、中繼資料、檢測中間結果、OCR 原文與編輯區域預設不會上傳到雲端處理。',
+      title: '媒體內容留在裝置上',
+      description: '原檔、縮圖、中繼資料、檢測中間結果、OCR 原文與編輯區域不會上傳到雲端處理。',
       points: [
         { title: '使用者主動選擇', description: '只處理使用者從系統入口主動選取或貼上的媒體，不在背景掃描相片庫或監控剪貼簿。' },
         { title: '本地保存與刪除', description: '檢測報告和編輯歷史保存在 App 本地目錄，並可由使用者刪除。' },
         { title: '匯出去向由你決定', description: '打碼結果透過系統分享面板選擇去向，App 不會自動上傳匯出的副本。' },
+        { title: '有限診斷與分析', description: '崩潰、效能診斷和有限使用分析會傳送給 Firebase，但均不附帶用戶選擇的媒體或檢測內容。' },
       ],
       note: '水印分析不提供移除浮水印、破壞內容憑證或規避平台檢測的功能。',
     },
@@ -320,7 +322,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       privacy: '隱私政策',
       terms: '使用條款',
       support: '技術支持',
-      copyright: '© Global Cybersecurity Alliance. 保留所有權利。',
+      copyright: '© Global Cybersecurity Alliance Limited. 保留所有權利。',
     },
   },
   en: {
@@ -402,12 +404,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     privacy: {
       eyebrow: 'PRIVACY BY DEFAULT',
-      title: 'Media stays on your device by default',
-      description: 'Original files, thumbnails, metadata, detector intermediates, OCR text, and edit regions are not sent to the cloud for processing by default.',
+      title: 'Media stays on your device',
+      description: 'Original files, thumbnails, metadata, detector intermediates, OCR text, and edit regions are not sent to the cloud for processing.',
       points: [
         { title: 'You choose the input', description: 'The app processes only media you select or paste. It does not silently scan the photo library or monitor the clipboard.' },
         { title: 'Local storage and deletion', description: 'Inspection reports and editing history live in the app’s local directory and can be deleted by you.' },
         { title: 'You choose the destination', description: 'The system share sheet controls where an exported copy goes; the app does not upload it automatically.' },
+        { title: 'Limited diagnostics and analytics', description: 'Crash and performance diagnostics and limited usage analytics are sent to Firebase without selected media or inspection content.' },
       ],
       note: 'WATERMARK does not remove watermarks, damage content credentials, or help evade platform detection.',
     },
@@ -478,7 +481,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Use',
       support: 'Technical Support',
-      copyright: '© Global Cybersecurity Alliance. All rights reserved.',
+      copyright: '© Global Cybersecurity Alliance Limited. All rights reserved.',
     },
   },
 }

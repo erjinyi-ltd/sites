@@ -1,10 +1,16 @@
 export type LegalPageKind = 'privacy' | 'terms' | 'support'
 
+export interface LegalLink {
+  label: string
+  href: string
+}
+
 export interface LegalSection {
   id: string
   title: string
   paragraphs: string[]
   bullets?: string[]
+  links?: LegalLink[]
 }
 
 export interface LegalPageCopy {

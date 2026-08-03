@@ -59,6 +59,18 @@ const page = computed(() => localeCopy.value.pages[pageKind.value])
             <ul v-if="section.bullets?.length">
               <li v-for="bullet in section.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
+            <div v-if="section.links?.length" class="legal-links">
+              <a
+                v-for="link in section.links"
+                :key="link.href"
+                :href="link.href"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <span>{{ link.label }}</span>
+                <ArrowUpRight :size="15" aria-hidden="true" />
+              </a>
+            </div>
           </section>
 
           <section class="legal-contact">
@@ -221,6 +233,31 @@ const page = computed(() => localeCopy.value.pages[pageKind.value])
   border-radius: 50%;
   background: var(--primary);
   content: '';
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.legal-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 4%, var(--card));
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.legal-links a:hover {
+  border-color: var(--primary);
 }
 
 .legal-contact {
