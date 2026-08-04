@@ -1,6 +1,6 @@
 #Requires -Version 5.1
 <#
-  Update CLEANER, Home Guard, HostSec, and WATERMARK with one command.
+  Update CLEANER, Home Guard, PassRecover, HostSec, and WATERMARK with one command.
 
   Examples:
     .\ops\deploy-all.ps1
@@ -64,6 +64,11 @@ $deployments = @(
         Arguments = $sharedArguments
     },
     @{
+        Name = 'PassRecover'
+        Script = 'deploy-pass.ps1'
+        Arguments = $sharedArguments
+    },
+    @{
         Name = 'HostSec'
         Script = 'deploy-hostsec.ps1'
         Arguments = @{
@@ -90,8 +95,8 @@ foreach ($deployment in $deployments) {
 
 Write-Host ''
 if ($WhatIf) {
-    Write-Host 'All four deployment plans completed successfully.' -ForegroundColor Green
+    Write-Host 'All five deployment plans completed successfully.' -ForegroundColor Green
 }
 else {
-    Write-Host 'All four sites were updated successfully.' -ForegroundColor Green
+    Write-Host 'All five sites were updated successfully.' -ForegroundColor Green
 }

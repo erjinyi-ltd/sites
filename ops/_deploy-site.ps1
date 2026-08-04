@@ -6,7 +6,7 @@
 #>
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('watermark', 'cleaner', 'homeguard')]
+    [ValidateSet('watermark', 'cleaner', 'homeguard', 'pass')]
     [string]$Site,
 
     [ValidateNotNullOrEmpty()]
@@ -40,6 +40,7 @@ $SiteDefinitions = @(
         PrimaryDomain = 'watermarkinspector.erjinyi.com'
         OriginDomain = 'watermarkinspector.gcsa.org'
         Routes = @('/', '/privacy', '/terms', '/support')
+        PreserveItems = @()
     },
     [PSCustomObject]@{
         Key = 'cleaner'
@@ -49,6 +50,7 @@ $SiteDefinitions = @(
         PrimaryDomain = 'cleaner.erjinyi.com'
         OriginDomain = 'cleaner.gcsa.org'
         Routes = @('/')
+        PreserveItems = @()
     },
     [PSCustomObject]@{
         Key = 'homeguard'
@@ -58,6 +60,17 @@ $SiteDefinitions = @(
         PrimaryDomain = 'homeguard.erjinyi.com'
         OriginDomain = 'homeguard.gcsa.org'
         Routes = @('/', '/privacy', '/terms', '/support')
+        PreserveItems = @()
+    },
+    [PSCustomObject]@{
+        Key = 'pass'
+        Name = 'PASSRECOVER'
+        ProjectDir = Join-Path $RepoDir 'pass'
+        RemotePath = '/var/www/pass'
+        PrimaryDomain = 'pass.erjinyi.com'
+        OriginDomain = 'passrecover.gcsa.org'
+        Routes = @('/', '/privacy', '/terms', '/support')
+        PreserveItems = @('downloads')
     }
 )
 
@@ -104,6 +117,14 @@ function Assert-SafeHostValue {
 
     if ($Value -notmatch '^[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?$') {
         throw "$Name contains unsupported characters: $Value"
+    }
+}
+
+function Assert-SafeChildName {
+    param([string]$Name)
+
+    if ($Name -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$' -or $Name -in @('.', '..')) {
+        throw "Preserved item contains unsupported characters: $Name"
     }
 }
 
@@ -204,10 +225,17 @@ function Publish-Site {
     Assert-SafeHostValue 'Primary domain' $Definition.PrimaryDomain
     Assert-SafeHostValue 'Origin domain' $Definition.OriginDomain
 
+    $preserveFilters = @()
+    foreach ($itemName in $Definition.PreserveItems) {
+        Assert-SafeChildName $itemName
+        $preserveFilters += "! -name $(Quote-Remote $itemName)"
+    }
+
     Write-Host ''
     Write-Host "[$($Definition.Name)] Clear remote directory" -ForegroundColor Cyan
     $quotedRemoteDir = Quote-Remote $remoteDir
-    Invoke-Remote "mkdir -p $quotedRemoteDir && find $quotedRemoteDir -mindepth 1 -maxdepth 1 -exec rm -rf {} +"
+    $cleanupFilters = if ($preserveFilters.Count -gt 0) { ' ' + ($preserveFilters -join ' ') } else { '' }
+    Invoke-Remote "mkdir -p $quotedRemoteDir && find $quotedRemoteDir -mindepth 1 -maxdepth 1$cleanupFilters -exec rm -rf {} +"
     Invoke-Remote "chown -R $($SshUser):$($SshUser) $quotedRemoteDir"
 
     Write-Host "[$($Definition.Name)] Upload static files" -ForegroundColor Cyan

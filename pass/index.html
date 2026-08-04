@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="GCSA PassRecover 是面向授权取证、应急响应与合法资产恢复场景的本地密码恢复工作台。"
+    />
+    <meta name="theme-color" content="#000205" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="./gcsa-icon.svg" />
+    <title>GCSA PassRecover | 密码恢复专题</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("gcsa-site-theme");
+          const dark = theme !== "light";
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+          document.documentElement.style.backgroundColor = dark ? "#000205" : "#f7f9fb";
+        } catch {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
