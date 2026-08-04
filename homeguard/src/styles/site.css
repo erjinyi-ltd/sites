@@ -2033,40 +2033,6 @@ a:hover .arrow {
   margin-top: 34px;
 }
 
-.site-footer {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 32px;
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
-  color: var(--muted-foreground);
-  background: var(--background);
-  font-size: 13px;
-}
-
-.footer-links {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.site-footer p,
-.site-footer a {
-  margin: 0;
-  color: var(--muted-foreground);
-  transition: color 160ms ease;
-}
-
-.site-footer a:hover,
-.site-footer a:focus-visible {
-  color: var(--primary);
-}
-
 .legal-main {
   min-height: 80vh;
   background:
@@ -2769,33 +2735,6 @@ a:hover .arrow {
 
   .closing-inner > div {
     display: grid;
-  }
-
-  .site-footer {
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 8px;
-    margin-bottom: max(18px, env(safe-area-inset-bottom));
-    padding-top: 12px;
-    font-size: 12px;
-    text-align: center;
-  }
-
-  .site-footer p,
-  .site-footer a {
-    display: block;
-    width: 100%;
-    max-width: 32rem;
-    align-self: center;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  .footer-links {
-    display: grid;
-    gap: 6px;
-    width: 100%;
   }
 
   .legal-hero {

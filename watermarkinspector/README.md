@@ -17,7 +17,7 @@ yarn build
 yarn validate:site
 ```
 
-生产构建会生成首页、隐私政策、使用条款与技术支持的静态路由元数据，并校验 canonical、Open Graph、robots、sitemap、法律主体、Firebase 披露和支持邮箱。
+普通构建会生成首页、隐私政策、使用条款与技术支持的纯静态产物，并校验 canonical、Open Graph、robots、sitemap、法律主体、Firebase 披露和支持邮箱。发布到 OpenAI Sites 时使用 `yarn build:sites`，额外生成 Sites worker 与托管元数据。
 
 ## 发布
 

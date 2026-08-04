@@ -16,7 +16,7 @@ yarn typecheck
 yarn build
 ```
 
-生产构建输出到 `dist/`。构建脚本同时生成 SPA 路由回退所需的 Sites worker，并保留 `.openai/hosting.json`。
+普通构建仅输出静态站点文件到 `dist/`。发布到 OpenAI Sites 时使用 `yarn build:sites`，额外生成 SPA 路由回退所需的 Sites worker 与托管元数据。
 
 ## 独立发布
 

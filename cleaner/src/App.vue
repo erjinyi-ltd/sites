@@ -47,7 +47,7 @@ const pageCopy = computed(() => messages.value.pages[platform.value])
       </div>
       <EcosystemProducts :copy="copy.ecosystem" />
     </main>
-    <SiteFooter :copy="copy.footer" :locale="locale" />
+    <SiteFooter :locale="locale" />
   </div>
 </template>
 

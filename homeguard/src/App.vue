@@ -33,6 +33,6 @@ watchEffect(() => {
     <a class="skip-link" href="#main-content">{{ copy.skip }}</a>
     <SiteHeader />
     <RouterView />
-    <SiteFooter />
+    <SiteFooter :locale="locale" />
   </div>
 </template>

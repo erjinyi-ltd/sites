@@ -8,3 +8,11 @@
 - `C:\Users\Administrator\Desktop\github\windowsCleaner`：Windows 版当前开发事实与规划边界
 
 Windows 版仍在开发中，站点不提供下载入口，也不把规划功能描述为已发布能力。
+
+## 构建
+
+```powershell
+yarn build
+```
+
+普通构建仅输出静态站点文件。发布到 OpenAI Sites 时使用 `yarn build:sites`，额外生成 Sites worker 与托管元数据。

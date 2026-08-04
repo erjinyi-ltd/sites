@@ -161,6 +161,6 @@ const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
       <EcosystemProducts :copy="copy.ecosystem" />
     </main>
 
-    <SiteFooter :copy="copy.footer" :locale="locale" />
+    <SiteFooter :locale="locale" />
   </div>
 </template>

@@ -54,7 +54,7 @@ watchEffect(() => {
         <component :is="Component" :copy="copy" :locale="locale" />
       </RouterView>
     </main>
-    <SiteFooter :copy="copy.footer" :locale="locale" />
+    <SiteFooter :locale="locale" />
   </div>
 </template>
 

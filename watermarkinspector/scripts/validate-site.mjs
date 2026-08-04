@@ -72,8 +72,6 @@ assert(
   'homepage privacy copy must state the mobile media no-upload boundary in every locale',
 )
 
-await access('dist/server/index.js')
-await access('dist/.openai/hosting.json')
 await access('dist/og.png')
 
 process.stdout.write('Validated WATERMARK site metadata, routes, legal disclosures, support, robots.txt, and sitemap.xml.\n')
