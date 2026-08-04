@@ -18,6 +18,7 @@ param(
     [string]$KeyFile = '34.96.169.250.pem',
 
     [switch]$SkipBuild,
+    [switch]$VerifyRoutes,
     [switch]$WhatIf
 )
 
@@ -30,4 +31,5 @@ $deployScript = Join-Path $PSScriptRoot '_deploy-site.ps1'
     -SshUser $SshUser `
     -KeyFile $KeyFile `
     -SkipBuild:$SkipBuild `
+    -VerifyRoutes:$VerifyRoutes `
     -WhatIf:$WhatIf

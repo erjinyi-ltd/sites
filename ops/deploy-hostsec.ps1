@@ -2,13 +2,13 @@
 <#
   Build and publish the HostSec introduction site to /var/www/hostsec.
 
-  The default key is a PuTTY .ppk file, so this script uses plink.exe and
-  pscp.exe. Install PuTTY or place both executables on PATH before publishing.
+  The default key is an OpenSSH-compatible PEM private key. This script uses
+  the native ssh.exe and scp.exe clients.
 
   Examples:
     .\deploy-hostsec.ps1 -WhatIf
     .\deploy-hostsec.ps1
-    .\deploy-hostsec.ps1 -SkipBuild -BatchMode -HostKey 'ssh-ed25519 255 SHA256:...'
+    .\deploy-hostsec.ps1 -SkipBuild -BatchMode
 #>
 param(
     [ValidateNotNullOrEmpty()]
@@ -18,15 +18,14 @@ param(
     [string]$SshUser = 'ubuntu',
 
     [ValidateNotNullOrEmpty()]
-    [string]$KeyFile = 'hostsec\35.221.234.42.ppk',
+    [string]$KeyFile = 'hostsec\35.221.234.42.pem',
 
     [ValidateNotNullOrEmpty()]
     [string]$RemotePath = '/var/www/hostsec',
 
-    [string]$HostKey = '',
     [switch]$BatchMode,
     [switch]$SkipBuild,
-    [switch]$SkipVerify,
+    [switch]$VerifyRoutes,
     [switch]$WhatIf
 )
 
@@ -81,24 +80,18 @@ function Assert-SafeHostValue {
     }
 }
 
-function Resolve-PuttyTool {
+function Resolve-OpenSshTool {
     param([string]$Name)
 
     $command = Get-Command "$Name.exe" -ErrorAction SilentlyContinue
+    if (-not $command) {
+        $command = Get-Command $Name -ErrorAction SilentlyContinue
+    }
     if ($command) {
         return $command.Source
     }
 
-    $candidates = @(
-        (Join-Path $env:ProgramFiles "PuTTY\$Name.exe"),
-        $(if (${env:ProgramFiles(x86)}) { Join-Path ${env:ProgramFiles(x86)} "PuTTY\$Name.exe" })
-    ) | Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Leaf) }
-
-    if ($candidates.Count -gt 0) {
-        return $candidates[0]
-    }
-
-    throw "$Name.exe was not found. Install PuTTY or add its directory to PATH."
+    throw "$Name was not found. Install the Windows OpenSSH client or add it to PATH."
 }
 
 function Quote-Bash {
@@ -131,7 +124,7 @@ function Build-Site {
 
     if ($WhatIf) {
         Write-Host "    cd $ProjectDir" -ForegroundColor DarkGray
-        Write-Host '    yarn install --immutable (only when node_modules is missing)' -ForegroundColor DarkGray
+        Write-Host '    yarn (only when node_modules is missing)' -ForegroundColor DarkGray
         Write-Host '    yarn build' -ForegroundColor DarkGray
         return
     }
@@ -139,7 +132,7 @@ function Build-Site {
     Push-Location $ProjectDir
     try {
         if (-not (Test-Path -LiteralPath (Join-Path $ProjectDir 'node_modules') -PathType Container)) {
-            yarn.cmd install --immutable
+            yarn.cmd
             Assert-LastExitCode 'Dependency installation failed'
         }
 
@@ -171,29 +164,26 @@ function New-SiteArchive {
     }
 }
 
-function Get-PuttyOptions {
-    $options = @('-i', $KeyPath)
+function Get-SshOptions {
+    $options = @('-i', $KeyPath, '-o', 'StrictHostKeyChecking=accept-new')
     if ($BatchMode) {
-        $options += '-batch'
-    }
-    if ($HostKey) {
-        $options += @('-hostkey', $HostKey)
+        $options += @('-o', 'BatchMode=yes')
     }
     return $options
 }
 
 function Publish-Site {
     if ($WhatIf) {
-        Write-Host "    pscp $ArchivePath ${Target}:$RemoteArchive" -ForegroundColor DarkGray
-        Write-Host "    plink $Target -> publish atomically to $RemotePath" -ForegroundColor DarkGray
+        Write-Host "    scp -i $KeyPath $ArchivePath ${Target}:$RemoteArchive" -ForegroundColor DarkGray
+        Write-Host "    ssh -i $KeyPath $Target -> publish atomically to $RemotePath" -ForegroundColor DarkGray
         return
     }
 
-    $plink = Resolve-PuttyTool -Name 'plink'
-    $pscp = Resolve-PuttyTool -Name 'pscp'
-    $puttyOptions = Get-PuttyOptions
+    $ssh = Resolve-OpenSshTool -Name 'ssh'
+    $scp = Resolve-OpenSshTool -Name 'scp'
+    $sshOptions = Get-SshOptions
 
-    & $pscp -scp @puttyOptions $ArchivePath "${Target}:$RemoteArchive"
+    & $scp @sshOptions $ArchivePath "${Target}:$RemoteArchive"
     Assert-LastExitCode 'HostSec archive upload failed'
 
     $releasePath = "/var/www/.hostsec-release-$ReleaseId"
@@ -239,16 +229,11 @@ trap - ERR
     $remoteScript = $remoteScript.Replace('__ARCHIVE__', (Quote-Bash $RemoteArchive))
     $remoteCommand = 'sudo bash -lc ' + (Quote-Bash $remoteScript)
 
-    & $plink -ssh @puttyOptions $Target $remoteCommand
+    & $ssh @sshOptions $Target $remoteCommand
     Assert-LastExitCode 'Remote HostSec publish failed'
 }
 
 function Verify-Site {
-    if ($SkipVerify) {
-        Write-Host '    Route verification skipped' -ForegroundColor DarkGray
-        return
-    }
-
     $checks = @(
         [PSCustomObject]@{ Url = 'https://hostsec.erjinyi.com/'; Resolve = "hostsec.erjinyi.com:443:$Server" },
         [PSCustomObject]@{ Url = 'https://hostsec.erjinyi.com/tenant/login'; Resolve = "hostsec.erjinyi.com:443:$Server" },
@@ -269,10 +254,10 @@ if (-not (Test-Path -LiteralPath $ProjectDir -PathType Container)) {
     throw "HostSec project directory does not exist: $ProjectDir"
 }
 if (-not (Test-Path -LiteralPath $KeyPath -PathType Leaf)) {
-    throw "PuTTY key does not exist: $KeyPath"
+    throw "PEM key does not exist: $KeyPath"
 }
-if ((Get-Content -LiteralPath $KeyPath -TotalCount 1) -notlike 'PuTTY-User-Key-File-*') {
-    throw "The configured key is not a PuTTY .ppk file: $KeyPath"
+if ((Get-Content -LiteralPath $KeyPath -TotalCount 1) -notmatch '^-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----$') {
+    throw "The configured key is not an OpenSSH-compatible PEM private key: $KeyPath"
 }
 Assert-SafeHostValue -Name 'Server' -Value $Server
 if ($SshUser -notmatch '^[A-Za-z_][A-Za-z0-9_-]*$') {
@@ -297,8 +282,10 @@ try {
     Write-Host '[HostSec] Publish' -ForegroundColor Cyan
     Publish-Site
 
-    Write-Host '[HostSec] Verify' -ForegroundColor Cyan
-    Verify-Site
+    if ($VerifyRoutes) {
+        Write-Host '[HostSec] Verify routes' -ForegroundColor Cyan
+        Verify-Site
+    }
 }
 finally {
     if (Test-Path -LiteralPath $ArchivePath -PathType Leaf) {

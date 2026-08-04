@@ -1,6 +1,6 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
-  name: 'sun' | 'moon' | 'menu' | 'close' | 'grid' | 'drive' | 'flow' | 'shield'
+  name: 'sun' | 'moon' | 'menu' | 'close' | 'home' | 'grid' | 'drive' | 'flow' | 'shield'
   size?: number
 }>(), { size: 18 })
 </script>
@@ -27,6 +27,10 @@ withDefaults(defineProps<{
     </template>
     <template v-else-if="name === 'close'">
       <path d="M18 6 6 18M6 6l12 12" />
+    </template>
+    <template v-else-if="name === 'home'">
+      <path d="m3 11 9-8 9 8" />
+      <path d="M5 10v10h14V10M9 20v-6h6v6" />
     </template>
     <template v-else-if="name === 'grid'">
       <rect width="7" height="7" x="3" y="3" rx="1" />

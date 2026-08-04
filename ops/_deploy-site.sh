@@ -10,6 +10,7 @@ SSH_USER="ubuntu"
 KEY_PATH="$SCRIPT_DIR/34.96.169.250.pem"
 SELECTED_SITE="${DEPLOY_SITE_KEY:-}"
 SKIP_BUILD=false
+VERIFY_ROUTES=false
 DRY_RUN=false
 
 readonly RESET=$'\033[0m'
@@ -36,6 +37,7 @@ Usage:
 
 Options:
   --skip-build         use the existing dist directories
+  --verify-routes      verify public routes after publishing
   --dry-run            print steps without building, deleting, or uploading
   --server HOST        SSH/Nginx server (default: 34.96.169.250)
   --user USER          SSH user (default: ubuntu)
@@ -64,6 +66,10 @@ while (( $# > 0 )); do
   case "$1" in
     --skip-build)
       SKIP_BUILD=true
+      shift
+      ;;
+    --verify-routes)
+      VERIFY_ROUTES=true
       shift
       ;;
     --dry-run|--what-if)
@@ -234,7 +240,7 @@ build_site() {
 
   if $DRY_RUN; then
     printf '%s\n' "    cd $PROJECT_DIR"
-    printf '%s\n' "    yarn install --immutable (only when node_modules is missing)"
+    printf '%s\n' "    yarn (only when node_modules is missing)"
     printf '%s\n' "    yarn build"
     return
   fi
@@ -245,8 +251,8 @@ build_site() {
       print_color "$RED" "yarn is required because node_modules is missing"
       exit 1
     fi
-    printf '%s\n' "    yarn install --immutable"
-    yarn install --immutable
+    printf '%s\n' "    yarn"
+    yarn
   fi
 
   printf '%s\n' "    yarn build"
@@ -293,6 +299,10 @@ publish_site() {
   print_color "$CYAN" "[$SITE_NAME] Upload static files"
   upload_static_files
   run_remote "chown -R www-data:www-data '$REMOTE_DIR' && find '$REMOTE_DIR' -type d -exec chmod 755 {} + && find '$REMOTE_DIR' -type f -exec chmod 644 {} +"
+
+  if ! $VERIFY_ROUTES; then
+    return
+  fi
 
   print_color "$CYAN" "[$SITE_NAME] Verify routes"
   for route in "${ROUTES[@]}"; do

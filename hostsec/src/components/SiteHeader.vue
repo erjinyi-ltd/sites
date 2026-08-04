@@ -20,7 +20,7 @@ const languageOpen = ref(false)
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 const activeNavHref = ref('')
-const navIcons = ['grid', 'drive', 'flow', 'shield'] as const
+const navIcons = ['home', 'grid', 'drive', 'flow', 'shield'] as const
 
 const selectedLanguage = computed(
   () => languageOptions.find((option) => option.code === props.locale) ?? languageOptions[0],
@@ -36,6 +36,18 @@ function closeMenus() {
   mobileMenuOpen.value = false
 }
 
+function onNavClick(event: MouseEvent, href: string) {
+  if (href === '/') {
+    event.preventDefault()
+    if (window.location.pathname !== '/' || window.location.search || window.location.hash) {
+      window.history.pushState(null, '', '/')
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  closeMenus()
+}
+
 function onDocumentPointerDown() {
   languageOpen.value = false
 }
@@ -47,9 +59,10 @@ function onDocumentKeyDown(event: KeyboardEvent) {
 function onScroll() {
   isScrolled.value = window.scrollY > 8
   const activationLine = Math.min(window.innerHeight * 0.32, 280)
-  let currentHref = ''
+  let currentHref = props.copy.nav.find((item) => item.href === '/')?.href ?? ''
 
   for (const item of props.copy.nav) {
+    if (!item.href.startsWith('#')) continue
     const section = document.querySelector<HTMLElement>(item.href)
     if (section && section.getBoundingClientRect().top <= activationLine) currentHref = item.href
   }
@@ -90,6 +103,7 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
+          @click="onNavClick($event, item.href)"
         >{{ item.label }}</a>
       </nav>
 
@@ -206,7 +220,7 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="closeMenus"
+          @click="onNavClick($event, item.href)"
         >
           <span class="mobile-nav-icon"><UiIcon :name="navIcons[index] ?? 'grid'" :size="20" /></span>
           <span>{{ item.label }}</span>
@@ -224,7 +238,8 @@ onUnmounted(() => {
 .product-brand { justify-self: start; min-width: 0; }
 .desktop-nav { display: flex; align-items: center; gap: 4px; }
 .desktop-nav a { padding: 9px 12px; border-radius: 8px; color: var(--muted-foreground); font-size: 13px; font-weight: 400; transition: color 160ms ease, background 160ms ease; }
-.desktop-nav a:hover, .desktop-nav a.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.desktop-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.desktop-nav a.active, .desktop-nav a.active:hover { color: var(--primary); background: transparent; }
 .desktop-tools, .mobile-tools { position: relative; display: flex; align-items: center; justify-self: end; gap: 8px; }
 .mobile-tools { display: none; }
 .icon-button, .menu-toggle, .mobile-language, .drawer-close { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 8px; padding: 0; color: var(--muted-foreground); background: transparent; cursor: pointer; transition: color 160ms ease; }
@@ -264,7 +279,8 @@ onUnmounted(() => {
   .drawer-close { width: 34px; height: 34px; }
   .mobile-nav { display: grid; gap: 8px; margin-top: 26px; }
   .mobile-nav a { display: flex; min-height: 54px; align-items: center; gap: 13px; padding: 7px 10px; border-radius: 10px; color: var(--foreground); font-family: var(--font-data); font-size: 16px; font-weight: 400; }
-  .mobile-nav a:hover, .mobile-nav a.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+  .mobile-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+  .mobile-nav a.active, .mobile-nav a.active:hover { color: var(--primary); background: transparent; }
   .mobile-nav-icon { display: inline-grid; width: 28px; height: 40px; flex: 0 0 auto; place-items: center; color: var(--primary); background: transparent; }
   .drawer-cta { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; margin-top: auto; border: 1px solid var(--primary); border-radius: 999px; color: var(--primary-foreground); background: var(--primary); font-size: 14px; font-weight: 700; }
 }

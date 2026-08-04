@@ -10,6 +10,12 @@ const footer = computed(() => getGcsaFooter(props.locale))
 <template>
   <footer class="gcsa-site-footer" :aria-label="footer.contactHeading">
     <div class="content-width footer-shell">
+      <div class="brand-divider" aria-hidden="true">
+        <span></span>
+        <img src="/gcsa-icon.svg" alt="" width="29" height="27" />
+        <span></span>
+      </div>
+
       <section class="contact-zone" :aria-labelledby="'footer-contact-' + locale">
         <h2 :id="'footer-contact-' + locale">{{ footer.contactHeading }}</h2>
         <div class="contact-panel">
@@ -87,7 +93,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
   z-index: 2;
   width: 100%;
   padding-top: clamp(56px, 7vw, 88px);
-  border-top: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
   background:
     radial-gradient(circle at 16% 0, color-mix(in srgb, var(--primary) 9%, transparent), transparent 30rem),
     var(--background);
@@ -95,9 +100,39 @@ const footer = computed(() => getGcsaFooter(props.locale))
   font-size: 13px;
 }
 
+.gcsa-site-footer::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 224px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 65%, transparent), transparent);
+  content: '';
+  transform: translateX(-50%);
+}
+
 .footer-shell {
   min-width: 0;
   padding-bottom: max(28px, env(safe-area-inset-bottom));
+}
+
+.brand-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 4px 0 36px;
+}
+
+.brand-divider span {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--border) 90%, transparent) 18%, var(--border) 50%, color-mix(in srgb, var(--border) 90%, transparent) 82%, transparent 100%);
+}
+
+.brand-divider img {
+  width: 29px;
+  height: 27px;
+  object-fit: contain;
 }
 
 .contact-zone h2,

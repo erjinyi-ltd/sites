@@ -6,6 +6,7 @@ const baseSiteCopy: Record<'zh-CN' | 'en', SiteCopy> = {
     skip: '跳至主要内容',
     navLabel: '页面导航',
     nav: [
+      { label: '首页', href: '/' },
       { label: '平台能力', href: '#capabilities' },
       { label: '平台架构', href: '#architecture' },
       { label: '运维闭环', href: '#workflow' },
@@ -221,6 +222,7 @@ const baseSiteCopy: Record<'zh-CN' | 'en', SiteCopy> = {
     skip: 'Skip to main content',
     navLabel: 'Page navigation',
     nav: [
+      { label: 'Home', href: '/' },
       { label: 'Capabilities', href: '#capabilities' },
       { label: 'Architecture', href: '#architecture' },
       { label: 'Workflow', href: '#workflow' },
@@ -376,6 +378,10 @@ const zhHantCopy: SiteCopy = {
   "skip": "跳至主要內容",
   "navLabel": "頁面導航",
   "nav": [
+    {
+      "label": "首頁",
+      "href": "/"
+    },
     {
       "label": "平台能力",
       "href": "#capabilities"

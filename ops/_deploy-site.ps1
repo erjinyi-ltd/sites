@@ -19,6 +19,7 @@ param(
     [string]$KeyFile = '34.96.169.250.pem',
 
     [switch]$SkipBuild,
+    [switch]$VerifyRoutes,
     [switch]$WhatIf
 )
 
@@ -171,7 +172,7 @@ function Build-Site {
 
     if ($WhatIf) {
         Write-Host "    cd $($Definition.ProjectDir)" -ForegroundColor DarkGray
-        Write-Host '    yarn install --immutable (only when node_modules is missing)' -ForegroundColor DarkGray
+        Write-Host '    yarn (only when node_modules is missing)' -ForegroundColor DarkGray
         Write-Host '    yarn build' -ForegroundColor DarkGray
         return
     }
@@ -179,8 +180,8 @@ function Build-Site {
     Push-Location $Definition.ProjectDir
     try {
         if (-not (Test-Path -LiteralPath (Join-Path $Definition.ProjectDir 'node_modules') -PathType Container)) {
-            Write-Host '    yarn install --immutable' -ForegroundColor DarkGray
-            yarn.cmd install --immutable
+            Write-Host '    yarn' -ForegroundColor DarkGray
+            yarn.cmd
             Assert-LastExitCode "Dependency installation failed: $($Definition.Name)"
         }
 
@@ -223,6 +224,10 @@ function Publish-Site {
 
     $permissionCommand = "find $quotedRemoteDir -type d -exec chmod 755 {} + && find $quotedRemoteDir -type f -exec chmod 644 {} +"
     Invoke-Remote "chown -R www-data:www-data $quotedRemoteDir && $permissionCommand"
+
+    if (-not $VerifyRoutes) {
+        return
+    }
 
     Write-Host "[$($Definition.Name)] Verify routes" -ForegroundColor Cyan
     foreach ($route in $Definition.Routes) {
