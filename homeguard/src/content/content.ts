@@ -605,7 +605,7 @@ export const legalCopy: Record<
     support: {
       pageTitle: "技术支持 | GCSA Home Guard",
       eyebrow: "GCSA Home Guard 支持",
-      title: "技术支持",
+      title: "Home Guard\n技术支持",
       lead:
         "获取权限、家庭网络扫描、隐私检测、金融环境提醒与结果解读方面的帮助。",
       updatedLabel: "服务对象",
@@ -739,7 +739,7 @@ export const legalCopy: Record<
     support: {
       pageTitle: "技術支援 | GCSA Home Guard",
       eyebrow: "GCSA Home Guard 支援",
-      title: "技術支援",
+      title: "Home Guard\n技術支援",
       lead: "取得權限、家庭網絡掃描、私隱檢測、金融環境提醒與結果解讀方面的協助。",
       updatedLabel: "服務對象",
       updatedDate: "Home Guard iOS 版",
@@ -864,7 +864,7 @@ export const legalCopy: Record<
     support: {
       pageTitle: "Support | GCSA Home Guard",
       eyebrow: "GCSA HOME GUARD SUPPORT",
-      title: "Technical Support",
+      title: "Home Guard\nTechnical Support",
       lead:
         "Get help with permissions, home-network discovery, privacy checks, financial-environment alerts, and understanding results.",
       updatedLabel: "Supported product",
