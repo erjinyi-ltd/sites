@@ -10,12 +10,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
 <template>
   <footer class="gcsa-site-footer" :aria-label="footer.contactHeading">
     <div class="content-width footer-shell">
-      <div class="brand-divider" aria-hidden="true">
-        <span></span>
-        <img src="/gcsa-icon.svg" alt="" width="29" height="27" />
-        <span></span>
-      </div>
-
       <section class="contact-zone" :aria-labelledby="'footer-contact-' + locale">
         <h2 :id="'footer-contact-' + locale">{{ footer.contactHeading }}</h2>
         <div class="contact-panel">
@@ -104,25 +98,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
 .footer-shell {
   min-width: 0;
   padding-bottom: max(28px, env(safe-area-inset-bottom));
-}
-
-.brand-divider {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 34px;
-}
-
-.brand-divider span {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-}
-
-.brand-divider img {
-  width: 29px;
-  height: 27px;
-  object-fit: contain;
 }
 
 .contact-zone h2,
