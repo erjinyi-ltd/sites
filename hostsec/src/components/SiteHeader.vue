@@ -2,6 +2,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { Locale, SiteCopy, Theme } from '../types'
 import BrandLockup from './BrandLockup.vue'
+import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import UiIcon from './UiIcon.vue'
 
 const props = defineProps<{ copy: SiteCopy; locale: Locale; theme: Theme }>()
@@ -94,11 +95,20 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="#top" aria-label="GCSA HostSec"><BrandLockup /></a>
+      <a class="product-brand" href="/" aria-label="GCSA HostSec" @click="onNavClick($event, '/')"><BrandLockup /></a>
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <a
-          v-for="item in copy.nav"
+          v-for="item in copy.nav.slice(0, 1)"
+          :key="item.href"
+          :href="item.href"
+          :class="{ active: activeNavHref === item.href }"
+          :aria-current="activeNavHref === item.href ? 'location' : undefined"
+          @click="onNavClick($event, item.href)"
+        >{{ item.label }}</a>
+        <GcsaProductsMenu :locale="locale" />
+        <a
+          v-for="item in copy.nav.slice(1)"
           :key="item.href"
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
@@ -208,21 +218,33 @@ onUnmounted(() => {
       :inert="!mobileMenuOpen"
     >
       <div class="mobile-drawer-head">
-        <a href="#top" aria-label="GCSA HostSec" @click="closeMenus"><BrandLockup /></a>
+        <a href="/" aria-label="GCSA HostSec" @click="onNavClick($event, '/')"><BrandLockup /></a>
         <button class="drawer-close" type="button" :aria-label="copy.menuClose" @click="closeMenus">
           <UiIcon name="close" :size="19" />
         </button>
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
         <a
-          v-for="(item, index) in copy.nav"
+          v-for="item in copy.nav.slice(0, 1)"
           :key="item.href"
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
           @click="onNavClick($event, item.href)"
         >
-          <span class="mobile-nav-icon"><UiIcon :name="navIcons[index] ?? 'grid'" :size="20" /></span>
+          <span class="mobile-nav-icon"><UiIcon :name="navIcons[0]" :size="20" /></span>
+          <span>{{ item.label }}</span>
+        </a>
+        <GcsaProductsMenu :locale="locale" mobile />
+        <a
+          v-for="(item, index) in copy.nav.slice(1)"
+          :key="item.href"
+          :href="item.href"
+          :class="{ active: activeNavHref === item.href }"
+          :aria-current="activeNavHref === item.href ? 'location' : undefined"
+          @click="onNavClick($event, item.href)"
+        >
+          <span class="mobile-nav-icon"><UiIcon :name="navIcons[index + 1] ?? 'grid'" :size="20" /></span>
           <span>{{ item.label }}</span>
         </a>
       </nav>

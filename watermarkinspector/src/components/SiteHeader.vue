@@ -18,6 +18,7 @@ import {
 import { RouterLink, useRoute } from 'vue-router'
 import type { RouteLocationRaw } from 'vue-router'
 import BrandLockup from './BrandLockup.vue'
+import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import { languageOptions } from '../content/siteCopy'
 import type { Locale, SiteCopy, Theme } from '../types/site'
 
@@ -169,7 +170,15 @@ onUnmounted(() => {
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <RouterLink
-          v-for="item in headerNavItems"
+          v-for="item in headerNavItems.slice(0, 1)"
+          :key="item.key"
+          :to="item.to"
+          :class="{ active: isNavActive(item) }"
+          :aria-current="isNavActive(item) ? (item.pagePath ? 'page' : 'location') : undefined"
+        >{{ item.label }}</RouterLink>
+        <GcsaProductsMenu :locale="locale" />
+        <RouterLink
+          v-for="item in headerNavItems.slice(1)"
           :key="item.key"
           :to="item.to"
           :class="{ active: isNavActive(item) }"
@@ -297,7 +306,21 @@ onUnmounted(() => {
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
         <RouterLink
-          v-for="item in headerNavItems"
+          v-for="item in headerNavItems.slice(0, 1)"
+          :key="item.key"
+          :to="item.to"
+          :class="{ active: isNavActive(item) }"
+          :aria-current="isNavActive(item) ? (item.pagePath ? 'page' : 'location') : undefined"
+          @click="closeMenus"
+        >
+          <span class="mobile-nav-icon">
+            <component :is="item.icon" :size="20" aria-hidden="true" />
+          </span>
+          <span>{{ item.label }}</span>
+        </RouterLink>
+        <GcsaProductsMenu :locale="locale" mobile />
+        <RouterLink
+          v-for="item in headerNavItems.slice(1)"
           :key="item.key"
           :to="item.to"
           :class="{ active: isNavActive(item) }"

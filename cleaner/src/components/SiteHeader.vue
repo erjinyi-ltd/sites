@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { GitCompareArrows, HardDrive, LayoutGrid, Menu, Moon, ShieldCheck, Sun, X } from '@lucide/vue'
+import { GitCompareArrows, HardDrive, Home, LayoutGrid, Menu, Moon, ShieldCheck, Sun, X } from '@lucide/vue'
 import BrandLockup from './BrandLockup.vue'
+import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import { languageOptions } from '../locales'
 import type { Locale, SiteCopy, Theme } from '../types/site'
 
@@ -30,6 +31,15 @@ function setLocale(locale: Locale) {
 function closeMenus() {
   languageOpen.value = false
   mobileMenuOpen.value = false
+}
+
+function onHomeClick(event: MouseEvent) {
+  event.preventDefault()
+  if (window.location.pathname !== '/' || window.location.search || window.location.hash) {
+    window.history.pushState(null, '', '/')
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  closeMenus()
 }
 
 function onDocumentPointerDown() {
@@ -77,9 +87,13 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="#top" :aria-label="copy.homeLabel"><BrandLockup /></a>
+      <a class="product-brand" href="/" :aria-label="copy.homeLabel" @click="onHomeClick"><BrandLockup /></a>
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
+        <a href="/" :class="{ active: activeNavHref === '' }" :aria-current="activeNavHref === '' ? 'page' : undefined" @click="onHomeClick">
+          {{ copy.footer.home }}
+        </a>
+        <GcsaProductsMenu :locale="locale" />
         <a
           v-for="item in copy.nav"
           :key="item.href"
@@ -131,10 +145,14 @@ onUnmounted(() => {
     <button class="mobile-menu-scrim" :class="{ open: mobileMenuOpen }" type="button" :aria-label="copy.closeMenu" :tabindex="mobileMenuOpen ? 0 : -1" @click="closeMenus"></button>
     <aside class="mobile-drawer" :class="{ open: mobileMenuOpen }" role="dialog" aria-modal="true" :aria-label="copy.navLabel" :inert="!mobileMenuOpen">
       <div class="mobile-drawer-head">
-        <a href="#top" :aria-label="copy.homeLabel" @click="closeMenus"><BrandLockup /></a>
+        <a href="/" :aria-label="copy.homeLabel" @click="onHomeClick"><BrandLockup /></a>
         <button class="drawer-close" type="button" :aria-label="copy.closeMenu" @click="closeMenus"><X :size="19" aria-hidden="true" /></button>
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
+        <a href="/" :class="{ active: activeNavHref === '' }" :aria-current="activeNavHref === '' ? 'page' : undefined" @click="onHomeClick">
+          <span class="mobile-nav-icon"><Home :size="20" aria-hidden="true" /></span><span>{{ copy.footer.home }}</span>
+        </a>
+        <GcsaProductsMenu :locale="locale" mobile />
         <a v-for="(item, index) in copy.nav" :key="item.href" :href="item.href" :class="{ active: activeNavHref === item.href }" :aria-current="activeNavHref === item.href ? 'location' : undefined" @click="closeMenus">
           <span class="mobile-nav-icon"><component :is="navIcons[index]" :size="20" aria-hidden="true" /></span><span>{{ item.label }}</span>
         </a>

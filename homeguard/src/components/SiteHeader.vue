@@ -5,6 +5,7 @@ import { localeOptions } from '../content/content'
 import { usePreferences } from '../composables/usePreferences'
 import type { Locale } from '../types/site'
 import BrandLockup from './BrandLockup.vue'
+import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import MobileNavIcon from './MobileNavIcon.vue'
 import ThemeIcon from './ThemeIcon.vue'
 
@@ -24,8 +25,6 @@ const legalLinks = computed(() => [
   { href: '/terms', label: copy.value.terms },
   { href: '/support', label: copy.value.support },
 ])
-const primaryLinks = computed(() => [{ href: '/', label: copy.value.home }, ...copy.value.nav])
-const headerLinks = computed(() => [...primaryLinks.value, ...legalLinks.value])
 
 function linkTarget(href: string) {
   if (href.startsWith('/#')) return { path: '/', hash: href.slice(1) }
@@ -112,11 +111,28 @@ onBeforeUnmount(() => {
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <RouterLink
-          v-for="item in headerLinks"
+          :to="linkTarget('/')"
+          :class="{ 'is-active': isNavActive({ href: '/' }) }"
+          :aria-current="isNavActive({ href: '/' }) ? 'page' : undefined"
+        >
+          {{ copy.home }}
+        </RouterLink>
+        <GcsaProductsMenu :locale="locale" />
+        <RouterLink
+          v-for="item in copy.nav"
           :key="item.href"
           :to="linkTarget(item.href)"
           :class="{ 'is-active': isNavActive(item) }"
           :aria-current="isNavActive(item) ? (item.href.startsWith('/#') ? 'location' : 'page') : undefined"
+        >
+          {{ item.label }}
+        </RouterLink>
+        <RouterLink
+          v-for="item in legalLinks"
+          :key="item.href"
+          :to="item.href"
+          :class="{ 'is-active': isNavActive(item) }"
+          :aria-current="isNavActive(item) ? 'page' : undefined"
         >
           {{ item.label }}
         </RouterLink>
@@ -184,7 +200,17 @@ onBeforeUnmount(() => {
       </div>
       <nav class="mobile-nav" :aria-label="copy.navLabel">
         <RouterLink
-          v-for="item in primaryLinks"
+          :to="linkTarget('/')"
+          :class="{ 'is-active': isNavActive({ href: '/' }) }"
+          :aria-current="isNavActive({ href: '/' }) ? 'page' : undefined"
+          @click="menuOpen = false"
+        >
+          <span class="mobile-nav-icon"><MobileNavIcon href="/" /></span>
+          <strong>{{ copy.home }}</strong>
+        </RouterLink>
+        <GcsaProductsMenu :locale="locale" mobile />
+        <RouterLink
+          v-for="item in copy.nav"
           :key="item.href"
           :to="linkTarget(item.href)"
           :class="{ 'is-active': isNavActive(item) }"
