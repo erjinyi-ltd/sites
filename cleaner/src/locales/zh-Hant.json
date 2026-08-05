@@ -28,53 +28,6 @@
         "label": "私隱邊界"
       }
     ],
-    "ecosystem": {
-      "eyebrow": "GCSA 安全生態",
-      "title": "更多安全產品",
-      "description": "從鏈上資產、網路私隱到家庭與金融環境，將安全防護延伸到每一次數碼操作。",
-      "officialWebsite": "前往官網",
-      "moreTitle": "更多安全產品",
-      "moreDescription": "探索完整的 GCSA 安全生態，查看更多面向個人、企業與基礎設施的安全產品。",
-      "viewAll": "查看全部產品",
-      "products": [
-        {
-          "type": "安全加密錢包",
-          "name": "GCSA Wallet",
-          "description": "GCSA Wallet 為個人與團隊提供安全的數碼資產管理與鏈上風險識別體驗，協助用戶更安心地查看、接收與轉移資產。",
-          "features": [
-            "即時地址風險掃描",
-            "智能資金來源追蹤",
-            "AI 異常風險告警"
-          ],
-          "href": "https://wallet.gcsa.org/",
-          "theme": "wallet"
-        },
-        {
-          "type": "加密網路與私隱保護",
-          "name": "GCSA VPN",
-          "description": "GCSA VPN 透過加密連線保護日常上網與公共網路使用，降低資料外洩風險，為不同裝置提供簡單、穩定的安全連線。",
-          "features": [
-            "加密網路連線",
-            "上網私隱保護",
-            "多裝置安全存取"
-          ],
-          "href": "https://gsafevpn.com/",
-          "theme": "vpn"
-        },
-        {
-          "type": "家庭與金融移動安全",
-          "name": "GCSA Home Guard",
-          "description": "GCSA Home Guard 是面向家庭與金融場景的移動安全體檢平台，結合安全評分、修復建議與雲端威脅情報，及早識別裝置漏洞、環境風險與 AI 詐騙威脅。",
-          "features": [
-            "一鍵安全體檢",
-            "家庭設備與攝像頭安全",
-            "AI 詐騙與釣魚防護"
-          ],
-          "href": "https://homeguard.gcsa.org/",
-          "theme": "homeGuard"
-        }
-      ]
-    },
     "footer": {
       "menuLabel": "頁尾導覽",
       "contactUs": "聯繫我們",

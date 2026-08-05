@@ -28,53 +28,6 @@
         "label": "Privacy"
       }
     ],
-    "ecosystem": {
-      "eyebrow": "GCSA Security Ecosystem",
-      "title": "More security products",
-      "description": "Extend protection from on-chain assets and online privacy to every digital interaction at home and across financial environments.",
-      "officialWebsite": "Official website",
-      "moreTitle": "More security products",
-      "moreDescription": "Explore the complete GCSA security ecosystem and discover more products for individuals, businesses, and infrastructure.",
-      "viewAll": "View all products",
-      "products": [
-        {
-          "type": "Secure crypto wallet",
-          "name": "GCSA Wallet",
-          "description": "GCSA Wallet gives individuals and teams a secure digital-asset management and on-chain risk experience for viewing, receiving, and transferring assets with greater confidence.",
-          "features": [
-            "Real-time address risk screening",
-            "Intelligent source-of-funds tracing",
-            "AI-powered anomaly alerts"
-          ],
-          "href": "https://wallet.gcsa.org/",
-          "theme": "wallet"
-        },
-        {
-          "type": "Encrypted network & privacy",
-          "name": "GCSA VPN",
-          "description": "GCSA VPN protects everyday browsing and public-network use with encrypted connections, helping reduce data exposure across devices through simple, reliable secure access.",
-          "features": [
-            "Encrypted connections",
-            "Online privacy protection",
-            "Secure multi-device access"
-          ],
-          "href": "https://gsafevpn.com/",
-          "theme": "vpn"
-        },
-        {
-          "type": "Home & financial mobile security",
-          "name": "GCSA Home Guard",
-          "description": "GCSA Home Guard is a mobile security checkup platform for home and financial scenarios, combining security scores, remediation guidance, and cloud threat intelligence to surface device vulnerabilities, environmental risks, and AI-driven scams early.",
-          "features": [
-            "One-tap security checkup",
-            "Home device & camera security",
-            "AI scam & phishing protection"
-          ],
-          "href": "https://homeguard.gcsa.org/",
-          "theme": "homeGuard"
-        }
-      ]
-    },
     "footer": {
       "menuLabel": "Footer navigation",
       "contactUs": "Contact Us",

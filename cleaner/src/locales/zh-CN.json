@@ -28,53 +28,6 @@
         "label": "隐私边界"
       }
     ],
-    "ecosystem": {
-      "eyebrow": "GCSA 安全生态",
-      "title": "更多安全产品",
-      "description": "从链上资产、网络隐私到家庭与金融环境，将安全防护延伸到每一次数字操作。",
-      "officialWebsite": "前往官网",
-      "moreTitle": "更多安全产品",
-      "moreDescription": "探索完整的 GCSA 安全生态，查看更多面向个人、企业与基础设施的安全产品。",
-      "viewAll": "查看全部产品",
-      "products": [
-        {
-          "type": "安全加密钱包",
-          "name": "GCSA Wallet",
-          "description": "GCSA Wallet 为个人与团队提供安全的数字资产管理与链上风险识别体验，帮助用户更安心地查看、接收与转移资产。",
-          "features": [
-            "实时地址风险扫描",
-            "智能资金来源追踪",
-            "AI 异常风险告警"
-          ],
-          "href": "https://wallet.gcsa.org/",
-          "theme": "wallet"
-        },
-        {
-          "type": "加密网络与隐私保护",
-          "name": "GCSA VPN",
-          "description": "GCSA VPN 通过加密连接保护日常上网与公共网络使用，降低数据泄露风险，为不同设备提供简单、稳定的安全连接。",
-          "features": [
-            "加密网络连接",
-            "上网隐私保护",
-            "多设备安全访问"
-          ],
-          "href": "https://gsafevpn.com/",
-          "theme": "vpn"
-        },
-        {
-          "type": "家庭与金融移动安全",
-          "name": "GCSA Home Guard",
-          "description": "GCSA Home Guard 是面向家庭与金融场景的移动安全体检平台，结合安全评分、修复建议与云端威胁情报，及早识别设备漏洞、环境风险与 AI 诈骗威胁。",
-          "features": [
-            "一键安全体检",
-            "家庭设备与摄像头安全",
-            "AI 诈骗与钓鱼防护"
-          ],
-          "href": "https://homeguard.gcsa.org/",
-          "theme": "homeGuard"
-        }
-      ]
-    },
     "footer": {
       "menuLabel": "底栏导航",
       "contactUs": "联系我们",

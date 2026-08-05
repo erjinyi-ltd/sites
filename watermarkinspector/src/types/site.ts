@@ -23,15 +23,6 @@ export interface FaqItem {
   answer: string
 }
 
-export interface EcosystemProduct {
-  type: string
-  name: string
-  description: string
-  features: string[]
-  href: string
-  theme: 'wallet' | 'vpn' | 'homeGuard'
-}
-
 export interface SiteCopy {
   skipMain: string
   homeLabel: string
@@ -101,16 +92,6 @@ export interface SiteCopy {
     title: string
     description: string
     action: string
-  }
-  ecosystem: {
-    eyebrow: string
-    title: string
-    description: string
-    officialWebsite: string
-    moreTitle: string
-    moreDescription: string
-    viewAll: string
-    products: EcosystemProduct[]
   }
   footer: {
     menuLabel: string

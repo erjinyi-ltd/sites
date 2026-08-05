@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ArchitectureFlow from './components/ArchitectureFlow.vue'
-import EcosystemProducts from './components/EcosystemProducts.vue'
 import HeroConsole from './components/HeroConsole.vue'
 import SectionHeading from './components/SectionHeading.vue'
 import SiteFooter from './components/SiteFooter.vue'
@@ -158,7 +157,6 @@ const { locale, theme, copy, setLocale, toggleTheme } = usePreferences()
         </div>
       </section>
 
-      <EcosystemProducts :copy="copy.ecosystem" />
     </main>
 
     <SiteFooter :locale="locale" />

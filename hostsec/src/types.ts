@@ -26,15 +26,6 @@ export type FlowStep = {
   text: string
 }
 
-export type EcosystemProduct = {
-  type: string
-  name: string
-  description: string
-  features: string[]
-  href: string
-  theme: 'wallet' | 'vpn' | 'homeGuard'
-}
-
 export type SiteCopy = {
   lang: string
   skip: string
@@ -95,16 +86,6 @@ export type SiteCopy = {
   closingLead: string
   closingPrimary: string
   closingSecondary: string
-  ecosystem: {
-    eyebrow: string
-    title: string
-    description: string
-    officialWebsite: string
-    moreTitle: string
-    moreDescription: string
-    viewAll: string
-    products: EcosystemProduct[]
-  }
   footer: {
     menuLabel: string
     contactUs: string

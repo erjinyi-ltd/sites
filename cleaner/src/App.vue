@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import CapabilitiesSection from './components/CapabilitiesSection.vue'
-import EcosystemProducts from './components/EcosystemProducts.vue'
 import FactsStrip from './components/FactsStrip.vue'
 import FaqSection from './components/FaqSection.vue'
 import HeroSection from './components/HeroSection.vue'
@@ -45,7 +44,6 @@ const pageCopy = computed(() => messages.value.pages[platform.value])
           </div>
         </Transition>
       </div>
-      <EcosystemProducts :copy="copy.ecosystem" />
     </main>
     <SiteFooter :locale="locale" />
   </div>
