@@ -345,9 +345,7 @@ onUnmounted(() => {
   z-index: 40;
   height: var(--header-height);
   border-bottom: 1px solid transparent;
-  background: color-mix(in srgb, var(--header-bg) 72%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: var(--header-bg);
   transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 

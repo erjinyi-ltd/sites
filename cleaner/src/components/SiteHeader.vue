@@ -163,7 +163,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.topbar { position: fixed; inset: 0 0 auto; z-index: 40; height: var(--header-height); border-bottom: 1px solid transparent; background: color-mix(in srgb, var(--header-bg) 74%, transparent); backdrop-filter: blur(18px); transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.topbar { position: fixed; inset: 0 0 auto; z-index: 40; height: var(--header-height); border-bottom: 1px solid transparent; background: var(--header-bg); transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
 .topbar.scrolled { border-bottom-color: var(--border); background: var(--header-bg); box-shadow: 0 8px 28px color-mix(in srgb, var(--background) 46%, transparent); }
 .topbar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; width: min(var(--content-max), calc(100% - 64px)); height: 100%; margin-inline: auto; }
 .product-brand { justify-self: start; min-width: 0; }

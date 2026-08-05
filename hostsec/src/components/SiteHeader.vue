@@ -254,7 +254,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.topbar { position: fixed; inset: 0 0 auto; z-index: 40; height: var(--header-height); border-bottom: 1px solid transparent; background: color-mix(in srgb, var(--header-bg) 74%, transparent); backdrop-filter: blur(18px); transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.topbar { position: fixed; inset: 0 0 auto; z-index: 40; height: var(--header-height); border-bottom: 1px solid transparent; background: var(--header-bg); transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
 .topbar.scrolled { border-bottom-color: var(--border); background: var(--header-bg); box-shadow: 0 8px 28px color-mix(in srgb, var(--background) 46%, transparent); }
 .topbar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; width: min(var(--content-max), calc(100% - 64px)); height: 100%; margin-inline: auto; }
 .product-brand { justify-self: start; min-width: 0; }
@@ -271,7 +271,7 @@ onUnmounted(() => {
 .language-trigger:hover { color: var(--foreground); }
 .chevron { width: 0; height: 0; border-top: .28rem solid; border-right: .22rem solid transparent; border-left: .22rem solid transparent; opacity: .55; transition: transform 250ms ease; }
 .chevron.open { transform: rotate(180deg); }
-.language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 55; display: grid; width: 178px; padding: 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); box-shadow: var(--shadow-card); }
+.language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 55; display: grid; width: 178px; padding: 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--menu-surface); box-shadow: var(--shadow-card); }
 .language-menu button { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 0 10px; border: 0; border-radius: 7px; color: var(--muted-foreground); background: transparent; font-size: 12px; font-weight: 400; cursor: pointer; }
 .language-menu button:hover, .language-menu button.selected { color: var(--foreground); background: color-mix(in srgb, var(--primary) 9%, transparent); }
 .language-menu button.selected { font-weight: 700; }

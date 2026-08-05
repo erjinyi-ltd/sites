@@ -292,7 +292,7 @@ onBeforeUnmount(() => {
   border-radius: 14px;
   padding: 22px 22px 14px;
   color: var(--foreground);
-  background: var(--card);
+  background: var(--menu-surface);
   box-shadow: var(--shadow-card);
   transform: translateX(-50%);
 }
