@@ -7,8 +7,6 @@ interface FooterLabels {
   telegram: string
   navigationLabel: string
   socialLabel: string
-  counselHeading: string
-  counselNames: [string, string, string]
   copyright: string
   privacy: string
   terms: string
@@ -30,12 +28,6 @@ const labels: Record<Locale, FooterLabels> = {
     telegram: 'Telegram',
     navigationLabel: '页面导航',
     socialLabel: '社交媒体',
-    counselHeading: 'GCSA 法律顾问',
-    counselNames: [
-      '葡萄牙&澳门 弗朗西斯科·尼古劳博士律师事务所',
-      '香港麦家荣律师行',
-      '广东元数律师事务所',
-    ],
     copyright: '© Global Cybersecurity Alliance. 保留所有权利。',
     privacy: '隐私政策',
     terms: '使用条款',
@@ -56,12 +48,6 @@ const labels: Record<Locale, FooterLabels> = {
     telegram: 'Telegram',
     navigationLabel: '頁面導航',
     socialLabel: '社交媒體',
-    counselHeading: 'GCSA 法律顧問',
-    counselNames: [
-      '葡萄牙&澳門 弗朗西斯科·尼古勞博士律師事務所',
-      '香港麥家榮律師行',
-      '廣東元數律師事務所',
-    ],
     copyright: '© Global Cybersecurity Alliance. 保留所有權利。',
     privacy: '隱私政策',
     terms: '使用條款',
@@ -82,12 +68,6 @@ const labels: Record<Locale, FooterLabels> = {
     telegram: 'Telegram',
     navigationLabel: 'Page navigation',
     socialLabel: 'Social media',
-    counselHeading: 'GCSA Legal Counsel',
-    counselNames: [
-      'Portugal & Macau Dr. Francisco Nicolau & Associados',
-      'Patrick Mak & Tse Solicitors',
-      'Prime Partners',
-    ],
     copyright: '© Global Cybersecurity Alliance. All rights reserved.',
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',

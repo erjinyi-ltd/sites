@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import GcsaLegalCounsel from '../../../shared/GcsaLegalCounsel.vue'
 import { getGcsaFooter } from '../content/gcsaFooterNavigation'
 import type { Locale } from '../content/content'
 
@@ -57,24 +58,7 @@ const footer = computed(() => getGcsaFooter(props.locale))
         </a>
       </nav>
 
-      <section class="counsel-zone" :aria-labelledby="'footer-counsel-' + locale">
-        <h2 :id="'footer-counsel-' + locale">{{ footer.counselHeading }}</h2>
-        <div class="counsel-grid">
-          <div v-for="(name, index) in footer.counselNames" :key="name" class="counsel-card">
-            <span class="counsel-mark" aria-hidden="true">
-              <img v-if="index === 0" src="/gcsa-legal-fn.png" alt="" width="40" height="40" />
-              <svg v-else-if="index === 1" viewBox="0 0 80 80">
-                <path d="M50.097 27.427h-3.613c-.972 0-1.388.417-1.388 1.852v20.84c0 1.111.092 1.991 1.343 1.991h3.612V56H33.565v-3.89h4.167c1.111 0 1.205-.972 1.205-1.99V28.677L28.424 56H25.46l-4.445-13.384c1.682.016 5.213-.064 5.88-.509.149.556.71 1.898.973 2.5.309-.988 1.27-3.213 2.64-4.213 1.713-1.25 3.75-3.103 3.75-7.734 0-.88-.37-2.732-.37-3.38 0-.52 1.544-3.736 2.316-5.28h13.893v3.427Zm27.739 8.567h-3.427c-.046-1.157-.36-3.89-1.25-5.556-1.111-2.084-3.427-2.594-4.03-2.594h-1.388c-.74 0-1.065.277-1.065.787v21.58c0 .926.74 1.9 1.435 1.9h3.52V56H55.56v-3.89h3.705c1.111 0 1.297-.973 1.297-1.668V28.354c0-.649-.324-.927-1.02-.927h-6.76V24h25.053v11.994ZM22.913 24.047c2.316 0 10.234.926 10.235 8.706 0 7.78-8.012 8.567-10.235 8.567h-2.5l-1.298-3.426c.309 0 1.251 0 2.918-.37 2.084-.464 3.89-1.668 3.89-5.187 0-3.705-3.102-4.955-4.908-4.955h-6.206v22.136c0 1.203.139 2.592 1.204 2.592h4.214v3.844H3V52.11h3.103c1.574 0 1.99-1.435 1.99-2.592V29.142c0-.973-.786-1.76-1.944-1.76H3.093v-3.335h19.82Z" />
-              </svg>
-              <svg v-else viewBox="0 0 80 80">
-                <path d="M56.358 19c8.523 0 16.27 6.212 16.27 14.911 0 8.7-9.055 14.914-16.334 14.914H44.575v11.719H32.68v-10.12c1.657 0 6.034-.266 9.41-1.953 3.906-1.953 6.391-4.795 7.28-6.393h4.793c4.794 0 7.457-4.439 7.457-8.345 0-4.26-3.373-7.633-7.457-7.633h-4.26c-1.99-3.835-6.8-6.449-8.99-7.1h15.445Zm-14.09 23.611H32.68V25.567h9.588v17.044Z" />
-                <path d="M20.25 60.369V25.924h8.346c7.101 0 10.297 4.44 10.297 8.345 0 3.906-3.373 7.635-7.634 7.635h-4.261l-4.44 7.102h9.944c9.41 0 17.577-8.168 17.577-15.447 0-7.28-6.57-14.559-17.577-14.559H8v41.369h12.25Z" />
-              </svg>
-            </span>
-            <span>{{ name }}</span>
-          </div>
-        </div>
-      </section>
+      <GcsaLegalCounsel :locale="locale" />
 
       <div class="footer-bottom">
         <p>{{ footer.copyright }}</p>
@@ -135,8 +119,7 @@ const footer = computed(() => getGcsaFooter(props.locale))
   object-fit: contain;
 }
 
-.contact-zone h2,
-.counsel-zone h2 {
+.contact-zone h2 {
   margin: 0 0 12px;
   color: var(--primary);
   font-size: 12px;
@@ -152,8 +135,7 @@ const footer = computed(() => getGcsaFooter(props.locale))
 
 .email-card,
 .social-links a,
-.footer-nav a,
-.counsel-card {
+.footer-nav a {
   border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
   border-radius: 10px;
   background: color-mix(in srgb, var(--card) 94%, transparent);
@@ -305,56 +287,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
 .nav-icon i::before { bottom: 3px; left: 3px; }
 .nav-icon i::after { right: 3px; bottom: 3px; }
 
-.counsel-zone {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-
-.counsel-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.counsel-card {
-  display: flex;
-  min-width: 0;
-  min-height: 58px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 14px;
-  color: var(--foreground);
-  text-align: center;
-}
-
-.counsel-mark {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
-  place-items: center;
-}
-
-.counsel-mark img,
-.counsel-mark svg {
-  display: block;
-  max-width: 40px;
-  max-height: 40px;
-  object-fit: contain;
-}
-
-.counsel-mark svg {
-  fill: currentColor;
-}
-
-.counsel-card > span:last-child {
-  min-width: 0;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -385,7 +317,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
 .email-card,
 .social-links a,
 .footer-nav a,
-.counsel-card,
 .footer-bottom a {
   transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
 }
@@ -442,15 +373,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
 
   .footer-nav a {
     min-height: 54px;
-  }
-
-  .counsel-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .counsel-card {
-    justify-content: flex-start;
-    text-align: left;
   }
 
   .footer-bottom {
