@@ -326,16 +326,21 @@
   cursor: pointer;
 }
 
-.locale-trigger span,
-.locale-menu span {
+.locale-trigger span {
   font-size: 13px;
   font-weight: 500;
+}
+
+.locale-menu span {
+  font-size: 12px;
+  font-weight: inherit;
 }
 
 .locale-menu strong {
   color: var(--primary);
   font-family: Orbitron, ui-monospace, monospace;
   font-size: 9px;
+  font-weight: inherit;
   letter-spacing: 0.12em;
 }
 
@@ -368,7 +373,7 @@
   right: 0;
   z-index: 210;
   display: grid;
-  width: 174px;
+  width: 164px;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 6px;
@@ -380,12 +385,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 38px;
+  min-height: 36px;
   border: 0;
   border-radius: 8px;
   padding: 0 10px;
   color: var(--muted-foreground);
   background: transparent;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
   cursor: pointer;
 }
 
@@ -393,6 +401,10 @@
 .locale-menu button.active {
   color: var(--foreground);
   background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.locale-menu button.active {
+  font-weight: 600;
 }
 
 .mobile-menu-trigger {
@@ -461,7 +473,13 @@
 .mobile-menu-close {
   width: 32px;
   height: 32px;
-  border-radius: 999px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mobile-menu-close:hover {
+  background: transparent;
 }
 
 .mobile-menu-nav {

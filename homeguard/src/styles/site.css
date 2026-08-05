@@ -494,6 +494,9 @@ html.locale-boot-pending .site-shell {
   padding: 0 10px;
   color: var(--muted-foreground);
   background: transparent;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
   cursor: pointer;
 }
 
@@ -504,12 +507,18 @@ html.locale-boot-pending .site-shell {
 }
 
 .locale-menu span {
-  font-size: 12px;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .locale-menu strong {
   color: var(--primary);
-  font-size: 10px;
+  font-size: 9px;
+  font-weight: inherit;
+}
+
+.locale-menu button.is-active {
+  font-weight: 600;
 }
 
 .mobile-menu-trigger {
@@ -576,14 +585,17 @@ html.locale-boot-pending .site-shell {
   height: 32px;
   place-items: center;
   border: 0;
+  border-radius: 0;
   color: var(--muted-foreground);
   background: transparent;
+  box-shadow: none;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .mobile-menu-close:hover {
   color: var(--primary);
+  background: transparent;
 }
 
 .mobile-menu-close span {

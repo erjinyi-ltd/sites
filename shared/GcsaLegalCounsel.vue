@@ -327,20 +327,25 @@ export default {
   height: 40px;
   flex: 0 0 40px;
   padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--background);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--foreground);
   cursor: pointer;
   place-items: center;
-  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  transition: color 180ms ease;
 }
 
-.gcsa-counsel-dialog__close:hover,
-.gcsa-counsel-dialog__close:focus-visible {
-  border-color: var(--primary);
+.gcsa-counsel-dialog__close:hover {
   color: var(--primary);
-  transform: rotate(4deg);
+  background: transparent;
+}
+
+.gcsa-counsel-dialog__close:focus-visible {
+  color: var(--primary);
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
 }
 
 .gcsa-counsel-dialog__close svg {

@@ -38,12 +38,30 @@ function closeMenus() {
 }
 
 function onNavClick(event: MouseEvent, href: string) {
+  const isPrimaryClick = event.button === 0
+    && !event.altKey
+    && !event.ctrlKey
+    && !event.metaKey
+    && !event.shiftKey
+
+  if (!isPrimaryClick || (href !== '/' && !href.startsWith('#'))) {
+    closeMenus()
+    return
+  }
+
+  event.preventDefault()
+
+  const targetUrl = href === '/' ? '/' : `/${href}`
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
+  if (currentUrl !== targetUrl) window.history.pushState(null, '', targetUrl)
+
   if (href === '/') {
-    event.preventDefault()
-    if (window.location.pathname !== '/' || window.location.search || window.location.hash) {
-      window.history.pushState(null, '', '/')
-    }
+    activeNavHref.value = '/'
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  else {
+    activeNavHref.value = href
+    document.querySelector<HTMLElement>(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   closeMenus()
@@ -271,10 +289,10 @@ onUnmounted(() => {
 .language-trigger:hover { color: var(--foreground); }
 .chevron { width: 0; height: 0; border-top: .28rem solid; border-right: .22rem solid transparent; border-left: .22rem solid transparent; opacity: .55; transition: transform 250ms ease; }
 .chevron.open { transform: rotate(180deg); }
-.language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 55; display: grid; width: 178px; padding: 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--menu-surface); box-shadow: var(--shadow-card); }
-.language-menu button { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 0 10px; border: 0; border-radius: 7px; color: var(--muted-foreground); background: transparent; font-size: 12px; font-weight: 400; cursor: pointer; }
+.language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 55; display: grid; width: 164px; padding: 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--menu-surface); box-shadow: var(--shadow-card); }
+.language-menu button { display: flex; align-items: center; justify-content: space-between; min-height: 36px; padding: 0 10px; border: 0; border-radius: 7px; color: var(--muted-foreground); background: transparent; font-size: 12px; font-weight: 400; line-height: 1.2; cursor: pointer; }
 .language-menu button:hover, .language-menu button.selected { color: var(--foreground); background: color-mix(in srgb, var(--primary) 9%, transparent); }
-.language-menu button.selected { font-weight: 700; }
+.language-menu button.selected { font-weight: 600; }
 .language-menu small { color: var(--primary); font-family: var(--font-data); font-size: 9px; font-weight: inherit; }
 .header-cta { display: inline-flex; min-height: 40px; align-items: center; padding: 0 16px; border: 1px solid var(--primary); border-radius: 8px; color: var(--primary-foreground); background: var(--primary); font-size: 12px; font-weight: 700; }
 .mobile-menu-scrim, .mobile-drawer { display: none; }
@@ -298,7 +316,7 @@ onUnmounted(() => {
   .mobile-drawer { position: fixed; inset: 0 0 0 auto; z-index: 70; display: flex; width: min(88vw, 21.5rem); flex-direction: column; padding: max(18px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); border-left: 1px solid var(--border); background: var(--mobile-menu-panel-bg); box-shadow: -22px 0 60px rgba(0, 0, 0, .3); transform: translateX(102%); visibility: hidden; transition: transform .55s cubic-bezier(.32, .72, 0, 1), visibility .55s; }
   .mobile-drawer.open { transform: translateX(0); visibility: visible; }
   .mobile-drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .drawer-close { width: 34px; height: 34px; }
+  .drawer-close, .drawer-close:hover { width: 34px; height: 34px; border-radius: 0; background: transparent; box-shadow: none; }
   .mobile-nav { display: grid; gap: 8px; margin-top: 26px; }
   .mobile-nav a { display: flex; min-height: 54px; align-items: center; gap: 13px; padding: 7px 10px; border-radius: 10px; color: var(--foreground); font-family: var(--font-data); font-size: 16px; font-weight: 400; }
   .mobile-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }

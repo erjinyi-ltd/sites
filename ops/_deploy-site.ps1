@@ -6,7 +6,7 @@
 #>
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('watermark', 'cleaner', 'homeguard', 'pass')]
+    [ValidateSet('watermark', 'cleaner', 'homeguard', 'pass', 'hostsec')]
     [string]$Site,
 
     [ValidateNotNullOrEmpty()]
@@ -17,6 +17,8 @@ param(
 
     [ValidateNotNullOrEmpty()]
     [string]$KeyFile = '34.96.169.250.pem',
+
+    [string]$RemotePath = '',
 
     [switch]$SkipBuild,
     [switch]$VerifyRoutes,
@@ -71,10 +73,23 @@ $SiteDefinitions = @(
         OriginDomain = 'passrecover.gcsa.org'
         Routes = @('/', '/privacy', '/terms', '/support')
         PreserveItems = @('downloads')
+    },
+    [PSCustomObject]@{
+        Key = 'hostsec'
+        Name = 'HOSTSEC'
+        ProjectDir = Join-Path $RepoDir 'hostsec'
+        RemotePath = '/var/www/hostsec'
+        PrimaryDomain = 'hostsec.erjinyi.com'
+        OriginDomain = 'hostsec.gcsa.org'
+        Routes = @('/', '/tenant/login')
+        PreserveItems = @()
     }
 )
 
 $SiteDefinitions = @($SiteDefinitions | Where-Object { $_.Key -eq $Site })
+if ($RemotePath) {
+    $SiteDefinitions[0].RemotePath = $RemotePath
+}
 
 function Assert-LastExitCode {
     param([string]$Message)

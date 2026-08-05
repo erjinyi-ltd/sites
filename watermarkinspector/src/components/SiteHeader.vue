@@ -492,7 +492,7 @@ onUnmounted(() => {
   right: 0;
   z-index: 55;
   display: grid;
-  width: 178px;
+  width: 164px;
   padding: 6px;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -504,12 +504,15 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 38px;
+  min-height: 36px;
   padding: 0 10px;
   border: 0;
   border-radius: 7px;
   color: var(--muted-foreground);
   background: transparent;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
   cursor: pointer;
 }
 
@@ -520,14 +523,14 @@ onUnmounted(() => {
 }
 
 .language-menu button.selected {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .language-menu small {
   color: var(--primary);
   font-family: var(--font-data);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: inherit;
 }
 
 .header-cta {
