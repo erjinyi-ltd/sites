@@ -621,8 +621,14 @@ html.locale-boot-pending .site-shell {
 }
 
 .mobile-nav a.is-active,
+.mobile-nav a.is-active:hover,
 .mobile-nav a.is-active .mobile-nav-icon {
   color: var(--primary);
+}
+
+.mobile-nav a.is-active,
+.mobile-nav a.is-active:hover {
+  background: transparent;
 }
 
 .mobile-nav-icon {

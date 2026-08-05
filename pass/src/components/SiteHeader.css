@@ -590,9 +590,10 @@
   background: color-mix(in srgb, var(--primary) 9%, transparent);
 }
 
-.mobile-nav-group > a.current {
+.mobile-nav-group > a.current,
+.mobile-nav-group > a.current:hover {
   color: var(--primary);
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  background: transparent;
 }
 
 .mobile-nav-icon {

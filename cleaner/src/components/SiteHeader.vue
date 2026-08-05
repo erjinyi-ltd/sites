@@ -169,7 +169,8 @@ onUnmounted(() => {
 .product-brand { justify-self: start; min-width: 0; }
 .desktop-nav { display: flex; align-items: center; gap: 4px; }
 .desktop-nav a { padding: 9px 12px; border-radius: 8px; color: var(--muted-foreground); font-size: 13px; font-weight: 400; transition: color 160ms ease, background 160ms ease; }
-.desktop-nav a:hover, .desktop-nav a.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.desktop-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.desktop-nav a.active, .desktop-nav a.active:hover { color: var(--primary); background: transparent; }
 .desktop-tools, .mobile-tools { position: relative; display: flex; align-items: center; justify-self: end; gap: 8px; }
 .mobile-tools { display: none; }
 .icon-button, .menu-toggle, .mobile-language, .drawer-close { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 8px; color: var(--muted-foreground); background: transparent; cursor: pointer; transition: color 160ms ease; }
@@ -209,7 +210,8 @@ onUnmounted(() => {
   .drawer-close { width: 34px; height: 34px; }
   .mobile-nav { display: grid; gap: 8px; margin-top: 26px; }
   .mobile-nav a { display: flex; align-items: center; gap: 13px; min-height: 54px; padding: 7px 10px; border-radius: 10px; color: var(--foreground); font-family: var(--font-data); font-size: 16px; font-weight: 400; }
-  .mobile-nav a:hover, .mobile-nav a.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+  .mobile-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+  .mobile-nav a.active, .mobile-nav a.active:hover { color: var(--primary); background: transparent; }
   .mobile-nav-icon { display: inline-grid; place-items: center; width: 28px; height: 40px; flex: 0 0 auto; color: var(--primary); background: transparent; }
   .drawer-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; margin-top: auto; border: 1px solid var(--primary); border-radius: 999px; color: var(--primary-foreground); background: var(--primary); font-size: 14px; font-weight: 700; }
 }

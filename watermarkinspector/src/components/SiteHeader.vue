@@ -709,18 +709,18 @@ onUnmounted(() => {
     font-weight: 400;
   }
 
-  .mobile-nav a:hover,
-  .mobile-nav a.active {
+  .mobile-nav a:hover {
     background: color-mix(in srgb, var(--primary) 8%, transparent);
   }
 
-  .mobile-nav a.active {
+  .mobile-nav a.active,
+  .mobile-nav a.active:hover {
     color: var(--primary);
+    background: transparent;
   }
 
   .mobile-nav a.active .mobile-nav-icon {
     border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
-    background: color-mix(in srgb, var(--primary) 10%, var(--muted));
   }
 
   .mobile-nav-icon {
