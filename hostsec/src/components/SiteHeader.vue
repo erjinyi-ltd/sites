@@ -37,33 +37,12 @@ function closeMenus() {
   mobileMenuOpen.value = false
 }
 
-function onNavClick(event: MouseEvent, href: string) {
-  const isPrimaryClick = event.button === 0
-    && !event.altKey
-    && !event.ctrlKey
-    && !event.metaKey
-    && !event.shiftKey
-
-  if (!isPrimaryClick || (href !== '/' && !href.startsWith('#'))) {
-    closeMenus()
-    return
-  }
-
+function onHomeClick(event: MouseEvent) {
   event.preventDefault()
-
-  const targetUrl = href === '/' ? '/' : `/${href}`
-  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
-  if (currentUrl !== targetUrl) window.history.pushState(null, '', targetUrl)
-
-  if (href === '/') {
-    activeNavHref.value = '/'
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (window.location.pathname !== '/' || window.location.search || window.location.hash) {
+    window.history.pushState(null, '', '/')
   }
-  else {
-    activeNavHref.value = href
-    document.querySelector<HTMLElement>(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
+  window.scrollTo({ top: 0, behavior: 'smooth' })
   closeMenus()
 }
 
@@ -113,7 +92,7 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="/" aria-label="GCSA HostSec" @click="onNavClick($event, '/')"><BrandLockup /></a>
+      <a class="product-brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <a
@@ -122,7 +101,7 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="onNavClick($event, item.href)"
+          @click="onHomeClick"
         >{{ item.label }}</a>
         <GcsaProductsMenu :locale="locale" />
         <a
@@ -131,7 +110,6 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="onNavClick($event, item.href)"
         >{{ item.label }}</a>
       </nav>
 
@@ -236,7 +214,7 @@ onUnmounted(() => {
       :inert="!mobileMenuOpen"
     >
       <div class="mobile-drawer-head">
-        <a href="/" aria-label="GCSA HostSec" @click="onNavClick($event, '/')"><BrandLockup /></a>
+        <a href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
         <button class="drawer-close" type="button" :aria-label="copy.menuClose" @click="closeMenus">
           <UiIcon name="close" :size="19" />
         </button>
@@ -248,7 +226,7 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="onNavClick($event, item.href)"
+          @click="onHomeClick"
         >
           <span class="mobile-nav-icon"><UiIcon :name="navIcons[0]" :size="20" /></span>
           <span>{{ item.label }}</span>
@@ -260,7 +238,7 @@ onUnmounted(() => {
           :href="item.href"
           :class="{ active: activeNavHref === item.href }"
           :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="onNavClick($event, item.href)"
+          @click="closeMenus"
         >
           <span class="mobile-nav-icon"><UiIcon :name="navIcons[index + 1] ?? 'grid'" :size="20" /></span>
           <span>{{ item.label }}</span>
