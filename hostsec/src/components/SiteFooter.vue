@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import GcsaFooterNavIcon from '../../../shared/GcsaFooterNavIcon.vue'
 import GcsaLegalCounsel from '../../../shared/GcsaLegalCounsel.vue'
 import { getGcsaFooter } from '../content/gcsaFooterNavigation'
 import type { Locale } from '../types'
@@ -22,15 +23,19 @@ const footer = computed(() => getGcsaFooter(props.locale))
         <div class="contact-panel">
           <a class="email-card" href="mailto:contact@gcsa.org">
             <span class="email-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 20">
-                <path d="M2 3h20v14H2V3Zm1.7 1.8L12 11l8.3-6.2" />
+              <svg viewBox="0 0 23 19">
+                <path d="M21.23 0C22.21 0 23 .79 23 1.77v15.04c0 .98-.79 1.77-1.77 1.77H1.77C.79 18.58 0 17.79 0 16.81V1.77C0 .79.79 0 1.77 0h19.46ZM11.3 8.74 5.62 4.22 4.38 5.78l6.27 5 .6.48.62-.46 6.73-5-1.2-1.6-6.1 4.54Z" />
               </svg>
             </span>
             <span class="email-copy">
               <small>{{ footer.emailLabel }}</small>
               <strong>contact@gcsa.org</strong>
             </span>
-            <span class="email-arrow" aria-hidden="true">↗</span>
+            <span class="email-arrow" aria-hidden="true">
+              <svg viewBox="0 0 13 13">
+                <path d="M3.37 1h7.82v7.82M10.7 1.49 1.41 10.78" />
+              </svg>
+            </span>
           </a>
 
           <nav class="social-links" :aria-label="footer.socialLabel">
@@ -52,9 +57,11 @@ const footer = computed(() => getGcsaFooter(props.locale))
 
       <nav class="footer-nav" :aria-label="footer.navigationLabel">
         <a v-for="link in footer.navigation" :key="link.key" :href="link.href">
-          <span class="nav-icon" aria-hidden="true"><i></i></span>
+          <GcsaFooterNavIcon :icon="link.key" />
           <span>{{ link.label }}</span>
-          <b aria-hidden="true">›</b>
+          <svg class="footer-nav-arrow" viewBox="0 0 8 9" aria-hidden="true">
+            <path d="m3.32 1.06 3.31 3.32-3.31 3.31" />
+          </svg>
         </a>
       </nav>
 
@@ -160,14 +167,13 @@ const footer = computed(() => getGcsaFooter(props.locale))
   flex: 0 0 54px;
   place-items: center;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  background: transparent;
 }
 
 .email-icon svg {
-  width: 27px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
+  width: 23px;
+  height: 19px;
+  fill: currentColor;
 }
 
 .email-copy {
@@ -196,8 +202,17 @@ const footer = computed(() => getGcsaFooter(props.locale))
   place-items: center;
   margin-left: auto;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  background: transparent;
   font-size: 18px;
+}
+
+.email-arrow svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-width: 2;
 }
 
 .social-links {
@@ -253,39 +268,24 @@ const footer = computed(() => getGcsaFooter(props.locale))
   white-space: nowrap;
 }
 
-.footer-nav b {
+.footer-nav-arrow {
+  width: 8px;
+  height: 9px;
+  flex: 0 0 auto;
   margin-left: auto;
   color: var(--muted-foreground);
-  font-size: 18px;
-  font-weight: 400;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-width: 1.5;
 }
 
 .nav-icon {
-  position: relative;
+  display: block;
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
-  border: 1px solid currentColor;
-  border-radius: 4px;
-  opacity: 0.72;
 }
-
-.nav-icon::before,
-.nav-icon::after,
-.nav-icon i::before,
-.nav-icon i::after {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border: 1px solid currentColor;
-  border-radius: 1px;
-  content: '';
-}
-
-.nav-icon::before { top: 3px; left: 3px; }
-.nav-icon::after { top: 3px; right: 3px; }
-.nav-icon i::before { bottom: 3px; left: 3px; }
-.nav-icon i::after { right: 3px; bottom: 3px; }
 
 .footer-bottom {
   display: flex;
@@ -345,65 +345,135 @@ const footer = computed(() => getGcsaFooter(props.locale))
 
 @media (max-width: 760px) {
   .gcsa-site-footer {
-    padding-top: 44px;
+    padding-top: 24px;
+  }
+
+  .content-width.footer-shell {
+    display: flex;
+    width: min(100% - 32px, var(--content-max));
+    flex-direction: column;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  .brand-divider {
+    order: 1;
+    gap: 14px;
+    margin: 0 0 18px;
+  }
+
+  .brand-divider img {
+    width: 29px;
+    height: 29px;
+  }
+
+  .footer-nav {
+    order: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .footer-nav a {
+    min-height: 42px;
+    gap: 8px;
+    padding: 9px 11px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .nav-icon {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+  }
+
+  .contact-zone {
+    order: 3;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-zone h2 {
+    margin-bottom: 10px;
   }
 
   .contact-panel {
-    display: grid;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .email-card {
     width: 100%;
+    min-height: 72px;
+    padding: 16px 18px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .email-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .email-icon svg {
+    width: 20px;
+    height: auto;
+  }
+
+  .email-copy small {
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .email-copy strong {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .email-arrow {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
   }
 
   .social-links {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    gap: 10px;
   }
 
   .social-links a {
-    width: 100%;
-    min-height: 82px;
-  }
-
-  .footer-nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 28px;
-  }
-
-  .footer-nav a {
+    width: 76px;
     min-height: 54px;
+    gap: 5px;
+    padding: 8px 6px 7px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .social-links svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .social-links span {
+    font-size: 10px;
+    font-weight: 600;
   }
 
   .footer-bottom {
+    order: 5;
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 32px;
   }
 
   .footer-bottom nav {
     justify-content: flex-start;
-  }
-}
-
-@media (max-width: 460px) {
-  .footer-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .email-card {
-    padding-inline: 14px;
-  }
-
-  .email-icon {
-    width: 46px;
-    height: 46px;
-    flex-basis: 46px;
-  }
-
-  .email-arrow {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
+    gap: 8px 16px;
   }
 }
 </style>

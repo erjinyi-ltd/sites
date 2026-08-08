@@ -1,8 +1,10 @@
 <script>
+import GcsaLegalCounselLogo from './GcsaLegalCounselLogo.vue'
 import { getGcsaLegalCounsel } from './gcsaLegalCounsel'
 
 export default {
   name: 'GcsaLegalCounsel',
+  components: { GcsaLegalCounselLogo },
   props: {
     locale: {
       type: String,
@@ -90,14 +92,7 @@ export default {
         @click="openProfile(index)"
       >
         <span class="gcsa-counsel__logo" aria-hidden="true">
-          <img v-if="index === 0" src="/gcsa-legal-fn.png" alt="" width="40" height="40" />
-          <svg v-else-if="index === 1" viewBox="0 0 80 80">
-            <path fill="#891316" d="M50.097 27.427h-3.613c-.972 0-1.388.417-1.388 1.852v20.84c0 1.111.092 1.991 1.343 1.991h3.612V56H33.565v-3.89h4.167c1.111 0 1.205-.972 1.205-1.99V28.677L28.424 56H25.46l-4.445-13.384c1.682.016 5.213-.064 5.88-.509.149.556.71 1.898.973 2.5.309-.988 1.27-3.213 2.64-4.213 1.713-1.25 3.75-3.103 3.75-7.734 0-.88-.37-2.732-.37-3.38 0-.52 1.544-3.736 2.316-5.28h13.893v3.427Zm27.739 8.567h-3.427c-.046-1.157-.36-3.89-1.25-5.556-1.111-2.084-3.427-2.594-4.03-2.594h-1.388c-.74 0-1.065.277-1.065.787v21.58c0 .926.74 1.9 1.435 1.9h3.52V56H55.56v-3.89h3.705c1.111 0 1.297-.973 1.297-1.668V28.354c0-.649-.324-.927-1.02-.927h-6.76V24h25.053v11.994ZM22.913 24.047c2.316 0 10.234.926 10.235 8.706 0 7.78-8.012 8.567-10.235 8.567h-2.5l-1.298-3.426c.309 0 1.251 0 2.918-.37 2.084-.464 3.89-1.668 3.89-5.187 0-3.705-3.102-4.955-4.908-4.955h-6.206v22.136c0 1.203.139 2.592 1.204 2.592h4.214v3.844H3V52.11h3.103c1.574 0 1.99-1.435 1.99-2.592V29.142c0-.973-.786-1.76-1.944-1.76H3.093v-3.335h19.82Z" />
-          </svg>
-          <svg v-else viewBox="0 0 80 80">
-            <path fill="#888" d="M56.358 19c8.523 0 16.27 6.212 16.27 14.911 0 8.7-9.055 14.914-16.334 14.914H44.575v11.719H32.68v-10.12c1.657 0 6.034-.266 9.41-1.953 3.906-1.953 6.391-4.795 7.28-6.393h4.793c4.794 0 7.457-4.439 7.457-8.345 0-4.26-3.373-7.633-7.457-7.633h-4.26c-1.99-3.835-6.8-6.449-8.99-7.1h15.445Zm-14.09 23.611H32.68V25.567h9.588v17.044Z" />
-            <path fill="#0D3C96" d="M20.25 60.369V25.924h8.346c7.101 0 10.297 4.44 10.297 8.345 0 3.906-3.373 7.635-7.634 7.635h-4.261l-4.44 7.102h9.944c9.41 0 17.577-8.168 17.577-15.447 0-7.28-6.57-14.559-17.577-14.559H8v41.369h12.25Z" />
-          </svg>
+          <GcsaLegalCounselLogo :index="index" />
         </span>
         <span class="gcsa-counsel__name">
           <span>{{ profile.name }}</span>
@@ -124,12 +119,17 @@ export default {
           :aria-labelledby="dialogTitleId(activeIndex)"
         >
           <header>
-            <div>
-              <p class="gcsa-counsel-dialog__location">{{ activeProfile.location }}</p>
-              <h2 :id="dialogTitleId(activeIndex)">{{ activeProfile.name }}</h2>
-              <p v-if="activeProfile.secondaryName" class="gcsa-counsel-dialog__secondary">
-                {{ activeProfile.secondaryName }}
-              </p>
+            <div class="gcsa-counsel-dialog__brand">
+              <span class="gcsa-counsel-dialog__logo" aria-hidden="true">
+                <GcsaLegalCounselLogo :index="activeIndex" detailed />
+              </span>
+              <div class="gcsa-counsel-dialog__titles">
+                <p class="gcsa-counsel-dialog__location">{{ activeProfile.location }}</p>
+                <h2 :id="dialogTitleId(activeIndex)">{{ activeProfile.name }}</h2>
+                <p v-if="activeProfile.secondaryName" class="gcsa-counsel-dialog__secondary">
+                  {{ activeProfile.secondaryName }}
+                </p>
+              </div>
             </div>
             <button
               ref="closeButton"
@@ -195,10 +195,11 @@ export default {
 .gcsa-counsel__card {
   display: flex;
   min-width: 0;
-  min-height: 58px;
+  min-height: 52px;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
   border-radius: 10px;
   background: color-mix(in srgb, var(--card) 94%, transparent);
@@ -206,7 +207,7 @@ export default {
   color: var(--foreground);
   cursor: pointer;
   font: inherit;
-  text-align: left;
+  text-align: center;
   transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
@@ -220,40 +221,39 @@ export default {
 
 .gcsa-counsel__logo {
   display: grid;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
   place-items: center;
 }
 
 .gcsa-counsel__logo img,
 .gcsa-counsel__logo svg {
   display: block;
-  max-width: 40px;
-  max-height: 40px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
 .gcsa-counsel__name {
-  display: flex;
+  display: block;
   min-width: 0;
   flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .gcsa-counsel__name svg {
+  display: inline-block;
   width: 8px;
   height: 9px;
-  flex: 0 0 auto;
   fill: none;
   opacity: 0.6;
   stroke: currentColor;
   stroke-linecap: square;
   stroke-width: 1.5;
+  vertical-align: -1px;
 }
 
 .gcsa-counsel-dialog {
@@ -263,20 +263,35 @@ export default {
   display: grid;
   overflow: auto;
   padding: clamp(16px, 4vw, 48px);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(3, 4, 7, 0.78);
   backdrop-filter: blur(8px);
   place-items: center;
 }
 
 .gcsa-counsel-dialog__panel {
+  position: relative;
+  display: flex;
   width: min(780px, 100%);
   max-height: calc(100dvh - 32px);
-  overflow: auto;
+  flex-direction: column;
+  overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
   border-radius: 18px;
   background: var(--background);
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
   color: var(--foreground);
+}
+
+.gcsa-counsel-dialog__panel::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 65%, transparent), transparent);
+  content: '';
+  pointer-events: none;
 }
 
 .gcsa-counsel-dialog__panel > header {
@@ -287,6 +302,41 @@ export default {
   padding: clamp(24px, 5vw, 42px);
   border-bottom: 1px solid var(--border);
   background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, var(--card)), var(--card));
+}
+
+.gcsa-counsel-dialog__brand {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 16px;
+}
+
+.gcsa-counsel-dialog__logo {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  place-items: center;
+}
+
+.gcsa-counsel-dialog__logo > svg,
+.gcsa-counsel-dialog__logo > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  object-fit: contain;
+}
+
+.gcsa-counsel-dialog__titles {
+  min-width: 0;
+  flex: 1;
 }
 
 .gcsa-counsel-dialog__location,
@@ -358,8 +408,26 @@ export default {
 
 .gcsa-counsel-dialog__content {
   display: grid;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
   gap: 30px;
   padding: clamp(24px, 5vw, 42px);
+  scrollbar-color: color-mix(in srgb, var(--primary) 45%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+.gcsa-counsel-dialog__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.gcsa-counsel-dialog__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gcsa-counsel-dialog__content::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 45%, transparent);
 }
 
 .gcsa-counsel-dialog__summary {
@@ -441,31 +509,216 @@ export default {
 }
 
 @media (max-width: 760px) {
+  .gcsa-counsel {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 24px;
+  }
+
+  .gcsa-counsel > h2 {
+    margin-bottom: 2px;
+  }
+
   .gcsa-counsel__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gcsa-counsel__card {
+    min-height: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .gcsa-counsel__logo {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .gcsa-counsel__logo img,
+  .gcsa-counsel__logo svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gcsa-counsel__name {
+    display: block;
+    width: 100%;
+    flex: none;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .gcsa-counsel__name svg {
+    display: inline-block;
+    margin-left: 4px;
+  }
+
+  .gcsa-counsel-dialog {
+    align-items: center;
+    padding: 16px;
+    place-items: center;
+  }
+
+  .gcsa-counsel-dialog__panel {
+    width: min(640px, 100%);
+    height: 80dvh;
+    max-height: 720px;
+    border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+    border-radius: 18px 18px 14px 14px;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--primary) 12%, transparent), transparent 28%),
+      linear-gradient(165deg, color-mix(in srgb, var(--card) 98%, #0a1016), var(--background));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 28px 72px rgba(0, 0, 0, 0.55);
+  }
+
+  .gcsa-counsel-dialog__panel > header {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 18px 15px;
+    border-bottom-color: color-mix(in srgb, var(--primary) 12%, var(--border));
+    background: color-mix(in srgb, var(--background) 70%, transparent);
+  }
+
+  .gcsa-counsel-dialog__brand {
+    gap: 14px;
+  }
+
+  .gcsa-counsel-dialog__logo {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+    border-radius: 12px;
+  }
+
+  .gcsa-counsel-dialog__location {
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+  }
+
+  .gcsa-counsel-dialog__panel h2 {
+    margin-top: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .gcsa-counsel-dialog__secondary {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .gcsa-counsel-dialog__close {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--background) 55%, transparent);
+    color: var(--muted-foreground);
+  }
+
+  .gcsa-counsel-dialog__close:hover {
+    background: color-mix(in srgb, var(--primary) 9%, var(--background));
+  }
+
+  .gcsa-counsel-dialog__close svg {
+    width: 14px;
+  }
+
+  .gcsa-counsel-dialog__content {
+    display: block;
+    padding: 17px 18px 20px;
+  }
+
+  .gcsa-counsel-dialog__summary {
+    margin-bottom: 17px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.65;
   }
 
   .gcsa-counsel-dialog__facts {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 460px) {
-  .gcsa-counsel-dialog {
-    align-items: end;
-    padding: 0;
+    gap: 10px;
+    margin-bottom: 18px;
   }
 
-  .gcsa-counsel-dialog__panel {
-    max-height: 92dvh;
-    border-right: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-radius: 18px 18px 0 0;
+  .gcsa-counsel-dialog__facts > section {
+    padding: 12px 14px;
+    border-color: color-mix(in srgb, var(--primary) 16%, transparent);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary) 5%, transparent);
   }
 
-  .gcsa-counsel-dialog__panel > header {
-    gap: 14px;
+  .gcsa-counsel-dialog__facts h3 {
+    margin-bottom: 7px;
+    color: var(--muted-foreground);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    text-transform: none;
+  }
+
+  .gcsa-counsel-dialog__facts p {
+    color: var(--foreground);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .gcsa-counsel-dialog__facts ul {
+    gap: 6px;
+  }
+
+  .gcsa-counsel-dialog__facts li {
+    padding: 2px 9px;
+    border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .gcsa-counsel-dialog__about {
+    display: grid;
+    gap: 13px;
+    padding-top: 2px;
+  }
+
+  .gcsa-counsel-dialog__about h3 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    text-transform: none;
+  }
+
+  .gcsa-counsel-dialog__about p {
+    color: var(--foreground);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .gcsa-counsel-dialog__about p + p {
+    margin-top: 0;
   }
 }
 
