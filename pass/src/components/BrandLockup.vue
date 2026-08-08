@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { GcsaLogo } from 'gcsa-ui'
 
-defineProps<{ href?: string; ariaLabel?: string }>()
-const emit = defineEmits<{ click: [event: MouseEvent] }>()
+withDefaults(defineProps<{ tagline?: string }>(), { tagline: 'PassRecover' })
 </script>
 
 <template>
   <GcsaLogo
-    :href="href"
     title="GCSA"
-    tagline="CLEANER"
+    :tagline="tagline"
     size="md"
     root-class="site-brand-lockup"
-    :aria-label="ariaLabel"
-    @click="emit('click', $event)"
   />
 </template>
 

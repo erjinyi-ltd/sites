@@ -2,7 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { ArrowDownToLine, ArrowRight, Boxes, House, LifeBuoy, LockKeyhole, Moon, Radar, Scale, ShieldCheck, Sun, X } from "@lucide/vue";
 import { RouterLink, useRoute } from "vue-router";
-import GcsaLogoIcon from "./GcsaLogoIcon.vue";
+import BrandLockup from "./BrandLockup.vue";
 import ProductIcon from "./ProductIcon.vue";
 import { focusMobileMenu, handleMobileMenuKeydown } from "../../../shared/mobileMenuDialog";
 import { getGcsaNavigation } from "../gcsaNavigation";
@@ -178,11 +178,7 @@ onBeforeUnmount(() => {
   <header class="topbar" :class="{ scrolled: isScrolled, 'is-dark': theme === 'dark' }">
     <div class="nav-glow-line" aria-hidden="true"></div>
     <RouterLink class="brand" :to="{ name: 'home' }" aria-label="GCSA PassRecover" @click="handleBrandClick">
-      <GcsaLogoIcon />
-      <span class="brand-wordmark">
-        <strong>GCSA</strong>
-        <small>{{ copy.brand }}</small>
-      </span>
+      <BrandLockup :tagline="copy.brand" />
     </RouterLink>
     <nav class="desktop-nav" :aria-label="copy.pageNavLabel">
       <RouterLink
@@ -321,11 +317,7 @@ onBeforeUnmount(() => {
       >
         <div class="gcsa-mobile-menu__head">
           <RouterLink class="gcsa-mobile-menu__brand" :to="{ name: 'home' }" aria-label="GCSA PassRecover" @click="closeMenu">
-            <GcsaLogoIcon />
-            <span class="brand-wordmark">
-              <strong>GCSA</strong>
-              <small>PassRecover</small>
-            </span>
+            <BrandLockup />
           </RouterLink>
           <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.closeMenu" @click="closeMenu">
             <X :size="17" />

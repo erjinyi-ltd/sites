@@ -100,7 +100,7 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
+      <BrandLockup class="product-brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick" />
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <a
@@ -218,7 +218,7 @@ onUnmounted(() => {
       <button class="gcsa-mobile-menu__scrim" type="button" :aria-label="copy.menuClose" tabindex="-1" @click="closeMenus" />
       <aside class="gcsa-mobile-menu__panel">
         <div class="gcsa-mobile-menu__head">
-          <a class="gcsa-mobile-menu__brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
+          <BrandLockup class="gcsa-mobile-menu__brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick" />
           <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.menuClose" @click="closeMenus">
             <UiIcon name="close" :size="17" />
           </button>

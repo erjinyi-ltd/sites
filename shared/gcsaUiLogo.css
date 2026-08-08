@@ -1,0 +1,115 @@
+/*
+ * Scoped compatibility styles for gcsa-ui@1.2.14 GcsaLogo.
+ *
+ * The package aggregate stylesheet also declares generic :root theme tokens.
+ * Keep the official component styles local to the logo so product-site tokens
+ * remain the source of truth until gcsa-ui publishes isolated style entries.
+ */
+.site-brand-lockup.gcsa-logo {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-brand-lockup.gcsa-logo--row {
+  flex-direction: row;
+}
+
+.site-brand-lockup.gcsa-logo--row.gcsa-logo--with-wordmark {
+  gap: 0.625rem;
+}
+
+.site-brand-lockup .gcsa-logo__icon {
+  display: block;
+  width: calc(1.75rem * 200 / 184);
+  height: 1.75rem;
+  flex-shrink: 0;
+  color: var(--logo-icon-color, var(--primary));
+}
+
+html.dark .site-brand-lockup .gcsa-logo__icon {
+  color: var(--logo-icon-color, #ffffff);
+}
+
+.site-brand-lockup .gcsa-logo-wordmark {
+  display: flex;
+  min-width: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.site-brand-lockup .gcsa-logo-wordmark__title {
+  display: block;
+  margin: 0;
+  color: var(--logo-wordmark-color, var(--primary));
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.site-brand-lockup .gcsa-logo-wordmark__tagline {
+  display: block;
+  margin: 0;
+  color: var(--muted-foreground);
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.site-brand-lockup--compact.gcsa-logo--row.gcsa-logo--with-wordmark {
+  gap: 6px;
+}
+
+.site-brand-lockup--compact .gcsa-logo__icon {
+  width: 22.8px;
+  height: 21px;
+}
+
+.site-brand-lockup--compact .gcsa-logo-wordmark {
+  gap: 2px;
+}
+
+.site-brand-lockup--compact .gcsa-logo-wordmark__title {
+  font-size: 10px;
+}
+
+.site-brand-lockup--compact .gcsa-logo-wordmark__tagline {
+  display: block;
+  font-size: 5px;
+}
+
+@media (min-width: 768px) {
+  .site-brand-lockup .gcsa-logo__icon {
+    width: calc(2.25rem * 200 / 184);
+    height: 2.25rem;
+  }
+
+  .site-brand-lockup .gcsa-logo-wordmark__title {
+    font-size: 1.25rem;
+  }
+
+  .site-brand-lockup .gcsa-logo-wordmark__tagline {
+    font-size: 10px;
+  }
+
+  .site-brand-lockup--compact .gcsa-logo__icon {
+    width: 22.8px;
+    height: 21px;
+  }
+
+  .site-brand-lockup--compact .gcsa-logo-wordmark__title {
+    font-size: 10px;
+  }
+
+  .site-brand-lockup--compact .gcsa-logo-wordmark__tagline {
+    font-size: 5px;
+  }
+}

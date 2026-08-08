@@ -18,7 +18,7 @@ import {
   SlidersHorizontal,
   TerminalSquare
 } from "@lucide/vue";
-import GcsaLogoIcon from "../components/GcsaLogoIcon.vue";
+import { GcsaLogo } from "gcsa-ui";
 import SiteFooter from "../components/SiteFooter.vue";
 import SiteHeader from "../components/SiteHeader.vue";
 import { homeMessages } from "../i18n/home";
@@ -270,7 +270,7 @@ watchEffect(() => {
           <strong>{{ t.consoleTitle }}</strong>
         </div>
         <div class="panel-mark">
-          <GcsaLogoIcon class="panel-logo" />
+          <GcsaLogo :show-wordmark="false" size="lg" root-class="panel-logo" />
           <div>
             <strong>GCSA</strong>
             <span>{{ t.consoleSubtitle }}</span>

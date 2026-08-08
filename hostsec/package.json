@@ -11,6 +11,7 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "gcsa-ui": "1.2.14",
     "vue": "^3.5.40"
   },
   "devDependencies": {

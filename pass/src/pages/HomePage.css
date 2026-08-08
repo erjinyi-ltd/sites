@@ -237,8 +237,17 @@ h2 {
 }
 
 .panel-logo {
+  display: block;
   width: 46px;
   height: 42px;
+  flex: 0 0 auto;
+  color: var(--primary);
+}
+
+.panel-logo .gcsa-logo__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .panel-mark > div {

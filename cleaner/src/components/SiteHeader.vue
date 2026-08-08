@@ -95,7 +95,7 @@ onUnmounted(() => {
 <template>
   <header class="topbar" :class="{ scrolled: isScrolled }">
     <div class="topbar-inner">
-      <a class="product-brand" href="/" :aria-label="copy.homeLabel" @click="onHomeClick"><BrandLockup /></a>
+      <BrandLockup class="product-brand" href="/" :aria-label="copy.homeLabel" @click="onHomeClick" />
 
       <nav class="desktop-nav" :aria-label="copy.navLabel">
         <a href="/" :class="{ active: activeNavHref === '' }" :aria-current="activeNavHref === '' ? 'page' : undefined" @click="onHomeClick">
@@ -162,7 +162,7 @@ onUnmounted(() => {
       <button class="gcsa-mobile-menu__scrim" type="button" :aria-label="copy.closeMenu" tabindex="-1" @click="closeMenus"></button>
       <aside class="gcsa-mobile-menu__panel">
         <div class="gcsa-mobile-menu__head">
-          <a class="gcsa-mobile-menu__brand" href="/" :aria-label="copy.homeLabel" @click="onHomeClick"><BrandLockup /></a>
+          <BrandLockup class="gcsa-mobile-menu__brand" href="/" :aria-label="copy.homeLabel" @click="onHomeClick" />
           <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.closeMenu" @click="closeMenus"><X :size="17" aria-hidden="true" /></button>
         </div>
         <nav class="gcsa-mobile-menu__nav" :aria-label="copy.navLabel">

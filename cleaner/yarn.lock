@@ -500,12 +500,25 @@ __metadata:
     "@lucide/vue": "npm:^1.28.0"
     "@types/node": "npm:^26.1.2"
     "@vitejs/plugin-vue": "npm:^6.0.8"
+    gcsa-ui: "npm:1.2.14"
     typescript: "npm:~6.0.3"
     vite: "npm:^8.2.0"
     vue: "npm:^3.5.40"
     vue-tsc: "npm:^3.3.8"
   languageName: unknown
   linkType: soft
+
+"gcsa-ui@npm:1.2.14":
+  version: 1.2.14
+  resolution: "gcsa-ui@npm:1.2.14"
+  peerDependencies:
+    vue: ^3.4.0
+  peerDependenciesMeta:
+    vue:
+      optional: true
+  checksum: 10c0/b60fdfa7db063211e2365ba3552a204ead3155bdc921383018866f71e48108447aadb09bccfc8cb1a49710e16885f684c1fb10d5fb1ab2ab5864b1ee28aaf1cd
+  languageName: node
+  linkType: hard
 
 "graceful-fs@npm:^4.2.6":
   version: 4.2.11
