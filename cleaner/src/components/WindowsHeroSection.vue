@@ -67,7 +67,7 @@ defineEmits<{ platformChange: [platform: ProductPlatform] }>()
 .hero-copy { max-width: 660px; }
 .ecosystem-label { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; color: var(--muted-foreground); font-family: var(--font-data); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .ecosystem-label span { width: 26px; height: 1px; background: var(--windows); }
-h1 { max-width: 760px; margin-top: 14px; font-family: var(--font-display); font-size: clamp(38px, 3.8vw, 44px); font-weight: 700; letter-spacing: 0; line-height: 1.12; }
+h1 { max-width: 760px; margin-top: 14px; font-family: var(--font-display); font-size: clamp(36px, 3.5vw, 40px); font-weight: 700; letter-spacing: 0; line-height: 1.12; }
 .lead { max-width: 660px; margin-top: 25px; color: var(--muted-foreground); font-size: clamp(16px, 1.5vw, 18px); line-height: 1.78; }
 .platform-status { margin-top: 28px; }
 
@@ -121,6 +121,6 @@ h1 { max-width: 760px; margin-top: 14px; font-family: var(--font-display); font-
 @keyframes progress-travel { 0%, 12% { opacity: 0; transform: translateX(-130%); } 16% { opacity: 1; } 38% { opacity: 1; transform: translateX(260%); } 42%, 100% { opacity: 0; transform: translateX(260%); } }
 
 @media (max-width: 1160px) { .windows-hero { grid-template-columns: 1fr; min-height: auto; padding-top: calc(var(--header-height) + 74px); } .hero-copy { max-width: 820px; margin-inline: auto; text-align: center; } .ecosystem-label { justify-content: center; } .platform-status { margin-inline: auto; text-align: left; } .lead { margin-inline: auto; } .manager-console { width: min(780px, 100%); margin-inline: auto; } }
-@media (max-width: 640px) { .windows-hero { gap: 46px; padding-block: calc(var(--header-height) + 54px) 74px; } h1 { font-size: clamp(32px, 9vw, 36px); } .manager-summary { gap: 15px; } .health-dial { width: 116px; height: 116px; } .health-dial::before { width: 96px; height: 96px; } .quick-tools { grid-template-columns: 1fr; } .quick-tools article { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 11px; min-height: auto; } .quick-tools article > div { margin-top: 0; } .flow-step small { font-size: 0; } .console-footer { flex-wrap: wrap; gap: 8px 14px; padding-block: 10px; } }
+@media (max-width: 640px) { .windows-hero { gap: 46px; padding-block: calc(var(--header-height) + 54px) 74px; } h1 { font-size: clamp(30px, 8.5vw, 34px); } .manager-summary { gap: 15px; } .health-dial { width: 116px; height: 116px; } .health-dial::before { width: 96px; height: 96px; } .quick-tools { grid-template-columns: 1fr; } .quick-tools article { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 11px; min-height: auto; } .quick-tools article > div { margin-top: 0; } .flow-step small { font-size: 0; } .console-footer { flex-wrap: wrap; gap: 8px 14px; padding-block: 10px; } }
 @media (prefers-reduced-motion: reduce) { .health-dial, .live-status i, .console-footer i, .manager-flow > i::after { animation: none; } .quick-tools article { transition: none; } }
 </style>
