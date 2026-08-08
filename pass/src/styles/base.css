@@ -7,6 +7,11 @@
 }
 
 :root {
+  --font-display: Orbitron, "Plus Jakarta Sans", Inter, "PingFang SC", sans-serif;
+  --font-body: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-data: "Plus Jakarta Sans", Inter, "PingFang SC", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-card-title: var(--font-display);
   --background: #f7f9fb;
   --card: #ffffff;
   --foreground: #0c1220;
@@ -26,7 +31,7 @@
   --content-max: 1280px;
   color: var(--foreground);
   background: var(--background);
-  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -139,7 +144,17 @@ p {
 
 h1,
 h2 {
-  font-family: Orbitron, "Plus Jakarta Sans", Inter, "PingFang SC", sans-serif;
+  font-family: var(--font-display);
+}
+
+h3 {
+  font-family: var(--font-card-title);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --font-card-title: var(--font-body);
+  }
 }
 
 @media (max-width: 860px) {

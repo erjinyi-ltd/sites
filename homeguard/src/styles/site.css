@@ -13,6 +13,11 @@
 }
 
 :root {
+  --font-display: Orbitron, "Plus Jakarta Sans", Inter, "PingFang SC", sans-serif;
+  --font-body: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-data: "Plus Jakarta Sans", Inter, "PingFang SC", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-card-title: var(--font-display);
   --background: #f7f9fb;
   --background-raised: #ffffff;
   --card: #ffffff;
@@ -115,6 +120,21 @@ ul {
   margin: 0;
 }
 
+h1,
+h2 {
+  font-family: var(--font-display);
+}
+
+h3 {
+  font-family: var(--font-card-title);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --font-card-title: var(--font-body);
+  }
+}
+
 ul {
   padding: 0;
   list-style: none;
@@ -131,9 +151,7 @@ body {
   overflow-x: clip;
   color: var(--foreground);
   background: var(--background);
-  font-family:
-    Inter, "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -306,7 +324,7 @@ html.locale-boot-pending .site-shell {
 
 .brand-wordmark strong {
   color: var(--primary);
-  font-family: Orbitron, "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
@@ -741,7 +759,7 @@ html.locale-boot-pending .site-shell {
   gap: 10px;
   margin: 0 0 20px;
   color: var(--primary);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -759,10 +777,10 @@ html.locale-boot-pending .site-shell {
 .hero-copy h1 {
   max-width: 770px;
   margin: 0;
-  font-family: Orbitron, "Plus Jakarta Sans", "PingFang SC", sans-serif;
-  font-size: clamp(48px, 5.3vw, 76px);
+  font-family: var(--font-display);
+  font-size: clamp(38px, 3.8vw, 44px);
   line-height: 1.12;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   white-space: pre-line;
 }
 
@@ -1045,7 +1063,7 @@ a:hover .arrow {
 .score-ring span {
   position: relative;
   z-index: 1;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-data);
   font-size: 31px;
   font-weight: 700;
   line-height: 1;
@@ -1221,7 +1239,7 @@ a:hover .arrow {
 
 .metrics-grid article strong {
   color: var(--primary);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-data);
   font-size: clamp(30px, 3vw, 42px);
   line-height: 1;
 }
@@ -1255,10 +1273,10 @@ a:hover .arrow {
 .privacy-grid h2,
 .closing-inner h2 {
   margin: 0;
-  font-family: Orbitron, "Plus Jakarta Sans", "PingFang SC", sans-serif;
-  font-size: clamp(32px, 4vw, 52px);
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
   line-height: 1.25;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .section-lead {
@@ -1317,7 +1335,7 @@ a:hover .arrow {
 
 .scenario-card-top span {
   color: var(--primary);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
 }
@@ -1400,7 +1418,7 @@ a:hover .arrow {
 .signal-label {
   margin: 0 0 10px !important;
   color: var(--primary) !important;
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 9px !important;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1595,7 +1613,7 @@ a:hover .arrow {
 .map-node small {
   align-self: start;
   color: var(--muted-foreground);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.06em;
 }
@@ -1697,7 +1715,7 @@ a:hover .arrow {
   border-radius: 9px;
   color: var(--primary);
   background: var(--muted);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
 }
@@ -1787,7 +1805,7 @@ a:hover .arrow {
   border-bottom: 1px solid var(--border);
   padding-bottom: 14px;
   color: var(--muted-foreground);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
 }
@@ -1932,7 +1950,7 @@ a:hover .arrow {
 
 .boundary-list article > span {
   color: var(--primary);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
 }
@@ -1977,7 +1995,7 @@ a:hover .arrow {
 
 .faq-list summary > span {
   color: var(--primary);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
 }
@@ -2040,7 +2058,7 @@ a:hover .arrow {
 }
 
 .closing-inner h2 {
-  font-size: clamp(34px, 5vw, 60px);
+  font-size: clamp(26px, 3vw, 36px);
 }
 
 .closing-inner > div {
@@ -2066,10 +2084,10 @@ a:hover .arrow {
 .legal-hero h1 {
   max-width: 18ch;
   margin: 0;
-  font-family: Orbitron, "Plus Jakarta Sans", "PingFang SC", sans-serif;
-  font-size: clamp(42px, 6vw, 76px);
-  line-height: 1.06;
-  letter-spacing: -0.05em;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: 0;
   white-space: pre-line;
 }
 
@@ -2354,7 +2372,7 @@ a:hover .arrow {
   }
 
   .hero-copy h1 {
-    font-size: clamp(44px, 5.6vw, 65px);
+    font-size: clamp(38px, 4.2vw, 44px);
   }
 
   .orbit-a {
@@ -2505,7 +2523,7 @@ a:hover .arrow {
     display: block;
     margin: auto;
     color: var(--muted-foreground);
-    font-family: Orbitron, ui-monospace, monospace;
+    font-family: var(--font-display);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.12em;
@@ -2531,7 +2549,7 @@ a:hover .arrow {
   }
 
   .hero-copy h1 {
-    font-size: clamp(38px, 12vw, 53px);
+    font-size: clamp(32px, 9vw, 36px);
     line-height: 1.2;
   }
 
@@ -2624,7 +2642,7 @@ a:hover .arrow {
   .section-heading h2,
   .privacy-grid h2,
   .closing-inner h2 {
-    font-size: clamp(30px, 9.5vw, 42px);
+    font-size: clamp(24px, 7.5vw, 30px);
   }
 
   .section-lead {
@@ -2760,7 +2778,7 @@ a:hover .arrow {
   }
 
   .legal-hero h1 {
-    font-size: clamp(38px, 12vw, 58px);
+    font-size: clamp(30px, 9vw, 36px);
   }
 
   .legal-layout {

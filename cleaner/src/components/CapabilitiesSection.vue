@@ -42,7 +42,7 @@ article:hover { border-color: color-mix(in srgb, var(--primary) 38%, var(--borde
 .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .icon { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border)); border-radius: 9px; color: var(--primary); background: var(--muted); }
 .tag { color: var(--primary); font-family: var(--font-data); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
-h3 { margin-top: 25px; font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1.3; }
+h3 { margin-top: 25px; font-family: var(--font-card-title); font-size: 19px; font-weight: 600; line-height: 1.3; }
 article p { margin-top: 14px; color: var(--muted-foreground); font-size: 13px; line-height: 1.75; }
 @media (max-width: 960px) { .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .capabilities { padding-block: 88px; } .feature-grid { grid-template-columns: 1fr; } article { min-height: auto; } }

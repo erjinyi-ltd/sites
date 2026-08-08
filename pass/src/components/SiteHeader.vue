@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch, watchEffect } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { ArrowDownToLine, ArrowRight, Boxes, House, LifeBuoy, LockKeyhole, Moon, Radar, Scale, ShieldCheck, Sun, X } from "@lucide/vue";
 import { RouterLink, useRoute } from "vue-router";
 import GcsaLogoIcon from "./GcsaLogoIcon.vue";
 import ProductIcon from "./ProductIcon.vue";
+import { focusMobileMenu, handleMobileMenuKeydown } from "../../../shared/mobileMenuDialog";
 import { getGcsaNavigation } from "../gcsaNavigation";
 import {
   localeOptions,
@@ -26,6 +27,8 @@ const emit = defineEmits<{
 
 const isScrolled = ref(false);
 const menuOpen = ref(false);
+const mobileMenuDialog = ref<HTMLElement | null>(null);
+const mobileMenuTrigger = ref<HTMLButtonElement | null>(null);
 const localeOpen = ref(false);
 const productsOpen = ref(false);
 const activeNavKey = ref("home");
@@ -141,8 +144,12 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
-watchEffect(() => {
-  document.body.classList.toggle("menu-open", menuOpen.value);
+watch(menuOpen, async (open) => {
+  document.body.classList.toggle("menu-open", open);
+  document.body.style.overflow = open ? "hidden" : "";
+  await nextTick();
+  if (open) focusMobileMenu(mobileMenuDialog.value);
+  else mobileMenuTrigger.value?.focus({ preventScroll: true });
 });
 
 watch(
@@ -161,6 +168,7 @@ onBeforeUnmount(() => {
   window.removeEventListener("keydown", handleKeydown);
   clearProductsCloseTimer();
   document.body.classList.remove("menu-open");
+  document.body.style.overflow = "";
 });
 </script>
 
@@ -284,6 +292,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <button
+        ref="mobileMenuTrigger"
         class="mobile-menu-trigger"
         type="button"
         :aria-label="copy.openMenu"
@@ -296,52 +305,58 @@ onBeforeUnmount(() => {
   </header>
 
   <Teleport to="body">
-    <div v-if="menuOpen" class="mobile-menu-layer">
-      <button class="mobile-menu-scrim" type="button" :aria-label="copy.closeMenu" @click="closeMenu"></button>
+    <div
+      v-if="menuOpen"
+      ref="mobileMenuDialog"
+      class="gcsa-mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="copy.mobileNavLabel"
+      @keydown="handleMobileMenuKeydown($event, mobileMenuDialog, closeMenu)"
+    >
+      <button class="gcsa-mobile-menu__scrim" type="button" :aria-label="copy.closeMenu" tabindex="-1" @click="closeMenu"></button>
       <aside
-        class="mobile-menu"
+        class="gcsa-mobile-menu__panel"
         :class="{ 'is-dark': theme === 'dark' }"
-        role="dialog"
-        aria-modal="true"
-        :aria-label="copy.mobileNavLabel"
       >
-        <div class="mobile-menu-head">
-          <div class="mobile-menu-brand">
+        <div class="gcsa-mobile-menu__head">
+          <RouterLink class="gcsa-mobile-menu__brand" :to="{ name: 'home' }" aria-label="GCSA PassRecover" @click="closeMenu">
             <GcsaLogoIcon />
             <span class="brand-wordmark">
               <strong>GCSA</strong>
               <small>PassRecover</small>
             </span>
-          </div>
-          <button class="mobile-menu-close" type="button" :aria-label="copy.closeMenu" @click="closeMenu">
+          </RouterLink>
+          <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.closeMenu" @click="closeMenu">
             <X :size="17" />
           </button>
         </div>
-        <nav class="mobile-menu-nav" :aria-label="copy.mobileNavLabel">
+        <nav class="gcsa-mobile-menu__nav" :aria-label="copy.mobileNavLabel">
           <div class="mobile-nav-group">
             <RouterLink
               v-for="item in primaryNavItems.slice(0, 1)"
               :key="item.key"
+              class="gcsa-mobile-menu__item"
               :to="item.to"
               :class="{ current: isPrimaryNavActive(item.key) }"
               :aria-current="isPrimaryNavActive(item.key) ? 'page' : undefined"
               @click="activeNavKey = item.key; closeMenu()"
             >
-              <span class="mobile-nav-icon">
+              <span class="gcsa-mobile-menu__icon">
                 <component :is="item.icon" :size="18" aria-hidden="true" />
               </span>
-              <span>{{ item.label }}</span>
+              <span class="gcsa-mobile-menu__label">{{ item.label }}</span>
             </RouterLink>
-            <div class="mobile-nav-products">
+            <div class="mobile-nav-products gcsa-mobile-menu__products">
             <button
-              class="mobile-products-trigger"
+              class="mobile-products-trigger gcsa-mobile-menu__item"
               type="button"
               :aria-expanded="productsOpen"
               aria-controls="mobile-ecosystem-menu"
               @click="toggleProducts"
             >
-              <span class="mobile-nav-icon"><Boxes :size="18" aria-hidden="true" /></span>
-              <span>{{ navigation.products }}</span>
+              <span class="gcsa-mobile-menu__icon"><Boxes :size="18" aria-hidden="true" /></span>
+              <span class="gcsa-mobile-menu__label">{{ navigation.products }}</span>
               <svg class="mobile-products-chevron" :class="{ open: productsOpen }" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2.5 4.25L6 7.75L9.5 4.25" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -363,30 +378,32 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in primaryNavItems.slice(1)"
               :key="item.key"
+              class="gcsa-mobile-menu__item"
               :to="item.to"
               :class="{ current: isPrimaryNavActive(item.key) }"
               :aria-current="isPrimaryNavActive(item.key) ? 'page' : undefined"
               @click="activeNavKey = item.key; closeMenu()"
             >
-              <span class="mobile-nav-icon">
+              <span class="gcsa-mobile-menu__icon">
                 <component :is="item.icon" :size="18" aria-hidden="true" />
               </span>
-              <span>{{ item.label }}</span>
+              <span class="gcsa-mobile-menu__label">{{ item.label }}</span>
             </RouterLink>
           </div>
-          <div class="mobile-nav-group mobile-nav-legal">
+          <div class="mobile-nav-group gcsa-mobile-menu__secondary">
             <RouterLink
               v-for="item in legalNavItems"
               :key="item.key"
+              class="gcsa-mobile-menu__item"
               :to="item.to"
               :class="{ current: isLegalNavActive(item.key) }"
               :aria-current="isLegalNavActive(item.key) ? 'page' : undefined"
               @click="closeMenu"
             >
-              <span class="mobile-nav-icon">
+              <span class="gcsa-mobile-menu__icon">
                 <component :is="item.icon" :size="18" aria-hidden="true" />
               </span>
-              <span>{{ item.label }}</span>
+              <span class="gcsa-mobile-menu__label">{{ item.label }}</span>
             </RouterLink>
           </div>
         </nav>
@@ -396,3 +413,5 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped src="./SiteHeader.css"></style>
+
+<style src="../../../shared/mobileMenu.css"></style>

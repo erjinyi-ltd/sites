@@ -93,7 +93,7 @@ const icons = [FileCheck2, Fingerprint, FileSearch, ScanText, Radar, History]
 h3 {
   margin-top: 30px;
   color: var(--foreground);
-  font-family: var(--font-display);
+  font-family: var(--font-card-title);
   font-size: 17px;
   font-weight: 650;
   line-height: 1.35;

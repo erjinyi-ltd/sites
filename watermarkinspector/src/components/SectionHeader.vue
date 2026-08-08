@@ -32,9 +32,9 @@ h2 {
   margin-top: 14px;
   color: var(--foreground);
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 650;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.2;
 }
 

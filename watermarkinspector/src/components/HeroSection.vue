@@ -71,9 +71,9 @@ h1 {
   margin-top: 15px;
   color: var(--foreground);
   font-family: var(--font-display);
-  font-size: clamp(40px, 4.4vw, 62px);
+  font-size: clamp(38px, 3.8vw, 44px);
   font-weight: 680;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   line-height: 1.12;
 }
 
@@ -142,7 +142,7 @@ h1 {
 
   h1 {
     margin-top: 12px;
-    font-size: clamp(34px, 10.2vw, 45px);
+    font-size: clamp(32px, 9vw, 36px);
     line-height: 1.16;
   }
 

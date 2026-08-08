@@ -61,6 +61,21 @@ p {
   overflow-wrap: anywhere;
 }
 
+h1,
+h2 {
+  font-family: var(--font-display);
+}
+
+h3 {
+  font-family: var(--font-card-title);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --font-card-title: var(--font-body);
+  }
+}
+
 button:focus-visible,
 a:focus-visible,
 summary:focus-visible {
@@ -108,9 +123,9 @@ summary:focus-visible {
 .section-heading h2 {
   margin-top: 12px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 650;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.18;
 }
 

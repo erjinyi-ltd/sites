@@ -206,12 +206,12 @@ onBeforeUnmount(() => {
       :aria-controls="menuId"
       @click="toggleMenu"
     >
-      <span v-if="mobile" class="gcsa-products-icon" aria-hidden="true">
+      <span v-if="mobile" class="gcsa-products-icon gcsa-mobile-menu__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M2.97 12.92 12 17.94l9.03-5.02M12 22v-4.06M7 4.89l5 2.78 5-2.78M7 10.56V4.89L12 2l5 2.89v5.67M2.97 12.92 7 10.67l5 2.78 5-2.78 4.03 2.25v5.15L17 20.33l-5-2.78-5 2.78-4.03-2.26Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </span>
-      <span>{{ copy.products }}</span>
+      <span :class="{ 'gcsa-mobile-menu__label': mobile }">{{ copy.products }}</span>
       <svg class="gcsa-products-chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M2.5 4.25 6 7.75l3.5-3.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
       </svg>

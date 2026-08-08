@@ -1,0 +1,228 @@
+.gcsa-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  overflow: hidden;
+}
+
+.gcsa-mobile-menu__scrim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  animation: gcsa-mobile-menu-scrim-in 180ms ease both;
+}
+
+.gcsa-mobile-menu__panel {
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: flex;
+  width: min(88vw, 21.5rem);
+  height: 100dvh;
+  flex-direction: column;
+  border: 0;
+  background: var(--menu-surface, var(--card, #ffffff));
+  box-shadow: -18px 0 48px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  animation: gcsa-mobile-menu-panel-in 0.42s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.gcsa-mobile-menu__head {
+  display: flex;
+  min-height: calc(62px + env(safe-area-inset-top, 0px));
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: env(safe-area-inset-top, 0px) 20px 0;
+}
+
+.gcsa-mobile-menu__brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  color: inherit;
+}
+
+.gcsa-mobile-menu__close {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--muted) 92%, transparent);
+  box-shadow: none;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.gcsa-mobile-menu__close:hover,
+.gcsa-mobile-menu__close:focus-visible {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--primary) 11%, var(--muted));
+}
+
+.gcsa-mobile-menu__nav {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 4px 14px 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.gcsa-mobile-menu .mobile-nav-group {
+  display: block;
+}
+
+.gcsa-mobile-menu__item,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger,
+.gcsa-mobile-menu__products .mobile-products-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  gap: 14px;
+  border: 0;
+  border-radius: 0;
+  padding: 9px 6px;
+  color: var(--foreground);
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.gcsa-mobile-menu__item:hover,
+.gcsa-mobile-menu__item:focus-visible,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger:hover,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger:focus-visible,
+.gcsa-mobile-menu__products .mobile-products-trigger:hover,
+.gcsa-mobile-menu__products .mobile-products-trigger:focus-visible {
+  color: var(--primary);
+  background: transparent;
+}
+
+.gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-icon {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--muted) 92%, transparent);
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.gcsa-mobile-menu__icon svg,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gcsa-mobile-menu__label {
+  min-width: 0;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.gcsa-mobile-menu__item.active,
+.gcsa-mobile-menu__item.is-active,
+.gcsa-mobile-menu__item.current {
+  color: var(--primary);
+  background: transparent;
+}
+
+.gcsa-mobile-menu__item:hover .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__item:focus-visible .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__item.active .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__item.is-active .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__item.current .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger:hover .gcsa-products-icon,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger:focus-visible .gcsa-products-icon,
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-trigger[aria-expanded="true"] .gcsa-products-icon,
+.gcsa-mobile-menu__products .mobile-products-trigger:hover .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__products .mobile-products-trigger:focus-visible .gcsa-mobile-menu__icon,
+.gcsa-mobile-menu__products .mobile-products-trigger[aria-expanded="true"] .gcsa-mobile-menu__icon {
+  border-color: color-mix(in srgb, var(--primary) 70%, var(--border));
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 13%, var(--muted));
+}
+
+.gcsa-mobile-menu__products.gcsa-products.mobile .gcsa-products-chevron,
+.gcsa-mobile-menu__products .mobile-products-chevron {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  margin-left: auto;
+  color: var(--muted-foreground);
+}
+
+.gcsa-mobile-menu__secondary {
+  margin-top: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.gcsa-mobile-menu__secondary .gcsa-mobile-menu__item {
+  min-height: 48px;
+}
+
+.gcsa-mobile-menu__footer {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--border);
+  padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: var(--menu-surface, var(--card, #ffffff));
+}
+
+.gcsa-mobile-menu__cta {
+  display: inline-flex;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 0 18px;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@keyframes gcsa-mobile-menu-scrim-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gcsa-mobile-menu-panel-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gcsa-mobile-menu__scrim,
+  .gcsa-mobile-menu__panel {
+    animation-duration: 1ms;
+  }
+}

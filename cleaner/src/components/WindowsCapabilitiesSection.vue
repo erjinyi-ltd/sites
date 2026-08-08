@@ -45,7 +45,7 @@ article.recovery { background: radial-gradient(circle at 88% 16%, color-mix(in s
 .module-number { color: color-mix(in srgb, var(--windows) 55%, var(--muted-foreground)); font-family: var(--font-data); font-size: 9px; font-weight: 700; }
 .icon { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid color-mix(in srgb, var(--windows) 28%, var(--border)); border-radius: 9px; color: var(--windows); background: color-mix(in srgb, var(--windows) 8%, var(--muted)); }
 .tag { justify-self: end; color: var(--windows); font-family: var(--font-data); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
-h3 { margin-top: 25px; font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1.3; }
+h3 { margin-top: 25px; font-family: var(--font-card-title); font-size: 19px; font-weight: 600; line-height: 1.3; }
 article p { max-width: 760px; margin-top: 13px; color: var(--muted-foreground); font-size: 13px; line-height: 1.75; }
 @media (max-width: 760px) { .capability-matrix { grid-template-columns: 1fr; gap: 18px; } }
 @media (max-width: 620px) { .windows-capabilities { padding-block: 88px; } .capability-matrix { margin-top: 40px; } article { min-height: auto; padding: 24px; } }

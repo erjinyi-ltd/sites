@@ -37,7 +37,7 @@ article { position: relative; display: grid; grid-template-columns: auto auto mi
 article > i { position: absolute; right: -38px; bottom: -58px; width: 130px; height: 130px; border: 1px solid color-mix(in srgb, var(--windows) 10%, transparent); border-radius: 50%; }
 .index { padding-top: 14px; color: color-mix(in srgb, var(--windows) 66%, var(--muted-foreground)); font-family: var(--font-data); font-size: 9px; font-weight: 700; }
 .icon { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid color-mix(in srgb, var(--windows) 28%, var(--border)); border-radius: 9px; color: var(--windows); background: color-mix(in srgb, var(--windows) 8%, var(--muted)); }
-h3 { padding-top: 3px; font-family: var(--font-display); font-size: 16px; }
+h3 { padding-top: 3px; font-family: var(--font-card-title); font-size: 16px; }
 article p { margin-top: 9px; color: var(--muted-foreground); font-size: 12px; line-height: 1.72; }
 @media (max-width: 920px) { .safety-intro { grid-template-columns: 1fr; gap: 34px; } }
 @media (max-width: 700px) { .windows-safety { padding-block: 88px; } .safety-stack { grid-template-columns: 1fr; } article { min-height: auto; } }

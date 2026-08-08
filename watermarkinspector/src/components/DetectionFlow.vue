@@ -96,7 +96,7 @@ const icons = [FileUp, Cpu, ClipboardCheck, History]
 
 h3 {
   margin-top: 30px;
-  font-family: var(--font-display);
+  font-family: var(--font-card-title);
   font-size: 17px;
   font-weight: 650;
 }

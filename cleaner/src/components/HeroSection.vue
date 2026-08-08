@@ -56,7 +56,7 @@ defineEmits<{ platformChange: [platform: ProductPlatform] }>()
 .hero-copy { max-width: 650px; }
 .ecosystem-label { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; color: var(--muted-foreground); font-family: var(--font-data); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .ecosystem-label span { width: 26px; height: 1px; background: var(--primary); }
-h1 { max-width: 720px; margin-top: 14px; font-family: var(--font-display); font-size: clamp(48px, 5.1vw, 74px); font-weight: 700; letter-spacing: -.055em; line-height: 1.08; }
+h1 { max-width: 720px; margin-top: 14px; font-family: var(--font-display); font-size: clamp(38px, 3.8vw, 44px); font-weight: 700; letter-spacing: 0; line-height: 1.12; }
 .lead { max-width: 650px; margin-top: 25px; color: var(--muted-foreground); font-size: clamp(16px, 1.5vw, 18px); line-height: 1.78; }
 .platform-status { margin-top: 28px; }
 .cleaner-visual { position: relative; overflow: hidden; border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border)); border-radius: 16px; background: color-mix(in srgb, var(--card) 92%, transparent); box-shadow: var(--shadow-card), 0 0 56px color-mix(in srgb, var(--primary) 10%, transparent); }
@@ -127,7 +127,7 @@ h1 { max-width: 720px; margin-top: 14px; font-family: var(--font-display); font-
 
 @media (max-width: 640px) {
   .hero { gap: 48px; padding-block: calc(var(--header-height) + 56px) 72px; }
-  h1 { font-size: clamp(38px, 12vw, 52px); }
+  h1 { font-size: clamp(32px, 9vw, 36px); }
   .scan-summary { gap: 14px; }
   .scan-ring { width: 124px; height: 124px; }
   .scan-ring::before { width: 104px; height: 104px; }

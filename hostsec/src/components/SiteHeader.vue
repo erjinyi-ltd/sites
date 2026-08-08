@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { Locale, SiteCopy, Theme } from '../types'
 import BrandLockup from './BrandLockup.vue'
 import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import UiIcon from './UiIcon.vue'
+import { focusMobileMenu, handleMobileMenuKeydown } from '../../../shared/mobileMenuDialog'
 
 const props = defineProps<{ copy: SiteCopy; locale: Locale; theme: Theme }>()
 const emit = defineEmits<{
@@ -19,6 +20,8 @@ const languageOptions: Array<{ code: Locale; label: string; short: string }> = [
 
 const languageOpen = ref(false)
 const mobileMenuOpen = ref(false)
+const mobileMenuDialog = ref<HTMLElement | null>(null)
+const mobileMenuTrigger = ref<HTMLButtonElement | null>(null)
 const isScrolled = ref(false)
 const activeNavHref = ref('')
 const navIcons = ['home', 'grid', 'drive', 'flow', 'shield'] as const
@@ -68,8 +71,12 @@ function onScroll() {
   activeNavHref.value = currentHref
 }
 
-watch(mobileMenuOpen, (open) => {
+watch(mobileMenuOpen, async (open) => {
+  document.body.classList.toggle('menu-open', open)
   document.body.style.overflow = open ? 'hidden' : ''
+  await nextTick()
+  if (open) focusMobileMenu(mobileMenuDialog.value)
+  else mobileMenuTrigger.value?.focus({ preventScroll: true })
 })
 
 onMounted(() => {
@@ -85,6 +92,7 @@ onUnmounted(() => {
   document.removeEventListener('keydown', onDocumentKeyDown)
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('resize', onScroll)
+  document.body.classList.remove('menu-open')
   document.body.style.overflow = ''
 })
 </script>
@@ -183,6 +191,7 @@ onUnmounted(() => {
           </div>
         </div>
         <button
+          ref="mobileMenuTrigger"
           class="menu-toggle"
           type="button"
           :aria-label="mobileMenuOpen ? copy.menuClose : copy.menuOpen"
@@ -197,55 +206,55 @@ onUnmounted(() => {
   </header>
 
   <Teleport to="body">
-    <button
-      class="mobile-menu-scrim"
-      :class="{ open: mobileMenuOpen }"
-      type="button"
-      :aria-label="copy.menuClose"
-      :tabindex="mobileMenuOpen ? 0 : -1"
-      @click="closeMenus"
-    />
-    <aside
-      class="mobile-drawer"
-      :class="{ open: mobileMenuOpen }"
+    <div
+      v-if="mobileMenuOpen"
+      ref="mobileMenuDialog"
+      class="gcsa-mobile-menu"
       role="dialog"
       aria-modal="true"
       :aria-label="copy.navLabel"
-      :inert="!mobileMenuOpen"
+      @keydown="handleMobileMenuKeydown($event, mobileMenuDialog, closeMenus)"
     >
-      <div class="mobile-drawer-head">
-        <a href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
-        <button class="drawer-close" type="button" :aria-label="copy.menuClose" @click="closeMenus">
-          <UiIcon name="close" :size="19" />
-        </button>
-      </div>
-      <nav class="mobile-nav" :aria-label="copy.navLabel">
-        <a
-          v-for="item in copy.nav.slice(0, 1)"
-          :key="item.href"
-          :href="item.href"
-          :class="{ active: activeNavHref === item.href }"
-          :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="onHomeClick"
-        >
-          <span class="mobile-nav-icon"><UiIcon :name="navIcons[0]" :size="20" /></span>
-          <span>{{ item.label }}</span>
-        </a>
-        <GcsaProductsMenu :locale="locale" mobile />
-        <a
-          v-for="(item, index) in copy.nav.slice(1)"
-          :key="item.href"
-          :href="item.href"
-          :class="{ active: activeNavHref === item.href }"
-          :aria-current="activeNavHref === item.href ? 'location' : undefined"
-          @click="closeMenus"
-        >
-          <span class="mobile-nav-icon"><UiIcon :name="navIcons[index + 1] ?? 'grid'" :size="20" /></span>
-          <span>{{ item.label }}</span>
-        </a>
-      </nav>
-      <a class="drawer-cta" href="/tenant/login" @click="closeMenus">{{ copy.panelEntry }}</a>
-    </aside>
+      <button class="gcsa-mobile-menu__scrim" type="button" :aria-label="copy.menuClose" tabindex="-1" @click="closeMenus" />
+      <aside class="gcsa-mobile-menu__panel">
+        <div class="gcsa-mobile-menu__head">
+          <a class="gcsa-mobile-menu__brand" href="/" aria-label="GCSA HostSec" @click="onHomeClick"><BrandLockup /></a>
+          <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.menuClose" @click="closeMenus">
+            <UiIcon name="close" :size="17" />
+          </button>
+        </div>
+        <nav class="gcsa-mobile-menu__nav" :aria-label="copy.navLabel">
+          <a
+            v-for="item in copy.nav.slice(0, 1)"
+            :key="item.href"
+            class="gcsa-mobile-menu__item"
+            :href="item.href"
+            :class="{ active: activeNavHref === item.href }"
+            :aria-current="activeNavHref === item.href ? 'location' : undefined"
+            @click="onHomeClick"
+          >
+            <span class="gcsa-mobile-menu__icon"><UiIcon :name="navIcons[0]" :size="18" /></span>
+            <span class="gcsa-mobile-menu__label">{{ item.label }}</span>
+          </a>
+          <GcsaProductsMenu class="gcsa-mobile-menu__products" :locale="locale" mobile />
+          <a
+            v-for="(item, index) in copy.nav.slice(1)"
+            :key="item.href"
+            class="gcsa-mobile-menu__item"
+            :href="item.href"
+            :class="{ active: activeNavHref === item.href }"
+            :aria-current="activeNavHref === item.href ? 'location' : undefined"
+            @click="closeMenus"
+          >
+            <span class="gcsa-mobile-menu__icon"><UiIcon :name="navIcons[index + 1] ?? 'grid'" :size="18" /></span>
+            <span class="gcsa-mobile-menu__label">{{ item.label }}</span>
+          </a>
+        </nav>
+        <div class="gcsa-mobile-menu__footer">
+          <a class="gcsa-mobile-menu__cta" href="/tenant/login" @click="closeMenus">{{ copy.panelEntry }}</a>
+        </div>
+      </aside>
+    </div>
   </Teleport>
 </template>
 
@@ -273,7 +282,6 @@ onUnmounted(() => {
 .language-menu button.selected { font-weight: 600; }
 .language-menu small { color: var(--primary); font-family: var(--font-data); font-size: 9px; font-weight: inherit; }
 .header-cta { display: inline-flex; min-height: 40px; align-items: center; padding: 0 16px; border: 1px solid var(--primary); border-radius: 8px; color: var(--primary-foreground); background: var(--primary); font-size: 12px; font-weight: 700; }
-.mobile-menu-scrim, .mobile-drawer { display: none; }
 
 @media (max-width: 1020px) {
   .topbar-inner { gap: 14px; }
@@ -289,17 +297,7 @@ onUnmounted(() => {
   .icon-button, .menu-toggle, .mobile-language { width: 36px; height: 36px; }
   .mobile-language { font-family: var(--font-data); font-size: 10px; font-weight: 700; }
   .mobile-language-menu { right: 38px; }
-  .mobile-menu-scrim { position: fixed; inset: 0; z-index: 68; display: block; border: 0; background: rgba(0, 0, 0, .48); opacity: 0; pointer-events: none; transition: opacity 260ms ease; }
-  .mobile-menu-scrim.open { opacity: 1; pointer-events: auto; }
-  .mobile-drawer { position: fixed; inset: 0 0 0 auto; z-index: 70; display: flex; width: min(88vw, 21.5rem); flex-direction: column; padding: max(18px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); border-left: 1px solid var(--border); background: var(--mobile-menu-panel-bg); box-shadow: -22px 0 60px rgba(0, 0, 0, .3); transform: translateX(102%); visibility: hidden; transition: transform .55s cubic-bezier(.32, .72, 0, 1), visibility .55s; }
-  .mobile-drawer.open { transform: translateX(0); visibility: visible; }
-  .mobile-drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .drawer-close, .drawer-close:hover { width: 34px; height: 34px; border-radius: 0; background: transparent; box-shadow: none; }
-  .mobile-nav { display: grid; gap: 8px; margin-top: 26px; }
-  .mobile-nav a { display: flex; min-height: 54px; align-items: center; gap: 13px; padding: 7px 10px; border-radius: 10px; color: var(--foreground); font-family: var(--font-data); font-size: 16px; font-weight: 400; }
-  .mobile-nav a:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
-  .mobile-nav a.active, .mobile-nav a.active:hover { color: var(--primary); background: transparent; }
-  .mobile-nav-icon { display: inline-grid; width: 28px; height: 40px; flex: 0 0 auto; place-items: center; color: var(--primary); background: transparent; }
-  .drawer-cta { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; margin-top: auto; border: 1px solid var(--primary); border-radius: 999px; color: var(--primary-foreground); background: var(--primary); font-size: 14px; font-weight: 700; }
 }
 </style>
+
+<style src="../../../shared/mobileMenu.css"></style>

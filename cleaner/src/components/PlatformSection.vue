@@ -40,7 +40,7 @@ article::before { position: absolute; inset: 0 22px auto; height: 1px; backgroun
 .tone-ready .platform-icon { color: var(--mac); }
 .tone-ready.windows .platform-icon { color: var(--windows); }
 .platform-head small { color: var(--muted-foreground); font-size: 10px; text-transform: uppercase; }
-h3 { margin-top: 3px; font-family: var(--font-display); font-size: 16px; line-height: 1.2; }
+h3 { margin-top: 3px; font-family: var(--font-card-title); font-size: 16px; line-height: 1.2; }
 .status { align-self: start; padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border)); border-radius: 999px; color: var(--primary); background: color-mix(in srgb, var(--primary) 7%, transparent); font-size: 9px; font-weight: 700; white-space: nowrap; }
 .tone-ready .status { color: var(--mac); border-color: color-mix(in srgb, var(--mac) 30%, var(--border)); background: color-mix(in srgb, var(--mac) 7%, transparent); }
 .tone-ready.windows .status { color: var(--windows); border-color: color-mix(in srgb, var(--windows) 30%, var(--border)); background: color-mix(in srgb, var(--windows) 7%, transparent); }

@@ -111,10 +111,10 @@ const page = computed(() => localeCopy.value.pages[pageKind.value])
 .legal-hero h1 {
   margin-top: 17px;
   color: var(--foreground);
-  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-size: clamp(2.125rem, 4vw, 2.75rem);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
+  letter-spacing: 0;
+  line-height: 1.12;
 }
 
 .legal-summary {

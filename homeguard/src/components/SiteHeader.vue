@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { localeOptions } from '../content/content'
 import { usePreferences } from '../composables/usePreferences'
@@ -8,11 +8,14 @@ import BrandLockup from './BrandLockup.vue'
 import GcsaProductsMenu from './GcsaProductsMenu.vue'
 import MobileNavIcon from './MobileNavIcon.vue'
 import ThemeIcon from './ThemeIcon.vue'
+import { focusMobileMenu, handleMobileMenuKeydown } from '../../../shared/mobileMenuDialog'
 
 const route = useRoute()
 const { locale, theme, copy, chooseLocale, toggleTheme } = usePreferences()
 const localeOpen = ref(false)
 const menuOpen = ref(false)
+const mobileMenuDialog = ref<HTMLElement | null>(null)
+const mobileMenuTrigger = ref<HTMLButtonElement | null>(null)
 const scrolled = ref(false)
 const activeNavHref = ref('')
 const localeControl = ref<HTMLElement | null>(null)
@@ -74,7 +77,13 @@ function handlePointerdown(event: PointerEvent) {
   if (!localeControl.value?.contains(event.target as Node)) localeOpen.value = false
 }
 
-watch(menuOpen, (open) => document.body.classList.toggle('menu-open', open))
+watch(menuOpen, async (open) => {
+  document.body.classList.toggle('menu-open', open)
+  document.body.style.overflow = open ? 'hidden' : ''
+  await nextTick()
+  if (open) focusMobileMenu(mobileMenuDialog.value)
+  else mobileMenuTrigger.value?.focus({ preventScroll: true })
+})
 watch(
   () => route.fullPath,
   () => {
@@ -94,6 +103,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.body.classList.remove('menu-open')
+  document.body.style.overflow = ''
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('resize', handleScroll)
   window.removeEventListener('keydown', handleKeydown)
@@ -177,6 +187,7 @@ onBeforeUnmount(() => {
         </div>
 
         <button
+          ref="mobileMenuTrigger"
           class="mobile-menu-trigger"
           type="button"
           :aria-label="copy.menuOpen"
@@ -189,49 +200,64 @@ onBeforeUnmount(() => {
     </div>
   </header>
 
-  <div v-if="menuOpen" class="mobile-menu-layer">
-    <button class="mobile-menu-scrim" type="button" :aria-label="copy.menuClose" @click="menuOpen = false" />
-    <aside class="mobile-menu-panel" role="dialog" aria-modal="true" :aria-label="copy.navLabel">
-      <div class="mobile-menu-head">
-        <BrandLockup />
-        <button class="mobile-menu-close" type="button" :aria-label="copy.menuClose" @click="menuOpen = false">
+  <div
+    v-if="menuOpen"
+    ref="mobileMenuDialog"
+    class="gcsa-mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    :aria-label="copy.navLabel"
+    @keydown="handleMobileMenuKeydown($event, mobileMenuDialog, () => { menuOpen = false })"
+  >
+    <button class="gcsa-mobile-menu__scrim" type="button" :aria-label="copy.menuClose" tabindex="-1" @click="menuOpen = false" />
+    <aside class="gcsa-mobile-menu__panel">
+      <div class="gcsa-mobile-menu__head">
+        <RouterLink class="gcsa-mobile-menu__brand" to="/" aria-label="GCSA Home Guard" @click="menuOpen = false">
+          <BrandLockup />
+        </RouterLink>
+        <button class="gcsa-mobile-menu__close" type="button" :aria-label="copy.menuClose" @click="menuOpen = false">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <nav class="mobile-nav" :aria-label="copy.navLabel">
+      <nav class="gcsa-mobile-menu__nav" :aria-label="copy.navLabel">
         <RouterLink
+          class="gcsa-mobile-menu__item"
           :to="linkTarget('/')"
           :class="{ 'is-active': isNavActive({ href: '/' }) }"
           :aria-current="isNavActive({ href: '/' }) ? 'page' : undefined"
           @click="menuOpen = false"
         >
-          <span class="mobile-nav-icon"><MobileNavIcon href="/" /></span>
-          <strong>{{ copy.home }}</strong>
+          <span class="gcsa-mobile-menu__icon"><MobileNavIcon href="/" /></span>
+          <strong class="gcsa-mobile-menu__label">{{ copy.home }}</strong>
         </RouterLink>
-        <GcsaProductsMenu :locale="locale" mobile />
+        <GcsaProductsMenu class="gcsa-mobile-menu__products" :locale="locale" mobile />
         <RouterLink
           v-for="item in copy.nav"
           :key="item.href"
+          class="gcsa-mobile-menu__item"
           :to="linkTarget(item.href)"
           :class="{ 'is-active': isNavActive(item) }"
           :aria-current="isNavActive(item) ? (item.href.startsWith('/#') ? 'location' : 'page') : undefined"
         >
-          <span class="mobile-nav-icon"><MobileNavIcon :href="item.href" /></span>
-          <strong>{{ item.label }}</strong>
+          <span class="gcsa-mobile-menu__icon"><MobileNavIcon :href="item.href" /></span>
+          <strong class="gcsa-mobile-menu__label">{{ item.label }}</strong>
         </RouterLink>
-        <div class="mobile-nav-legal">
+        <div class="gcsa-mobile-menu__secondary">
           <RouterLink
             v-for="item in legalLinks"
             :key="item.href"
+            class="gcsa-mobile-menu__item"
             :to="item.href"
             :class="{ 'is-active': isNavActive(item) }"
             :aria-current="isNavActive(item) ? 'page' : undefined"
           >
-            <span class="mobile-nav-icon"><MobileNavIcon :href="item.href" /></span>
-            <strong>{{ item.label }}</strong>
+            <span class="gcsa-mobile-menu__icon"><MobileNavIcon :href="item.href" /></span>
+            <strong class="gcsa-mobile-menu__label">{{ item.label }}</strong>
           </RouterLink>
         </div>
       </nav>
     </aside>
   </div>
 </template>
+
+<style src="../../../shared/mobileMenu.css"></style>

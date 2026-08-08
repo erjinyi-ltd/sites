@@ -42,7 +42,7 @@ article::before { position: absolute; inset: 0 24px auto; height: 1px; backgroun
 .architecture-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 13px; }
 .architecture-icon { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid color-mix(in srgb, var(--windows) 30%, var(--border)); border-radius: 10px; color: var(--windows); background: color-mix(in srgb, var(--windows) 8%, var(--muted)); }
 .architecture-head small { color: var(--muted-foreground); font-family: var(--font-data); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
-h3 { margin-top: 4px; font-family: var(--font-display); font-size: 18px; line-height: 1.2; }
+h3 { margin-top: 4px; font-family: var(--font-card-title); font-size: 18px; line-height: 1.2; }
 .status { padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--success) 30%, var(--border)); border-radius: 999px; color: var(--success); background: color-mix(in srgb, var(--success) 7%, transparent); font-size: 9px; font-weight: 700; }
 .description { margin-top: 21px; color: var(--muted-foreground); font-size: 13px; line-height: 1.7; }
 ul { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-top: 20px; }

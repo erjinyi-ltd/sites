@@ -73,7 +73,7 @@ article > span {
 
 h3 {
   margin-top: 28px;
-  font-family: var(--font-display);
+  font-family: var(--font-card-title);
   font-size: 17px;
   font-weight: 650;
 }

@@ -23,7 +23,7 @@ li:first-child { padding-left: 0; }
 li:last-child { padding-right: 0; }
 li + li { border-left: 1px solid var(--border); }
 li > span { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--border)); border-radius: 10px; color: var(--primary); background: color-mix(in srgb, var(--primary) 7%, var(--card)); font-family: var(--font-data); font-size: 11px; font-weight: 700; }
-h3 { font-family: var(--font-display); font-size: 16px; line-height: 1.3; }
+h3 { font-family: var(--font-card-title); font-size: 16px; line-height: 1.3; }
 li p { margin-top: 10px; color: var(--muted-foreground); font-size: 12px; line-height: 1.72; }
 @media (max-width: 980px) { .workflow-grid { grid-template-columns: 1fr 1fr; gap: 34px 0; } li:nth-child(3) { padding-left: 0; border-left: 0; } }
 @media (max-width: 620px) { .workflow-section { padding-block: 88px; } .workflow-grid { grid-template-columns: 1fr; gap: 0; } li, li:first-child, li:last-child { padding: 22px 0; } li + li { border-top: 1px solid var(--border); border-left: 0; } }

@@ -26,7 +26,7 @@ defineProps<{ copy: ProductPageCopy['safety'] }>()
 article { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; padding: 20px; border: 1px solid var(--border); border-radius: 11px; background: color-mix(in srgb, var(--card) 90%, transparent); }
 article > span { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid color-mix(in srgb, var(--primary) 26%, var(--border)); border-radius: 9px; color: var(--primary); background: var(--muted); }
 article > span small { display: none; }
-h3 { font-family: var(--font-display); font-size: 16px; }
+h3 { font-family: var(--font-card-title); font-size: 16px; }
 article p { margin-top: 8px; color: var(--muted-foreground); font-size: 13px; line-height: 1.72; }
 @media (max-width: 920px) { .safety-section { grid-template-columns: 1fr; } .safety-copy { position: static; } }
 @media (max-width: 620px) { .safety-section { gap: 38px; padding-block: 88px; } article { padding: 17px; } }

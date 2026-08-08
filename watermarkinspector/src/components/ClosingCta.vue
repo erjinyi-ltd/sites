@@ -34,9 +34,9 @@ defineProps<{ copy: SiteCopy['closing'] }>()
 h2 {
   margin-top: 13px;
   font-family: var(--font-display);
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 650;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.2;
 }
 
