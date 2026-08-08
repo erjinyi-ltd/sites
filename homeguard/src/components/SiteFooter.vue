@@ -166,8 +166,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
   height: 54px;
   flex: 0 0 54px;
   place-items: center;
-  border-radius: 8px;
-  background: transparent;
 }
 
 .email-icon svg {
@@ -201,8 +199,6 @@ const footer = computed(() => getGcsaFooter(props.locale))
   flex: 0 0 44px;
   place-items: center;
   margin-left: auto;
-  border-radius: 999px;
-  background: transparent;
   font-size: 18px;
 }
 
